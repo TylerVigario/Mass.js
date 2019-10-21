@@ -8,7 +8,7 @@ module.exports = {
         'Mass_US.min': './src/Mass_US.js',
     },
     output: {
-        library: 'Mass.js',
+        library: 'mass.js',
         libraryTarget: 'umd',
         filename: '[name].js',
         libraryExport: 'default',

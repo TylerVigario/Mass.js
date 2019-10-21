@@ -288,12 +288,6 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "src/mass.js",
-    "file/src/Mass.js.html",
-    "src/Mass.js",
-    "file"
-  ],
-  [
     "src/massjs.js",
     "file/src/MassJS.js.html",
     "src/MassJS.js",
@@ -328,5 +322,11 @@ window.esdocSearchIndex = [
     "class/src/MassJS.js~MassJS.html#instance-method-parse",
     "src/MassJS.js~MassJS#parse",
     "method"
+  ],
+  [
+    "src/mass_us.js",
+    "file/src/Mass_US.js.html",
+    "src/Mass_US.js",
+    "file"
   ]
 ]
