@@ -8,14 +8,41 @@ var Mass = new mass();
 // Performance
 //
 
-// parse
-test('parse', () => {
-    Mass.parse('12 pounds  8oz');
+// parse-single
+test('parse-single', () => {
+    Mass.parse('12 lbs');
 });
 
-// format
-test('format', () => {
+// parse-double
+test('parse-double-short', () => {
+    Mass.parse('12 lbs  8 oz');
+});
+
+// parse-double
+test('parse-double-long', () => {
+    Mass.parse('12 pounds  8 ounces');
+});
+
+console.log();
+
+// format-single
+test('format-single', () => {
+    Mass.format(12);
+});
+
+// format-double
+test('format-double', () => {
     Mass.format(12.5);
+});
+
+// format-double
+test('format-double-with-convert', () => {
+    Mass.format(200, 0.0625);
+});
+
+// format-double-with-lookup
+test('format-double-with-lookup', () => {
+    Mass.format(200, 'oz');
 });
 
 //
@@ -31,7 +58,7 @@ console.log();
 function test(name, test, rounds = 1000000) {
     let time = microtime.now();
 
-    for (let i = rounds; i > 0; i = i - 1) {
+    for (let i = rounds; i > 0; i--) {
         test();
     }
 
