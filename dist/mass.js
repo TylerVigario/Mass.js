@@ -293,12 +293,12 @@ function () {
 
 
       if (unitValue !== 1) {
-        if (typeof unit === 'number') {
+        if (typeof unitValue === 'number') {
           // Validate number
           if (unitValue < 0) {
             throw new Error('Parameter "unitValue" cannot be a negative number.');
           }
-        } else if (typeof unit === 'string') {
+        } else if (typeof unitValue === 'string') {
           // Perform lookup using signifier
           unitValue = this.lookup(unitValue); // Validate Unit lookup
 
@@ -323,19 +323,19 @@ function () {
 
       try {
         for (var _iterator = this.Units[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var _unit = _step.value;
+          var unit = _step.value;
 
           // Check if Unit is displaying and value is greater than unit value
-          if (_unit.display && value >= _unit.value) {
+          if (unit.display && value >= unit.value) {
             // Calculate quantity of unit
-            var q = value / _unit.value; // Exclusive means it will display the whole value under its sole unit
+            var q = value / unit.value; // Exclusive means it will display the whole value under its sole unit
             // Here we check to make sure it isn't exclusive so we can remove the change from value and make it whole
 
-            if (!_unit.display.exclusive) {
+            if (!unit.display.exclusive) {
               // Whole unit quantity
               q = Math.floor(q); // Subtract change from total
 
-              value -= q * _unit.value;
+              value -= q * unit.value;
             } // Add space if text has content already
 
 
@@ -344,21 +344,21 @@ function () {
             } // Add formatted value
 
 
-            formatted += q.toFixed(_unit.display.rounding ? _unit.display.rounding : 0); // Add spaces (if applicable)
+            formatted += q.toFixed(unit.display.rounding ? unit.display.rounding : 0); // Add spaces (if applicable)
 
             if (spaces) {
               formatted += ' ';
             } // Add unit signifier
 
 
-            if (_typeof(_unit.display) === 'object') {
-              formatted += q === 1 ? _unit.display.singular : _unit.display.plural;
+            if (_typeof(unit.display) === 'object') {
+              formatted += q === 1 ? unit.display.singular : unit.display.plural;
             } else {
-              formatted += _unit.display;
+              formatted += unit.display;
             } // Is unit exclusive or is there no longer any value to format?
 
 
-            if (_unit.display.exclusive || value === 0) {
+            if (unit.display.exclusive || value === 0) {
               break;
             }
           }
@@ -402,12 +402,12 @@ function () {
 
       try {
         for (var _iterator2 = this.Units[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var _unit2 = _step2.value;
+          var unit = _step2.value;
 
           // Check if signifier matches Unit
-          if (_unit2.signifiers.includes(signifier)) {
+          if (unit.signifiers.includes(signifier)) {
             // Return unit
-            return _unit2;
+            return unit;
           }
         } // No match found
 

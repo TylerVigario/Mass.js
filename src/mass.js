@@ -212,12 +212,12 @@ export default class Mass
         
         // Did they supply custom unit ratio or signifier?
         if (unitValue !== 1) {
-            if (typeof unit === 'number') {
+            if (typeof unitValue === 'number') {
                 // Validate number
                 if (unitValue < 0) {
                     throw new Error('Parameter "unitValue" cannot be a negative number.');
                 }
-            } else if (typeof unit === 'string') {
+            } else if (typeof unitValue === 'string') {
                 // Perform lookup using signifier
                 unitValue = this.lookup(unitValue);
 
