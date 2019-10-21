@@ -125,6 +125,8 @@ var Mass =
 function () {
   /**
    * Creates an instance of Mass.
+   * 
+   * @param {object} [units = null] - Object containing mass unit definitions.
    */
   function Mass() {
     var units = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
