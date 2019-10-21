@@ -257,45 +257,15 @@ function () {
 
       for (var _i = 0, _pairs = pairs; _i < _pairs.length; _i++) {
         var pair = _pairs[_i];
-        var found = false; // Loop through each Unit
+        var unit = this.lookup(pair.signifier); // Does signifier not match?
 
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-          for (var _iterator = this.Units[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var unit = _step.value;
-
-            // Check if signifier matches Unit
-            if (unit.signifiers.includes(pair.signifier)) {
-              found = true; // Convert to base unit value and add to total
-
-              total += pair.value * unit.value; // No need to keep searching
-
-              break;
-            }
-          } // Did we find a matching unit signifier
-
-        } catch (err) {
-          _didIteratorError = true;
-          _iteratorError = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-              _iterator["return"]();
-            }
-          } finally {
-            if (_didIteratorError) {
-              throw _iteratorError;
-            }
-          }
-        }
-
-        if (!found) {
-          // Return false
+        if (unit === false) {
+          // If we cannot reliably match this signifier to a unit
           return false;
-        }
+        } // Convert to base unit value and add to total
+
+
+        total += pair.value * unit.value;
       } // Return total mass (as base unit)
 
 
@@ -305,7 +275,7 @@ function () {
      * Format mass as text.
      * 
      * @param {number} value - Value to format.
-     * @param {number} [unitValue = 1] - Value of unit.
+     * @param {(number|string)} [unit = 1] - Value of unit.
      * @param {(boolean|number)} [spaces = true] - Truthy values will add space between value and signifier.
      * @returns {string} Formatted mass string.
      */
@@ -313,45 +283,60 @@ function () {
   }, {
     key: "format",
     value: function format(value) {
-      var unitValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+      var unit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
       var spaces = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
       var formatted = ''; // We can't assign a value of zero to any unit
+      // Accepts any number greater than zero (i.e. 0.01)
 
-      if (value <= 0) {
-        return '0';
-      } // Did they supply custom unit value ratio?
+      if (typeof value !== 'number' || value <= 0) {
+        return false;
+      } // Did they supply custom unit ratio or signifier?
 
 
-      if (unitValue !== 1) {
-        // Validate number
-        if (typeof unitValue !== 'number' || unitValue < 0) {
+      if (unit !== 1) {
+        if (typeof unit === 'number') {
+          // Validate number
+          if (unit < 0) {
+            return false;
+          }
+        } else if (typeof unit === 'string') {
+          // Perform lookup using signifier
+          unit = this.lookup(unit); // Validate Unit lookup
+
+          if (unit === false) {
+            return false;
+          } // We want unit value
+
+
+          unit = unit.value;
+        } else {
           return false;
         } // Convert value to base unit value
 
 
-        value = value * unitValue;
+        value = value * unit;
       } // Loop through Units
 
 
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
 
       try {
-        for (var _iterator2 = this.Units[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var unit = _step2.value;
+        for (var _iterator = this.Units[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var _unit = _step.value;
 
           // Check if Unit is displaying and value is greater than unit value
-          if (unit.display && value >= unit.value) {
+          if (_unit.display && value >= _unit.value) {
             // Calculate quantity of unit
-            var q = value / unit.value; // Exclusive means it will display the whole value under its sole unit
+            var q = value / _unit.value; // Exclusive means it will display the whole value under its sole unit
             // Here we check to make sure it isn't exclusive so we can remove the change from value and make it whole
 
-            if (!unit.display.exclusive) {
+            if (!_unit.display.exclusive) {
               // Whole unit quantity
               q = Math.floor(q); // Subtract change from total
 
-              value -= q * unit.value;
+              value -= q * _unit.value;
             } // Add space if text has content already
 
 
@@ -360,25 +345,68 @@ function () {
             } // Add formatted value
 
 
-            formatted += q.toFixed(unit.display.rounding ? unit.display.rounding : 0); // Add spaces (if applicable)
+            formatted += q.toFixed(_unit.display.rounding ? _unit.display.rounding : 0); // Add spaces (if applicable)
 
             if (spaces) {
               formatted += ' ';
             } // Add unit signifier
 
 
-            if (_typeof(unit.display) === 'object') {
-              formatted += q === 1 ? unit.display.singular : unit.display.plural;
+            if (_typeof(_unit.display) === 'object') {
+              formatted += q === 1 ? _unit.display.singular : _unit.display.plural;
             } else {
-              formatted += unit.display;
+              formatted += _unit.display;
             } // Is unit exclusive or is there no longer any value to format?
 
 
-            if (unit.display.exclusive || value === 0) {
+            if (_unit.display.exclusive || value === 0) {
               break;
             }
           }
         }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+            _iterator["return"]();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      return formatted;
+    }
+    /**
+     * Lookup string with signifier returning matching Unit.
+     * 
+     * @param {string} signifier
+     * @return {object} Matching Unit object, if found, otherwise false.
+     */
+
+  }, {
+    key: "lookup",
+    value: function lookup(signifier) {
+      // Loop through each Unit
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = this.Units[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var unit = _step2.value;
+
+          // Check if signifier matches Unit
+          if (unit.signifiers.includes(signifier)) {
+            // Return unit
+            return unit;
+          }
+        } // No match found
+
       } catch (err) {
         _didIteratorError2 = true;
         _iteratorError2 = err;
@@ -394,7 +422,7 @@ function () {
         }
       }
 
-      return formatted;
+      return false;
     }
   }]);
 

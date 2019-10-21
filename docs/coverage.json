@@ -1,11 +1,11 @@
 {
-  "coverage": "80%",
-  "expectCount": 5,
-  "actualCount": 4,
+  "coverage": "83.33%",
+  "expectCount": 6,
+  "actualCount": 5,
   "files": {
     "src/mass.js": {
-      "expectCount": 5,
-      "actualCount": 4,
+      "expectCount": 6,
+      "actualCount": 5,
       "undocumentLines": [
         92
       ]

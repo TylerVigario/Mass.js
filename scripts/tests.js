@@ -49,14 +49,6 @@ var problems = [{
     answer: '5 lbs',
     value: 5
 },{
-    question: -45,
-    answer: '0',
-    value: 0
-},{
-    question: '  ',
-    answer: '0',
-    value: 0
-},{
     question: '20  lb, 20 o z ',
     answer: '21 lbs 4 oz',
     value: 21.25
@@ -92,7 +84,8 @@ var invalidWeights = [
     '25 metric tons',
     '95gallons',
     'pounds 6',
-    '78 pnds, 4 ounce'
+    '78 pnds, 4 ounce',
+    '-45',
 ];
 
 test('Parse tests', function (t) {

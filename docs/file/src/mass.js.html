@@ -213,27 +213,16 @@ export default class Mass
 
         // Loop through each pair
         for (let pair of pairs) {
-            let found = false;
+            let unit = this.lookup(pair.signifier);
 
-            // Loop through each Unit
-            for (let unit of this.Units) {
-                // Check if signifier matches Unit
-                if (unit.signifiers.includes(pair.signifier)) {
-                    found = true;
-
-                    // Convert to base unit value and add to total
-                    total += pair.value * unit.value;
-
-                    // No need to keep searching
-                    break;
-                }
-            }
-
-            // Did we find a matching unit signifier
-            if (!found) {
-                // Return false
+            // Does signifier not match?
+            if (unit === false) {
+                // If we cannot reliably match this signifier to a unit
                 return false;
             }
+
+            // Convert to base unit value and add to total
+            total += pair.value * unit.value;
         }
 
         // Return total mass (as base unit)
@@ -244,28 +233,44 @@ export default class Mass
      * Format mass as text.
      * 
      * @param {number} value - Value to format.
-     * @param {number} [unitValue = 1] - Value of unit.
+     * @param {(number|string)} [unit = 1] - Value of unit.
      * @param {(boolean|number)} [spaces = true] - Truthy values will add space between value and signifier.
      * @returns {string} Formatted mass string.
      */
-    format(value, unitValue = 1, spaces = true)
+    format(value, unit = 1, spaces = true)
     {
         let formatted = &apos;&apos;;
 
         // We can&apos;t assign a value of zero to any unit
-        if (value &lt;= 0) {
-            return &apos;0&apos;;
+        // Accepts any number greater than zero (i.e. 0.01)
+        if (typeof value !== &apos;number&apos; || value &lt;= 0) {
+            return false;
         }
         
-        // Did they supply custom unit value ratio?
-        if (unitValue !== 1) {
-            // Validate number
-            if (typeof unitValue !== &apos;number&apos; || unitValue &lt; 0) {
+        // Did they supply custom unit ratio or signifier?
+        if (unit !== 1) {
+            if (typeof unit === &apos;number&apos;) {
+                // Validate number
+                if (unit &lt; 0) {
+                    return false;
+                }
+            } else if (typeof unit === &apos;string&apos;) {
+                // Perform lookup using signifier
+                unit = this.lookup(unit);
+
+                // Validate Unit lookup
+                if (unit === false) {
+                    return false;
+                }
+
+                // We want unit value
+                unit = unit.value;
+            } else {
                 return false;
             }
 
             // Convert value to base unit value
-            value = value * unitValue;
+            value = value * unit;
         }
 
         // Loop through Units
@@ -313,6 +318,27 @@ export default class Mass
         }
 
         return formatted;
+    }
+
+    /**
+     * Lookup string with signifier returning matching Unit.
+     * 
+     * @param {string} signifier
+     * @return {object} Matching Unit object, if found, otherwise false.
+     */
+    lookup(signifier)
+    {
+        // Loop through each Unit
+        for (let unit of this.Units) {
+            // Check if signifier matches Unit
+            if (unit.signifiers.includes(signifier)) {
+                // Return unit
+                return unit;
+            }
+        }
+
+        // No match found
+        return false;
     }
 }</code></pre>
 

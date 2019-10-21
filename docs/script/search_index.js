@@ -312,6 +312,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/mass.js~mass#lookup",
+    "class/src/mass.js~Mass.html#instance-method-lookup",
+    "src/mass.js~Mass#lookup",
+    "method"
+  ],
+  [
     "src/mass.js~mass#parse",
     "class/src/mass.js~Mass.html#instance-method-parse",
     "src/mass.js~Mass#parse",
