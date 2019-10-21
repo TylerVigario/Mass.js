@@ -115,7 +115,7 @@ export default class Mass
         text = text.toLowerCase();
 
         // Remove non alphanumeric characters except periods
-        text = text.replace(/[^0-9a-z.-]/gi, '');
+        text = text.replace(/[^0-9a-z.-]/g, '');
 
         // Is string empty?
         if (text.length === 0) {
@@ -134,7 +134,7 @@ export default class Mass
             const char = text.charAt(i);
 
             // Check for alphabet letter (a-z,0-9|a-z,0-9|...) [comma = separator between value and signifier, | = separator between pairs]
-            if (char.match(/[a-z]/i)) {
+            if (char.match(/[a-z]/)) {
                 // Catch the case where they supply text prior to the value
                 if (value.length === 0) {
                     return false;
@@ -173,6 +173,15 @@ export default class Mass
             }
         }
 
+        // Convert to string to number
+        let v = parseFloat(value);
+
+        // Mass cannot be negative
+        if (v < 0) {
+            return false;
+        }
+
+        // Lookup unit signifier
         unit = this.lookup(signifier);
 
         // Does signifier not match?

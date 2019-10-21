@@ -81,7 +81,8 @@ var invalidWeights = [
     '95gallons',
     'pounds 6',
     '78 pnds, 4 ounce',
-    '-45',
+    '-45pounds',
+    '@$#/|',
 ];
 
 test('Parse tests', function (t) {

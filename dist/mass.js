@@ -201,7 +201,7 @@ function () {
 
       text = text.toLowerCase(); // Remove non alphanumeric characters except periods
 
-      text = text.replace(/[^0-9a-z.-]/gi, ''); // Is string empty?
+      text = text.replace(/[^0-9a-z.-]/g, ''); // Is string empty?
 
       if (text.length === 0) {
         return false;
@@ -218,7 +218,7 @@ function () {
         var _char = text.charAt(i); // Check for alphabet letter (a-z,0-9|a-z,0-9|...) [comma = separator between value and signifier, | = separator between pairs]
 
 
-        if (_char.match(/[a-z]/i)) {
+        if (_char.match(/[a-z]/)) {
           // Catch the case where they supply text prior to the value
           if (value.length === 0) {
             return false;
@@ -229,9 +229,10 @@ function () {
           // Check if this is next unit pair (i.e. value,signifier|value,signifier|...)
           if (signifier.length > 0) {
             // Convert to string to number
-            var v = parseFloat(value); // Mass cannot be negative
+            var _v = parseFloat(value); // Mass cannot be negative
 
-            if (v < 0) {
+
+            if (_v < 0) {
               return false;
             } // Lookup unit signifier
 
@@ -244,7 +245,7 @@ function () {
             } // Convert to base unit value and add to total
 
 
-            total += v * unit.value; // Reset storage variables
+            total += _v * unit.value; // Reset storage variables
 
             value = '';
             signifier = '';
@@ -252,7 +253,15 @@ function () {
 
           value += _char;
         }
-      }
+      } // Convert to string to number
+
+
+      var v = parseFloat(value); // Mass cannot be negative
+
+      if (v < 0) {
+        return false;
+      } // Lookup unit signifier
+
 
       unit = this.lookup(signifier); // Does signifier not match?
 
