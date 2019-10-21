@@ -29,10 +29,6 @@ var problems = [{
     answer: '3 lbs 1 oz',
     value: 3.0625
 },{
-    question: 3,
-    answer: '3 lbs',
-    value: 3
-},{
     question: '17 lb 14 oz',
     answer: '17 lbs 14 oz',
     value: 17.875
@@ -93,13 +89,13 @@ test('Parse tests', function (t) {
 
     // Validate Mass.parse()
     problems.forEach((problem) => {
-        let value = Mass.parse(problem.question);
+        try {
+            let value = Mass.parse(problem.question);
 
-        if (typeof value !== 'number') {
-            t.error(value, 'Error during parse.');
+            t.equal(value, problem.value, problem.question);
+        } catch (e) {
+            t.error(e, 'Error during parse.');
         }
-
-        t.equal(value, problem.value, problem.question);
     });
 });
 
@@ -108,10 +104,13 @@ test('Format tests', function (t) {
 
     // Validate Mass.format()
     problems.forEach((problem) => {
-        let value = Mass.parse(problem.question);
-        let text = Mass.format(value);
+        try {
+            let text = Mass.format(problem.value);
 
-        t.equal(text, problem.answer, text);
+            t.equal(text, problem.answer, text);
+        } catch (e) {
+            t.error(e, 'Error during parse.');
+        }
     });
 });
 
@@ -120,8 +119,12 @@ test('Invalid parse tests', function (t) {
 
     // Mass.parse() invalid weight handling
     invalidWeights.forEach((weight) => {
-        let value = Mass.parse(weight);
+        try {
+            let value = Mass.parse(weight);
 
-        t.equal(value, false, weight);
+            t.equal(value, false, weight);
+        } catch (e) {
+            t.error(e, 'Error during parse.');
+        }
     });
 });

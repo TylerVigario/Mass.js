@@ -176,38 +176,35 @@ function () {
       }];
     }
 
+    if (_typeof(units) !== 'object') {
+      throw new Error('Parameter "units" must be of type "object".');
+    }
+
     this.Units = units;
   }
   /**
    * Parse variable for Mass.
    * 
-   * @param {(number|string)} text - Text to parse for mass.
-   * @returns {(number|false)} Returns mass as it's base unit, if an error, false.
+   * @param {string} text - String to parse for mass.
+   * @returns {(number|false)} Returns mass as it's base unit, if an invalid string for mass or any value is negative, false.
    */
 
 
   _createClass(Mass, [{
     key: "parse",
     value: function parse(text) {
-      if (typeof text === 'number') {
-        // Value cannot be lower than zero
-        if (text < 0) {
-          text = 0;
-        }
-
-        return text;
-      } // We expect to parse a string
-      else if (typeof text !== 'string') {
-          return false;
-        } // Remove possible case sensitivity
+      // Validate text parameter
+      if (typeof text !== 'string') {
+        throw new Error('Parameter "text" must be of type "string".');
+      } // Remove possible case sensitivity
 
 
       text = text.toLowerCase(); // Remove non alphanumeric characters except periods
 
-      text = text.replace(/[^0-9a-z.]/gi, ''); // Is string empty?
+      text = text.replace(/[^0-9a-z.-]/gi, ''); // Is string empty?
 
       if (text.length === 0) {
-        return 0;
+        return false;
       } // Linear char parsing
 
 
@@ -231,6 +228,14 @@ function () {
         } else {
           // Check if this is next unit pair (i.e. value,signifier|value,signifier|...)
           if (signifier.length > 0) {
+            // Convert to string to number
+            var v = parseFloat(value); // Mass cannot be negative
+
+            if (v < 0) {
+              return false;
+            } // Lookup unit signifier
+
+
             unit = this.lookup(signifier); // Does signifier not match?
 
             if (unit === false) {
@@ -239,7 +244,7 @@ function () {
             } // Convert to base unit value and add to total
 
 
-            total += value * unit.value; // Reset storage variables
+            total += v * unit.value; // Reset storage variables
 
             value = '';
             signifier = '';
@@ -264,10 +269,10 @@ function () {
     /**
      * Format mass as text.
      * 
-     * @param {number} value - Value to format.
+     * @param {number} value - Value to format (must be a positive number).
      * @param {(number|string)} [unitValue = 1] - Value of unit or string mass unit signifier for lookup.
      * @param {(boolean|number)} [spaces = true] - Truthy values will add space between value and signifier.
-     * @returns {(string|false)} Formatted mass string or, if an error, false.
+     * @returns {(string|false)} Formatted mass string or, if value is negative or unit signifier lookup fails, false.
      */
 
   }, {
@@ -275,10 +280,14 @@ function () {
     value: function format(value) {
       var unitValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
       var spaces = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-      var formatted = ''; // We can't assign a value of zero to any unit
-      // Accepts any number greater than zero (i.e. 0.01)
+      var formatted = ''; // Validate value parameter
 
-      if (typeof value !== 'number' || value <= 0) {
+      if (typeof value !== 'number') {
+        throw new Error('Parameter "value" must be of type "number".');
+      } // Accepts any positive number
+
+
+      if (value < 0) {
         return false;
       } // Did they supply custom unit ratio or signifier?
 
@@ -287,7 +296,7 @@ function () {
         if (typeof unit === 'number') {
           // Validate number
           if (unitValue < 0) {
-            return false;
+            throw new Error('Parameter "unitValue" cannot be a negative number.');
           }
         } else if (typeof unit === 'string') {
           // Perform lookup using signifier
@@ -300,7 +309,7 @@ function () {
 
           unitValue = unitValue.value;
         } else {
-          return false;
+          throw new Error('Parameter "unitValue" must be of type "number" or "string".');
         } // Convert value to base unit value
 
 
@@ -374,14 +383,19 @@ function () {
     /**
      * Lookup string with signifier returning matching Unit.
      * 
-     * @param {string} signifier - Mass unit signifier for lookup.
+     * @param {string} signifier - Mass unit signifier string for lookup.
      * @return {(object|false)} Matching Unit object, if found, otherwise false.
      */
 
   }, {
     key: "lookup",
     value: function lookup(signifier) {
-      // Loop through each Unit
+      // Validate signifier parameter type
+      if (typeof signifier !== 'string') {
+        throw new Error('Parameter "signifier" must be of type "string".');
+      } // Loop through each Unit
+
+
       var _iteratorNormalCompletion2 = true;
       var _didIteratorError2 = false;
       var _iteratorError2 = undefined;

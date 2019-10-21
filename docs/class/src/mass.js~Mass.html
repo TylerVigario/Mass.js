@@ -165,7 +165,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/mass.js~Mass.html#instance-method-format">format</a></span></span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unit: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, spaces: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span>false</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/mass.js~Mass.html#instance-method-format">format</a></span></span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unitValue: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, spaces: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span>false</span></span>
         </p>
       </div>
       <div>
@@ -223,7 +223,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/mass.js~Mass.html#instance-method-parse">parse</a></span></span><span class="code" data-ice="signature">(text: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span>false</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/mass.js~Mass.html#instance-method-parse">parse</a></span></span><span class="code" data-ice="signature">(text: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span>false</span></span>
         </p>
       </div>
       <div>
@@ -325,7 +325,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/mass.js.html#lineNumber94">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/mass.js.html#lineNumber98">source</a></span></span>
     </span>
   </h3>
 
@@ -367,11 +367,11 @@
     
     
     
-    <span class="code" data-ice="name">format</span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unit: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, spaces: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span>false</span></span>
+    <span class="code" data-ice="name">format</span><span class="code" data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unitValue: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, spaces: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span>false</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/mass.js.html#lineNumber194">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/mass.js.html#lineNumber199">source</a></span></span>
     </span>
   </h3>
 
@@ -395,11 +395,11 @@
       <td data-ice="name" class="code" data-depth="0">value</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>Value to format.</p>
+      <td data-ice="description"><p>Value to format (must be a positive number).</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">unit</td>
+      <td data-ice="name" class="code" data-depth="0">unitValue</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default:  1</li></ul></td>
@@ -425,7 +425,7 @@
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span> | <span>false</span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>Formatted mass string or, if an error, false.</p>
+          <td class="return-desc" data-ice="returnDescription"><p>Formatted mass string or, if value is negative or unit signifier lookup fails, false.</p>
 </td>
         </tr>
       </tbody>
@@ -461,7 +461,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/mass.js.html#lineNumber283">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/mass.js.html#lineNumber292">source</a></span></span>
     </span>
   </h3>
 
@@ -485,7 +485,7 @@
       <td data-ice="name" class="code" data-depth="0">signifier</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>Mass unit signifier for lookup.</p>
+      <td data-ice="description"><p>Mass unit signifier string for lookup.</p>
 </td>
     </tr>
 </tbody>
@@ -531,11 +531,11 @@
     
     
     
-    <span class="code" data-ice="name">parse</span><span class="code" data-ice="signature">(text: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span>false</span></span>
+    <span class="code" data-ice="name">parse</span><span class="code" data-ice="signature">(text: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span>false</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/mass.js.html#lineNumber103">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/mass.js.html#lineNumber107">source</a></span></span>
     </span>
   </h3>
 
@@ -557,9 +557,9 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">text</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>Text to parse for mass.</p>
+      <td data-ice="description"><p>String to parse for mass.</p>
 </td>
     </tr>
 </tbody>
@@ -573,7 +573,7 @@
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span>false</span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>Returns mass as it&apos;s base unit, if an error, false.</p>
+          <td class="return-desc" data-ice="returnDescription"><p>Returns mass as it&apos;s base unit, if an invalid string for mass or any value is negative, false.</p>
 </td>
         </tr>
       </tbody>
