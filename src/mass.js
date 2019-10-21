@@ -112,7 +112,7 @@ export default class Mass
         // Remove possible case sensitivity
         text = text.toLowerCase();
 
-        // Remove non alphanumeric characters except periods
+        // Remove non alphanumeric characters except "." and "-"
         text = text.replace(/[^0-9a-z.-]/g, '');
 
         // Is string empty?
