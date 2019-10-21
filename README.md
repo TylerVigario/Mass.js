@@ -9,21 +9,19 @@ JavaScript library for parsing and formatting mass units.
 Install
 -------
 ```javascript
-npm install Mass.js
+npm install mass.js
 ```
 
 Usage
 -----
 **ES6**
 ```javascript
-import {Mass as mass} from 'Mass.js/src/mass';
-var Mass = new mass();
+import Mass from 'mass.js/src/Mass';
 ```
 
 **CommonJS**
 ```javascript
-var mass = require('Mass.js');
-var Mass = new mass();
+var Mass = require('mass.js');
 ```
 
 Example

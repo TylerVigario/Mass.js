@@ -1,8 +1,8 @@
 window.esdocSearchIndex = [
   [
-    "mass.js/src/mass.js~mass",
-    "class/src/mass.js~Mass.html",
-    "<span>Mass</span> <span class=\"search-result-import-path\">mass.js/src/mass.js</span>",
+    "mass.js/src/massjs.js~massjs",
+    "class/src/MassJS.js~MassJS.html",
+    "<span>MassJS</span> <span class=\"search-result-import-path\">mass.js/src/MassJS.js</span>",
     "class"
   ],
   [
@@ -289,38 +289,44 @@ window.esdocSearchIndex = [
   ],
   [
     "src/mass.js",
-    "file/src/mass.js.html",
-    "src/mass.js",
+    "file/src/Mass.js.html",
+    "src/Mass.js",
     "file"
   ],
   [
-    "src/mass.js~mass#units",
-    "class/src/mass.js~Mass.html#instance-member-Units",
-    "src/mass.js~Mass#Units",
+    "src/massjs.js",
+    "file/src/MassJS.js.html",
+    "src/MassJS.js",
+    "file"
+  ],
+  [
+    "src/massjs.js~massjs#units",
+    "class/src/MassJS.js~MassJS.html#instance-member-Units",
+    "src/MassJS.js~MassJS#Units",
     "member"
   ],
   [
-    "src/mass.js~mass#constructor",
-    "class/src/mass.js~Mass.html#instance-constructor-constructor",
-    "src/mass.js~Mass#constructor",
+    "src/massjs.js~massjs#constructor",
+    "class/src/MassJS.js~MassJS.html#instance-constructor-constructor",
+    "src/MassJS.js~MassJS#constructor",
     "method"
   ],
   [
-    "src/mass.js~mass#format",
-    "class/src/mass.js~Mass.html#instance-method-format",
-    "src/mass.js~Mass#format",
+    "src/massjs.js~massjs#format",
+    "class/src/MassJS.js~MassJS.html#instance-method-format",
+    "src/MassJS.js~MassJS#format",
     "method"
   ],
   [
-    "src/mass.js~mass#lookup",
-    "class/src/mass.js~Mass.html#instance-method-lookup",
-    "src/mass.js~Mass#lookup",
+    "src/massjs.js~massjs#lookup",
+    "class/src/MassJS.js~MassJS.html#instance-method-lookup",
+    "src/MassJS.js~MassJS#lookup",
     "method"
   ],
   [
-    "src/mass.js~mass#parse",
-    "class/src/mass.js~Mass.html#instance-method-parse",
-    "src/mass.js~Mass#parse",
+    "src/massjs.js~massjs#parse",
+    "class/src/MassJS.js~MassJS.html#instance-method-parse",
+    "src/MassJS.js~MassJS#parse",
     "method"
   ]
 ]

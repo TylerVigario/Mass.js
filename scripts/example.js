@@ -1,7 +1,6 @@
 /* eslint no-console: 0 */
 
-var mass = require('../dist/mass');
-var Mass = new mass();
+var Mass = require('../dist/mass');
 
 //
 // Example

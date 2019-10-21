@@ -1,8 +1,7 @@
 /* eslint no-console: 0 */
 
 var microtime = require('microtime');
-var mass = require('../dist/mass');
-var Mass = new mass();
+var Mass = require('../dist/mass');
 
 //
 // Performance

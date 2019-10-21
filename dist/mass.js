@@ -100,7 +100,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Mass; });
+
+// CONCATENATED MODULE: ./src/MassJS.js
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -120,7 +121,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 /**
  * Class for working with string representations of mass.
  */
-var Mass =
+var MassJS =
 /*#__PURE__*/
 function () {
   /**
@@ -128,53 +129,12 @@ function () {
    * 
    * @param {array} [units = null] - Array of mass unit definitions objects.
    */
-  function Mass() {
+  function MassJS() {
     var units = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-    _classCallCheck(this, Mass);
+    _classCallCheck(this, MassJS);
 
-    if (units === null) {
-      units = [{
-        name: 'ton',
-        value: 2000,
-        display: {
-          singular: 'ton',
-          plural: 'tons',
-          rounding: 2,
-          exclusive: true
-        },
-        signifiers: ['t', 'ton', 'tons']
-      }, {
-        name: 'hundredweight',
-        value: 100,
-        signifiers: ['cwt', 'hundredweight']
-      }, {
-        name: 'quarter',
-        value: 25,
-        signifiers: ['qr', 'qtr', 'quarter', 'quarters']
-      }, {
-        name: 'pound',
-        value: 1,
-        display: {
-          singular: 'lb',
-          plural: 'lbs'
-        },
-        signifiers: ['lb', 'lbs', 'pound', 'pounds']
-      }, {
-        name: 'ounce',
-        value: 0.0625,
-        display: 'oz',
-        signifiers: ['oz', 'ounce', 'ounces']
-      }, {
-        name: 'dram',
-        value: 0.00390625,
-        signifiers: ['dr', 'dram', 'drams']
-      }, {
-        name: 'grain',
-        value: 1.4285714285714285714285714285714e-4,
-        signifiers: ['gr', 'grain', 'grains']
-      }];
-    } else if (_typeof(units) !== 'object') {
+    if (_typeof(units) !== 'object') {
       throw new Error('Parameter "units" must be of type "object".');
     }
 
@@ -188,7 +148,7 @@ function () {
    */
 
 
-  _createClass(Mass, [{
+  _createClass(MassJS, [{
     key: "parse",
     value: function parse(text) {
       // Validate text parameter
@@ -410,10 +370,54 @@ function () {
     }
   }]);
 
-  return Mass;
+  return MassJS;
 }();
 
 
+// CONCATENATED MODULE: ./src/Mass.js
+ // US Mass units
+
+var Mass = new MassJS([{
+  name: 'ton',
+  value: 2000,
+  display: {
+    singular: 'ton',
+    plural: 'tons',
+    rounding: 2,
+    exclusive: true
+  },
+  signifiers: ['t', 'ton', 'tons']
+}, {
+  name: 'hundredweight',
+  value: 100,
+  signifiers: ['cwt', 'hundredweight']
+}, {
+  name: 'quarter',
+  value: 25,
+  signifiers: ['qr', 'qtr', 'quarter', 'quarters']
+}, {
+  name: 'pound',
+  value: 1,
+  display: {
+    singular: 'lb',
+    plural: 'lbs'
+  },
+  signifiers: ['lb', 'lbs', 'pound', 'pounds']
+}, {
+  name: 'ounce',
+  value: 0.0625,
+  display: 'oz',
+  signifiers: ['oz', 'ounce', 'ounces']
+}, {
+  name: 'dram',
+  value: 0.00390625,
+  signifiers: ['dr', 'dram', 'drams']
+}, {
+  name: 'grain',
+  value: 1.4285714285714285714285714285714e-4,
+  signifiers: ['gr', 'grain', 'grains']
+}]);
+/* harmony default export */ var src_Mass = __webpack_exports__["default"] = (Mass);
 
 /***/ })
 /******/ ])["default"];

@@ -4,8 +4,8 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
     mode: 'production',
     entry: {
-        'mass': './src/mass.js',
-        'mass.min': './src/mass.js',
+        'Mass': './src/Mass.js',
+        'Mass.min': './src/Mass.js',
     },
     output: {
         library: 'Mass.js',

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/mass.js | mass.js</title>
+  <title data-ice="title">src/Mass.js | mass.js</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -29,324 +29,86 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mass.js~Mass.html">Mass</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/MassJS.js~MassJS.html">MassJS</a></span></span></li>
 </ul>
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/mass.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">  
-/** 
- * Parsing and formatting mass units.
- *
- * @author Tyler Vigario (MeekLogic)
- * @license GPL-3.0-only
- * @version 1.0.0
- */
+<div class="content" data-ice="content"><h1 data-ice="title">src/Mass.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import MassJS from &apos;./MassJS&apos;;
 
-/**
- * Class for working with string representations of mass.
- */
-export default class Mass
-{
-    /**
-     * Creates an instance of Mass.
-     * 
-     * @param {array} [units = null] - Array of mass unit definitions objects.
-     */
-    constructor(units = null)
-    {
-        if (units === null) {
-            units = [{
-                name: &apos;ton&apos;,
-                value: 2000,
-                display: {
-                    singular: &apos;ton&apos;,
-                    plural: &apos;tons&apos;,
-                    rounding: 2,
-                    exclusive: true
-                },
-                signifiers: [
-                    &apos;t&apos;,
-                    &apos;ton&apos;,
-                    &apos;tons&apos;
-                ]
-            },{
-                name: &apos;hundredweight&apos;,
-                value: 100,
-                signifiers: [
-                    &apos;cwt&apos;,
-                    &apos;hundredweight&apos;
-                ]
-            },{
-                name: &apos;quarter&apos;,
-                value: 25,
-                signifiers: [
-                    &apos;qr&apos;,
-                    &apos;qtr&apos;,
-                    &apos;quarter&apos;,
-                    &apos;quarters&apos;
-                ]
-            },{
-                name: &apos;pound&apos;,
-                value: 1,
-                display: {
-                    singular: &apos;lb&apos;,
-                    plural: &apos;lbs&apos;
-                },
-                signifiers: [
-                    &apos;lb&apos;,
-                    &apos;lbs&apos;,
-                    &apos;pound&apos;,
-                    &apos;pounds&apos;
-                ]
-            },{
-                name: &apos;ounce&apos;,
-                value: 0.0625,
-                display: &apos;oz&apos;,
-                signifiers: [
-                    &apos;oz&apos;,
-                    &apos;ounce&apos;,
-                    &apos;ounces&apos;
-                ]
-            },{
-                name: &apos;dram&apos;,
-                value: 0.00390625,
-                signifiers: [
-                    &apos;dr&apos;,
-                    &apos;dram&apos;,
-                    &apos;drams&apos;
-                ]
-            },{
-                name: &apos;grain&apos;,
-                value: 1.4285714285714285714285714285714e-4,
-                signifiers: [
-                    &apos;gr&apos;,
-                    &apos;grain&apos;,
-                    &apos;grains&apos;
-                ]
-            }];
-        } else if (typeof units !== &apos;object&apos;) {
-            throw new Error(&apos;Parameter &quot;units&quot; must be of type &quot;object&quot;.&apos;);
-        }
+// US Mass units
+var Mass = new MassJS([{
+    name: &apos;ton&apos;,
+    value: 2000,
+    display: {
+        singular: &apos;ton&apos;,
+        plural: &apos;tons&apos;,
+        rounding: 2,
+        exclusive: true
+    },
+    signifiers: [
+        &apos;t&apos;,
+        &apos;ton&apos;,
+        &apos;tons&apos;
+    ]
+},{
+    name: &apos;hundredweight&apos;,
+    value: 100,
+    signifiers: [
+        &apos;cwt&apos;,
+        &apos;hundredweight&apos;
+    ]
+},{
+    name: &apos;quarter&apos;,
+    value: 25,
+    signifiers: [
+        &apos;qr&apos;,
+        &apos;qtr&apos;,
+        &apos;quarter&apos;,
+        &apos;quarters&apos;
+    ]
+},{
+    name: &apos;pound&apos;,
+    value: 1,
+    display: {
+        singular: &apos;lb&apos;,
+        plural: &apos;lbs&apos;
+    },
+    signifiers: [
+        &apos;lb&apos;,
+        &apos;lbs&apos;,
+        &apos;pound&apos;,
+        &apos;pounds&apos;
+    ]
+},{
+    name: &apos;ounce&apos;,
+    value: 0.0625,
+    display: &apos;oz&apos;,
+    signifiers: [
+        &apos;oz&apos;,
+        &apos;ounce&apos;,
+        &apos;ounces&apos;
+    ]
+},{
+    name: &apos;dram&apos;,
+    value: 0.00390625,
+    signifiers: [
+        &apos;dr&apos;,
+        &apos;dram&apos;,
+        &apos;drams&apos;
+    ]
+},{
+    name: &apos;grain&apos;,
+    value: 1.4285714285714285714285714285714e-4,
+    signifiers: [
+        &apos;gr&apos;,
+        &apos;grain&apos;,
+        &apos;grains&apos;
+    ]
+}]);
 
-        this.Units = units;
-    }
-
-    /**
-     * Parse variable for Mass.
-     * 
-     * @param {string} text - String to parse for mass.
-     * @returns {(number|false)} Returns mass as it&apos;s base unit, if an invalid string for mass or any value is negative, false.
-     */
-    parse(text)
-    {
-        // Validate text parameter
-        if (typeof text !== &apos;string&apos;) {
-            throw new Error(&apos;Parameter &quot;text&quot; must be of type &quot;string&quot;.&apos;);
-        }
-
-        // Remove possible case sensitivity
-        text = text.toLowerCase();
-
-        // Remove non alphanumeric characters except &quot;.&quot; and &quot;-&quot;
-        text = text.replace(/[^0-9a-z.-]/g, &apos;&apos;);
-
-        // Is string empty?
-        if (text.length === 0) {
-            return false;
-        }
-
-        // Linear char parsing
-        let value = &apos;&apos;;
-        let signifier = &apos;&apos;;
-        let unit;
-        let total = 0;
-
-        // Loop through each character of string
-        for (let i = 0; i &lt; text.length; i++) {
-            // Get current char
-            const char = text.charAt(i);
-
-            // Check for alphabet letter (a-z,0-9|a-z,0-9|...) [comma = separator between value and signifier, | = separator between pairs]
-            if (char.match(/[a-z]/)) {
-                // Catch the case where they supply text prior to the value
-                if (value.length === 0) {
-                    return false;
-                }
-
-                signifier += char;
-            } else {
-                // Check if this is next unit pair (i.e. value,signifier|value,signifier|...)
-                if (signifier.length &gt; 0) {
-                    // Convert to string to number
-                    let v = parseFloat(value);
-
-                    // Mass cannot be negative
-                    if (v &lt; 0) {
-                        return false;
-                    }
-
-                    // Lookup unit signifier
-                    unit = this.lookup(signifier);
-
-                    // Does signifier not match?
-                    if (unit === undefined) {
-                        // If we cannot reliably match this signifier to a unit
-                        return false;
-                    }
-
-                    // Convert to base unit value and add to total
-                    total += v * unit.value;
-
-                    // Reset storage variables
-                    value = &apos;&apos;;
-                    signifier = &apos;&apos;;
-                }
-
-                value += char;
-            }
-        }
-
-        // Convert to string to number
-        let v = parseFloat(value);
-
-        // Mass cannot be negative
-        if (v &lt; 0) {
-            return false;
-        }
-
-        // Lookup unit signifier
-        unit = this.lookup(signifier);
-
-        // Does signifier not match?
-        if (unit === undefined) {
-            // If we cannot reliably match this signifier to a unit
-            return false;
-        }
-
-        // Convert to base unit value and add to total
-        total += value * unit.value;
-
-        // Return total mass (as base unit)
-        return total;
-    }
-
-    /**
-     * Format mass as text.
-     * 
-     * @param {number} value - Value to format (must be a positive number).
-     * @param {(number|string)} [unitValue = 1] - Value of unit or string mass unit signifier for lookup.
-     * @param {(boolean|number)} [spaces = true] - Truthy values will add space between value and signifier.
-     * @returns {(string|false)} Formatted mass string or, if value is negative or unit signifier lookup fails, false.
-     */
-    format(value, unitValue = 1, spaces = true)
-    {
-        let formatted = &apos;&apos;;
-
-        // Validate value parameter
-        if (typeof value !== &apos;number&apos;) {
-            throw new Error(&apos;Parameter &quot;value&quot; must be of type &quot;number&quot;.&apos;);
-        }
-
-        // Accepts any positive number
-        if (value &lt; 0) {
-            return false;
-        }
-        
-        // Did they supply custom unit ratio or signifier?
-        if (unitValue !== 1) {
-            if (typeof unitValue === &apos;number&apos;) {
-                // Validate number
-                if (unitValue &lt; 0) {
-                    throw new Error(&apos;Parameter &quot;unitValue&quot; cannot be a negative number.&apos;);
-                }
-            } else if (typeof unitValue === &apos;string&apos;) {
-                // Perform lookup using signifier
-                unitValue = this.lookup(unitValue);
-
-                // Validate Unit lookup
-                if (unitValue === undefined) {
-                    return false;
-                }
-
-                // We want unit value
-                unitValue = unitValue.value;
-            } else {
-                throw new Error(&apos;Parameter &quot;unitValue&quot; must be of type &quot;number&quot; or &quot;string&quot;.&apos;);
-            }
-
-            // Convert value to base unit value
-            value = value * unitValue;
-        }
-
-        // Loop through Units
-        for (let unit of this.Units) {
-            // Check if Unit is displaying and value is greater than unit value
-            if (unit.display &amp;&amp; value &gt;= unit.value) {
-                // Calculate quantity of unit
-                let q = value / unit.value;
-
-                // Exclusive means it will display the whole value under its sole unit
-                // Here we check to make sure it isn&apos;t exclusive so we can remove the change from value and make it whole
-                if (!unit.display.exclusive) {
-                    // Whole unit quantity
-                    q = Math.floor(q);
-
-                    // Subtract change from total
-                    value -= q * unit.value;
-                }
-
-                // Add space if text has content already
-                if (formatted.length &gt; 0) {
-                    formatted += &apos; &apos;;
-                }
-
-                // Add formatted value
-                formatted += q.toFixed(unit.display.rounding ? unit.display.rounding : 0);
-
-                // Add spaces (if applicable)
-                if (spaces) {
-                    formatted += &apos; &apos;;
-                }
-
-                // Add unit signifier
-                if (typeof unit.display === &apos;object&apos;) {
-                    formatted += (q === 1 ? unit.display.singular : unit.display.plural);
-                } else {
-                    formatted += unit.display;
-                }
-
-                // Is unit exclusive or is there no longer any value to format?
-                if (unit.display.exclusive || value === 0) {
-                    break;
-                }
-            }
-        }
-
-        return formatted;
-    }
-
-    /**
-     * Lookup string with signifier returning matching Unit.
-     * 
-     * @param {string} signifier - Mass unit signifier string for lookup.
-     * @return {(object|undefined)} Matching Unit object, if found, otherwise false.
-     */
-    lookup(signifier)
-    {
-        // Validate signifier parameter type
-        if (typeof signifier !== &apos;string&apos;) {
-            throw new Error(&apos;Parameter &quot;signifier&quot; must be of type &quot;string&quot;.&apos;);
-        }
-
-        // Search through units
-        return this.Units.find((unit) =&gt; {
-            // Search for matching signifier within unit
-            return unit.signifiers.includes(signifier);
-        });
-    }
-}</code></pre>
+export default Mass;</code></pre>
 
 </div>
 

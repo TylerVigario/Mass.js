@@ -3,11 +3,11 @@
   "expectCount": 6,
   "actualCount": 5,
   "files": {
-    "src/mass.js": {
+    "src/MassJS.js": {
       "expectCount": 6,
       "actualCount": 5,
       "undocumentLines": [
-        96
+        26
       ]
     }
   }
