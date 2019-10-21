@@ -179,8 +179,8 @@ function () {
   /**
    * Parse variable for Mass.
    * 
-   * @param {(number|string)} text - Variable to parse for mass.
-   * @returns {(number|false)} Returns mass represented in it's base mass unit or false.
+   * @param {(number|string)} text - Text to parse for mass.
+   * @returns {(number|false)} Returns mass as it's base unit, if an error, false.
    */
 
 
@@ -263,9 +263,9 @@ function () {
      * Format mass as text.
      * 
      * @param {number} value - Value to format.
-     * @param {(number|string)} [unit = 1] - Value of unit.
+     * @param {(number|string)} [unit = 1] - Value of unit or string mass unit signifier for lookup.
      * @param {(boolean|number)} [spaces = true] - Truthy values will add space between value and signifier.
-     * @returns {string} Formatted mass string.
+     * @returns {(string|false)} Formatted mass string or, if an error, false.
      */
 
   }, {
@@ -372,8 +372,8 @@ function () {
     /**
      * Lookup string with signifier returning matching Unit.
      * 
-     * @param {string} signifier
-     * @return {object} Matching Unit object, if found, otherwise false.
+     * @param {string} signifier - Mass unit signifier for lookup.
+     * @return {(object|false)} Matching Unit object, if found, otherwise false.
      */
 
   }, {
