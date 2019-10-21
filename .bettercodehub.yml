@@ -1,0 +1,10 @@
+component_depth: 1
+
+languages:
+- javascript
+
+exclude:
+- /dist/.*
+- /docs/.*
+- /.eslintrc.js
+- /webpack.config.js

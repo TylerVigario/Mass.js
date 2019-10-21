@@ -1,0 +1,59 @@
+{
+  "name": "mass.js",
+  "version": "1.0.0",
+  "description": "JavaScript library for parsing and formatting mass units.",
+  "homepage": "https://meeklogic.github.io/Mass.js/",
+  "main": "./dist/mass.min.js",
+  "scripts": {
+    "build": "npx webpack --config webpack.config.js",
+    "lint": "./node_modules/.bin/eslint --config ./.eslintrc.js ./src",
+    "test": "npm run tests",
+    "tests": "node ./scripts/tests.js | tap-spec",
+    "test:coverage": "npm run tests:coverage",
+    "tests:coverage": "npx nyc npm run tests",
+    "speed": "npm run performance",
+    "performance": "node ./scripts/performance.js",
+    "doc": "npm run documentation",
+    "docs": "npm run documentation",
+    "documentation": "npx esdoc",
+    "example": "node ./scripts/example.js"
+  },
+  "keywords": [
+    "weight",
+    "conversion",
+    "imperial",
+    "pound",
+    "ounce",
+    "mass"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MeekLogic/Mass.js"
+  },
+  "bugs": {
+    "url": "https://github.com/MeekLogic/Mass.js/issues"
+  },
+  "author": "MeekLogic (Tyler Vigario)",
+  "license": "GPL-3.0-only",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "babel-loader": "^8.0.6",
+    "esdoc": "^1.1.0",
+    "esdoc-standard-plugin": "^1.0.0",
+    "eslint": "^6.5.1",
+    "microtime": "^3.0.0",
+    "nyc": "^14.1.1",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.11.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
+  },
+  "dependencies": {},
+  "nyc": {
+    "include": [
+      "**/dist/mass.js"
+    ]
+  }
+}
