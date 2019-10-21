@@ -7,7 +7,7 @@
 		exports["Mass.js"] = factory();
 	else
 		root["Mass.js"] = factory();
-})(typeof self !== 'undefined' ? self : this, function() {
+})(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -374,7 +374,7 @@ function () {
 }();
 
 
-// CONCATENATED MODULE: ./src/Mass.js
+// CONCATENATED MODULE: ./src/Mass_US.js
  // US Mass units
 
 var Mass = new MassJS([{
@@ -417,7 +417,7 @@ var Mass = new MassJS([{
   value: 1.4285714285714285714285714285714e-4,
   signifiers: ['gr', 'grain', 'grains']
 }]);
-/* harmony default export */ var src_Mass = __webpack_exports__["default"] = (Mass);
+/* harmony default export */ var Mass_US = __webpack_exports__["default"] = (Mass);
 
 /***/ })
 /******/ ])["default"];

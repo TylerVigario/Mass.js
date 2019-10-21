@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "JavaScript library for parsing and formatting mass units.",
   "homepage": "https://meeklogic.github.io/Mass.js/",
-  "main": "./dist/Mass.min.js",
+  "main": "./dist/Mass_US.min.js",
   "scripts": {
     "build": "npx webpack --config webpack.config.js",
     "lint": "./node_modules/.bin/eslint --config ./.eslintrc.js ./src",
@@ -53,7 +53,7 @@
   "dependencies": {},
   "nyc": {
     "include": [
-      "**/dist/Mass.js"
+      "**/dist/Mass_US.js"
     ]
   }
 }
