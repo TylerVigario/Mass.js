@@ -124,10 +124,10 @@ export default class Mass
             return 0;
         }
 
-        // Linear char parser
+        // Linear char parsing
         let value = '';
         let signifier = '';
-        let pairs = [];
+        let total = 0;
 
         // Loop through each character of string
         for (let i = 0; i < text.length; i++) {
@@ -145,11 +145,16 @@ export default class Mass
             } else {
                 // Check if this is next unit pair (i.e. value,signifier|value,signifier|...)
                 if (signifier.length > 0) {
-                    // Add pair to list of found pairs
-                    pairs.push({
-                        value: value,
-                        signifier: signifier
-                    });
+                    let unit = this.lookup(signifier);
+
+                    // Does signifier not match?
+                    if (unit === false) {
+                        // If we cannot reliably match this signifier to a unit
+                        return false;
+                    }
+
+                    // Convert to base unit value and add to total
+                    total += value * unit.value;
 
                     // Reset storage variables
                     value = '';
@@ -160,33 +165,16 @@ export default class Mass
             }
         }
 
-        // Make sure we found both a value and a unit signifier
-        if (value.length === 0 || signifier.length === 0) {
+        let unit = this.lookup(signifier);
+
+        // Does signifier not match?
+        if (unit === false) {
+            // If we cannot reliably match this signifier to a unit
             return false;
         }
 
-        // Add final pair
-        pairs.push({
-            value: value,
-            signifier: signifier
-        });
-
-        // Calculate total
-        let total = 0;
-
-        // Loop through each pair
-        for (let pair of pairs) {
-            let unit = this.lookup(pair.signifier);
-
-            // Does signifier not match?
-            if (unit === false) {
-                // If we cannot reliably match this signifier to a unit
-                return false;
-            }
-
-            // Convert to base unit value and add to total
-            total += pair.value * unit.value;
-        }
+        // Convert to base unit value and add to total
+        total += value * unit.value;
 
         // Return total mass (as base unit)
         return total;

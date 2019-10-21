@@ -206,12 +206,12 @@ function () {
 
       if (text.length === 0) {
         return 0;
-      } // Linear char parser
+      } // Linear char parsing
 
 
       var value = '';
       var signifier = '';
-      var pairs = []; // Loop through each character of string
+      var total = 0; // Loop through each character of string
 
       for (var i = 0; i < text.length; i++) {
         // Get current char
@@ -228,11 +228,16 @@ function () {
         } else {
           // Check if this is next unit pair (i.e. value,signifier|value,signifier|...)
           if (signifier.length > 0) {
-            // Add pair to list of found pairs
-            pairs.push({
-              value: value,
-              signifier: signifier
-            }); // Reset storage variables
+            var _unit = this.lookup(signifier); // Does signifier not match?
+
+
+            if (_unit === false) {
+              // If we cannot reliably match this signifier to a unit
+              return false;
+            } // Convert to base unit value and add to total
+
+
+            total += value * _unit.value; // Reset storage variables
 
             value = '';
             signifier = '';
@@ -240,34 +245,17 @@ function () {
 
           value += _char;
         }
-      } // Make sure we found both a value and a unit signifier
+      }
 
+      var unit = this.lookup(signifier); // Does signifier not match?
 
-      if (value.length === 0 || signifier.length === 0) {
+      if (unit === false) {
+        // If we cannot reliably match this signifier to a unit
         return false;
-      } // Add final pair
+      } // Convert to base unit value and add to total
 
 
-      pairs.push({
-        value: value,
-        signifier: signifier
-      }); // Calculate total
-
-      var total = 0; // Loop through each pair
-
-      for (var _i = 0, _pairs = pairs; _i < _pairs.length; _i++) {
-        var pair = _pairs[_i];
-        var unit = this.lookup(pair.signifier); // Does signifier not match?
-
-        if (unit === false) {
-          // If we cannot reliably match this signifier to a unit
-          return false;
-        } // Convert to base unit value and add to total
-
-
-        total += pair.value * unit.value;
-      } // Return total mass (as base unit)
-
+      total += value * unit.value; // Return total mass (as base unit)
 
       return total;
     }
@@ -324,19 +312,19 @@ function () {
 
       try {
         for (var _iterator = this.Units[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var _unit = _step.value;
+          var _unit2 = _step.value;
 
           // Check if Unit is displaying and value is greater than unit value
-          if (_unit.display && value >= _unit.value) {
+          if (_unit2.display && value >= _unit2.value) {
             // Calculate quantity of unit
-            var q = value / _unit.value; // Exclusive means it will display the whole value under its sole unit
+            var q = value / _unit2.value; // Exclusive means it will display the whole value under its sole unit
             // Here we check to make sure it isn't exclusive so we can remove the change from value and make it whole
 
-            if (!_unit.display.exclusive) {
+            if (!_unit2.display.exclusive) {
               // Whole unit quantity
               q = Math.floor(q); // Subtract change from total
 
-              value -= q * _unit.value;
+              value -= q * _unit2.value;
             } // Add space if text has content already
 
 
@@ -345,21 +333,21 @@ function () {
             } // Add formatted value
 
 
-            formatted += q.toFixed(_unit.display.rounding ? _unit.display.rounding : 0); // Add spaces (if applicable)
+            formatted += q.toFixed(_unit2.display.rounding ? _unit2.display.rounding : 0); // Add spaces (if applicable)
 
             if (spaces) {
               formatted += ' ';
             } // Add unit signifier
 
 
-            if (_typeof(_unit.display) === 'object') {
-              formatted += q === 1 ? _unit.display.singular : _unit.display.plural;
+            if (_typeof(_unit2.display) === 'object') {
+              formatted += q === 1 ? _unit2.display.singular : _unit2.display.plural;
             } else {
-              formatted += _unit.display;
+              formatted += _unit2.display;
             } // Is unit exclusive or is there no longer any value to format?
 
 
-            if (_unit.display.exclusive || value === 0) {
+            if (_unit2.display.exclusive || value === 0) {
               break;
             }
           }
