@@ -82,7 +82,7 @@ var invalidWeights = [
     'pounds 6',
     '78 pnds, 4 ounce',
     '-45pounds',
-    '12 lbs -4 oz',
+    '-12 lbs 4 oz',
     '@$#/|'
 ];
 
