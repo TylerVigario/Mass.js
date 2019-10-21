@@ -126,9 +126,7 @@ export default class Mass
                     &apos;grains&apos;
                 ]
             }];
-        }
-
-        if (typeof units !== &apos;object&apos;) {
+        } else if (typeof units !== &apos;object&apos;) {
             throw new Error(&apos;Parameter &quot;units&quot; must be of type &quot;object&quot;.&apos;);
         }
 

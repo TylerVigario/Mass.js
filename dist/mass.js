@@ -174,9 +174,7 @@ function () {
         value: 1.4285714285714285714285714285714e-4,
         signifiers: ['gr', 'grain', 'grains']
       }];
-    }
-
-    if (_typeof(units) !== 'object') {
+    } else if (_typeof(units) !== 'object') {
       throw new Error('Parameter "units" must be of type "object".');
     }
 
