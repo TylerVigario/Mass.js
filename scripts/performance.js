@@ -45,6 +45,18 @@ test('format-double-with-lookup', () => {
     Mass.format(200, 'oz');
 });
 
+console.log();
+
+// lookup-grain
+test('lookup-grain', () => {
+    Mass.lookup('gr');
+});
+
+// lookup-ton
+test('lookup-ton', () => {
+    Mass.lookup('t');
+});
+
 //
 console.log();
 

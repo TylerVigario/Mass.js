@@ -89,9 +89,7 @@ export default class Mass
                     'grains'
                 ]
             }];
-        }
-
-        if (typeof units !== 'object') {
+        } else if (typeof units !== 'object') {
             throw new Error('Parameter "units" must be of type "object".');
         }
 
