@@ -15,7 +15,7 @@ export default class Mass
     /**
      * Creates an instance of Mass.
      * 
-     * @param {object} [units = null] - Object containing mass unit definitions.
+     * @param {array} [units = null] - Array of mass unit definitions objects.
      */
     constructor(units = null)
     {
@@ -154,7 +154,7 @@ export default class Mass
                     unit = this.lookup(signifier);
 
                     // Does signifier not match?
-                    if (unit === false) {
+                    if (unit === undefined) {
                         // If we cannot reliably match this signifier to a unit
                         return false;
                     }
@@ -183,7 +183,7 @@ export default class Mass
         unit = this.lookup(signifier);
 
         // Does signifier not match?
-        if (unit === false) {
+        if (unit === undefined) {
             // If we cannot reliably match this signifier to a unit
             return false;
         }
@@ -229,7 +229,7 @@ export default class Mass
                 unitValue = this.lookup(unitValue);
 
                 // Validate Unit lookup
-                if (unitValue === false) {
+                if (unitValue === undefined) {
                     return false;
                 }
 
@@ -294,7 +294,7 @@ export default class Mass
      * Lookup string with signifier returning matching Unit.
      * 
      * @param {string} signifier - Mass unit signifier string for lookup.
-     * @return {(object|false)} Matching Unit object, if found, otherwise false.
+     * @return {(object|undefined)} Matching Unit object, if found, otherwise false.
      */
     lookup(signifier)
     {
@@ -303,16 +303,10 @@ export default class Mass
             throw new Error('Parameter "signifier" must be of type "string".');
         }
 
-        // Loop through each Unit
-        for (let unit of this.Units) {
-            // Check if signifier matches Unit
-            if (unit.signifiers.includes(signifier)) {
-                // Return unit
-                return unit;
-            }
-        }
-
-        // No match found
-        return false;
+        // Search through units
+        return this.Units.find((unit) => {
+            // Search for matching signifier within unit
+            return unit.signifiers.includes(signifier);
+        });
     }
 }

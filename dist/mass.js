@@ -126,7 +126,7 @@ function () {
   /**
    * Creates an instance of Mass.
    * 
-   * @param {object} [units = null] - Object containing mass unit definitions.
+   * @param {array} [units = null] - Array of mass unit definitions objects.
    */
   function Mass() {
     var units = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
@@ -237,7 +237,7 @@ function () {
 
             unit = this.lookup(signifier); // Does signifier not match?
 
-            if (unit === false) {
+            if (unit === undefined) {
               // If we cannot reliably match this signifier to a unit
               return false;
             } // Convert to base unit value and add to total
@@ -263,7 +263,7 @@ function () {
 
       unit = this.lookup(signifier); // Does signifier not match?
 
-      if (unit === false) {
+      if (unit === undefined) {
         // If we cannot reliably match this signifier to a unit
         return false;
       } // Convert to base unit value and add to total
@@ -309,7 +309,7 @@ function () {
           // Perform lookup using signifier
           unitValue = this.lookup(unitValue); // Validate Unit lookup
 
-          if (unitValue === false) {
+          if (unitValue === undefined) {
             return false;
           } // We want unit value
 
@@ -391,7 +391,7 @@ function () {
      * Lookup string with signifier returning matching Unit.
      * 
      * @param {string} signifier - Mass unit signifier string for lookup.
-     * @return {(object|false)} Matching Unit object, if found, otherwise false.
+     * @return {(object|undefined)} Matching Unit object, if found, otherwise false.
      */
 
   }, {
@@ -400,40 +400,13 @@ function () {
       // Validate signifier parameter type
       if (typeof signifier !== 'string') {
         throw new Error('Parameter "signifier" must be of type "string".');
-      } // Loop through each Unit
+      } // Search through units
 
 
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
-
-      try {
-        for (var _iterator2 = this.Units[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var unit = _step2.value;
-
-          // Check if signifier matches Unit
-          if (unit.signifiers.includes(signifier)) {
-            // Return unit
-            return unit;
-          }
-        } // No match found
-
-      } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-            _iterator2["return"]();
-          }
-        } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
-          }
-        }
-      }
-
-      return false;
+      return this.Units.find(function (unit) {
+        // Search for matching signifier within unit
+        return unit.signifiers.includes(signifier);
+      });
     }
   }]);
 
