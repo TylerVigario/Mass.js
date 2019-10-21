@@ -37,7 +37,7 @@ pounds += (12 / 16);
 
 console.log(pounds); // 6
 
-// Verify total is 90 ounces
+// Verify total is 6 pounds
 if (pounds === 6) {
     // Format total for human-readable string
     console.log(Mass.format(pounds)); // "6 lbs"
