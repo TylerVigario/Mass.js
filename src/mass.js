@@ -129,6 +129,7 @@ export default class Mass
         // Linear char parsing
         let value = '';
         let signifier = '';
+        let unit;
         let total = 0;
 
         // Loop through each character of string
@@ -147,7 +148,7 @@ export default class Mass
             } else {
                 // Check if this is next unit pair (i.e. value,signifier|value,signifier|...)
                 if (signifier.length > 0) {
-                    let unit = this.lookup(signifier);
+                    unit = this.lookup(signifier);
 
                     // Does signifier not match?
                     if (unit === false) {
@@ -167,7 +168,7 @@ export default class Mass
             }
         }
 
-        let unit = this.lookup(signifier);
+        unit = this.lookup(signifier);
 
         // Does signifier not match?
         if (unit === false) {
@@ -186,11 +187,11 @@ export default class Mass
      * Format mass as text.
      * 
      * @param {number} value - Value to format.
-     * @param {(number|string)} [unit = 1] - Value of unit or string mass unit signifier for lookup.
+     * @param {(number|string)} [unitValue = 1] - Value of unit or string mass unit signifier for lookup.
      * @param {(boolean|number)} [spaces = true] - Truthy values will add space between value and signifier.
      * @returns {(string|false)} Formatted mass string or, if an error, false.
      */
-    format(value, unit = 1, spaces = true)
+    format(value, unitValue = 1, spaces = true)
     {
         let formatted = '';
 
@@ -201,29 +202,29 @@ export default class Mass
         }
         
         // Did they supply custom unit ratio or signifier?
-        if (unit !== 1) {
+        if (unitValue !== 1) {
             if (typeof unit === 'number') {
                 // Validate number
-                if (unit < 0) {
+                if (unitValue < 0) {
                     return false;
                 }
             } else if (typeof unit === 'string') {
                 // Perform lookup using signifier
-                unit = this.lookup(unit);
+                unitValue = this.lookup(unitValue);
 
                 // Validate Unit lookup
-                if (unit === false) {
+                if (unitValue === false) {
                     return false;
                 }
 
                 // We want unit value
-                unit = unit.value;
+                unitValue = unitValue.value;
             } else {
                 return false;
             }
 
             // Convert value to base unit value
-            value = value * unit;
+            value = value * unitValue;
         }
 
         // Loop through Units

@@ -166,6 +166,7 @@ export default class Mass
         // Linear char parsing
         let value = &apos;&apos;;
         let signifier = &apos;&apos;;
+        let unit;
         let total = 0;
 
         // Loop through each character of string
@@ -184,7 +185,7 @@ export default class Mass
             } else {
                 // Check if this is next unit pair (i.e. value,signifier|value,signifier|...)
                 if (signifier.length &gt; 0) {
-                    let unit = this.lookup(signifier);
+                    unit = this.lookup(signifier);
 
                     // Does signifier not match?
                     if (unit === false) {
@@ -204,7 +205,7 @@ export default class Mass
             }
         }
 
-        let unit = this.lookup(signifier);
+        unit = this.lookup(signifier);
 
         // Does signifier not match?
         if (unit === false) {

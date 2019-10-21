@@ -213,6 +213,7 @@ function () {
 
       var value = '';
       var signifier = '';
+      var unit;
       var total = 0; // Loop through each character of string
 
       for (var i = 0; i < text.length; i++) {
@@ -230,16 +231,15 @@ function () {
         } else {
           // Check if this is next unit pair (i.e. value,signifier|value,signifier|...)
           if (signifier.length > 0) {
-            var _unit = this.lookup(signifier); // Does signifier not match?
+            unit = this.lookup(signifier); // Does signifier not match?
 
-
-            if (_unit === false) {
+            if (unit === false) {
               // If we cannot reliably match this signifier to a unit
               return false;
             } // Convert to base unit value and add to total
 
 
-            total += value * _unit.value; // Reset storage variables
+            total += value * unit.value; // Reset storage variables
 
             value = '';
             signifier = '';
@@ -249,7 +249,7 @@ function () {
         }
       }
 
-      var unit = this.lookup(signifier); // Does signifier not match?
+      unit = this.lookup(signifier); // Does signifier not match?
 
       if (unit === false) {
         // If we cannot reliably match this signifier to a unit
@@ -265,7 +265,7 @@ function () {
      * Format mass as text.
      * 
      * @param {number} value - Value to format.
-     * @param {(number|string)} [unit = 1] - Value of unit or string mass unit signifier for lookup.
+     * @param {(number|string)} [unitValue = 1] - Value of unit or string mass unit signifier for lookup.
      * @param {(boolean|number)} [spaces = true] - Truthy values will add space between value and signifier.
      * @returns {(string|false)} Formatted mass string or, if an error, false.
      */
@@ -273,7 +273,7 @@ function () {
   }, {
     key: "format",
     value: function format(value) {
-      var unit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+      var unitValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
       var spaces = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
       var formatted = ''; // We can't assign a value of zero to any unit
       // Accepts any number greater than zero (i.e. 0.01)
@@ -283,28 +283,28 @@ function () {
       } // Did they supply custom unit ratio or signifier?
 
 
-      if (unit !== 1) {
+      if (unitValue !== 1) {
         if (typeof unit === 'number') {
           // Validate number
-          if (unit < 0) {
+          if (unitValue < 0) {
             return false;
           }
         } else if (typeof unit === 'string') {
           // Perform lookup using signifier
-          unit = this.lookup(unit); // Validate Unit lookup
+          unitValue = this.lookup(unitValue); // Validate Unit lookup
 
-          if (unit === false) {
+          if (unitValue === false) {
             return false;
           } // We want unit value
 
 
-          unit = unit.value;
+          unitValue = unitValue.value;
         } else {
           return false;
         } // Convert value to base unit value
 
 
-        value = value * unit;
+        value = value * unitValue;
       } // Loop through Units
 
 
@@ -314,19 +314,19 @@ function () {
 
       try {
         for (var _iterator = this.Units[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var _unit2 = _step.value;
+          var _unit = _step.value;
 
           // Check if Unit is displaying and value is greater than unit value
-          if (_unit2.display && value >= _unit2.value) {
+          if (_unit.display && value >= _unit.value) {
             // Calculate quantity of unit
-            var q = value / _unit2.value; // Exclusive means it will display the whole value under its sole unit
+            var q = value / _unit.value; // Exclusive means it will display the whole value under its sole unit
             // Here we check to make sure it isn't exclusive so we can remove the change from value and make it whole
 
-            if (!_unit2.display.exclusive) {
+            if (!_unit.display.exclusive) {
               // Whole unit quantity
               q = Math.floor(q); // Subtract change from total
 
-              value -= q * _unit2.value;
+              value -= q * _unit.value;
             } // Add space if text has content already
 
 
@@ -335,21 +335,21 @@ function () {
             } // Add formatted value
 
 
-            formatted += q.toFixed(_unit2.display.rounding ? _unit2.display.rounding : 0); // Add spaces (if applicable)
+            formatted += q.toFixed(_unit.display.rounding ? _unit.display.rounding : 0); // Add spaces (if applicable)
 
             if (spaces) {
               formatted += ' ';
             } // Add unit signifier
 
 
-            if (_typeof(_unit2.display) === 'object') {
-              formatted += q === 1 ? _unit2.display.singular : _unit2.display.plural;
+            if (_typeof(_unit.display) === 'object') {
+              formatted += q === 1 ? _unit.display.singular : _unit.display.plural;
             } else {
-              formatted += _unit2.display;
+              formatted += _unit.display;
             } // Is unit exclusive or is there no longer any value to format?
 
 
-            if (_unit2.display.exclusive || value === 0) {
+            if (_unit.display.exclusive || value === 0) {
               break;
             }
           }
@@ -388,12 +388,12 @@ function () {
 
       try {
         for (var _iterator2 = this.Units[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var unit = _step2.value;
+          var _unit2 = _step2.value;
 
           // Check if signifier matches Unit
-          if (unit.signifiers.includes(signifier)) {
+          if (_unit2.signifiers.includes(signifier)) {
             // Return unit
-            return unit;
+            return _unit2;
           }
         } // No match found
 
