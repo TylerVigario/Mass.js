@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -373,7 +373,8 @@ function () {
 
 
 /***/ }),
-/* 1 */
+/* 1 */,
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -383,7 +384,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var Mass = new _MassJS__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]([{
   name: 'ton',
-  value: 2000,
+  value: 2240,
   display: {
     symbol: 't',
     rounding: 2,
@@ -392,12 +393,16 @@ var Mass = new _MassJS__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]([{
   signifiers: ['t', 'ton', 'tons']
 }, {
   name: 'hundredweight',
-  value: 100,
+  value: 112,
   signifiers: ['cwt', 'hundredweight']
 }, {
   name: 'quarter',
-  value: 25,
+  value: 28,
   signifiers: ['qr', 'qtr', 'quarter', 'quarters']
+}, {
+  name: 'stone',
+  value: 14,
+  signifiers: ['st', 'stone', 'stones']
 }, {
   name: 'pound',
   value: 1,
@@ -411,7 +416,7 @@ var Mass = new _MassJS__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]([{
 }, {
   name: 'dram',
   value: 0.00390625,
-  signifiers: ['dr', 'dram', 'drams']
+  signifiers: ['dr', 'dram', 'drams', 'drachm', 'drachms']
 }, {
   name: 'grain',
   value: 1.4285714285714285714285714285714e-4,

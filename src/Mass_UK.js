@@ -3,7 +3,7 @@ import MassJS from './MassJS';
 // US Mass units
 var Mass = new MassJS([{
     name: 'ton',
-    value: 2000,
+    value: 2240,
     display: {
         symbol: 't',
         rounding: 2,
@@ -16,19 +16,27 @@ var Mass = new MassJS([{
     ]
 },{
     name: 'hundredweight',
-    value: 100,
+    value: 112,
     signifiers: [
         'cwt',
         'hundredweight'
     ]
 },{
     name: 'quarter',
-    value: 25,
+    value: 28,
     signifiers: [
         'qr',
         'qtr',
         'quarter',
         'quarters'
+    ]
+},{
+    name: 'stone',
+    value: 14,
+    signifiers: [
+        'st',
+        'stone',
+        'stones'
     ]
 },{
     name: 'pound',
@@ -55,7 +63,9 @@ var Mass = new MassJS([{
     signifiers: [
         'dr',
         'dram',
-        'drams'
+        'drams',
+        'drachm',
+        'drachms'
     ]
 },{
     name: 'grain',

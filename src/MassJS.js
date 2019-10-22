@@ -15,9 +15,9 @@ export default class MassJS
     /**
      * Creates an instance of Mass.
      * 
-     * @param {array} [units = null] - Array of mass unit definitions objects.
+     * @param {array} units - Array of mass unit definitions objects.
      */
-    constructor(units = null)
+    constructor(units)
     {
         if (typeof units !== 'object') {
             throw new Error('Parameter "units" must be of type "object".');
@@ -135,8 +135,6 @@ export default class MassJS
      */
     format(value, unitValue = 1, spaces = true)
     {
-        let formatted = '';
-
         // Validate value parameter
         if (typeof value !== 'number') {
             throw new Error('Parameter "value" must be of type "number".');
@@ -173,6 +171,8 @@ export default class MassJS
             value = value * unitValue;
         }
 
+        let formatted = '';
+
         // Loop through Units
         for (let unit of this.Units) {
             // Check if Unit is displaying and value is greater than unit value
@@ -205,7 +205,7 @@ export default class MassJS
 
                 // Add unit signifier
                 if (typeof unit.display === 'object') {
-                    formatted += (q === 1 ? unit.display.singular : unit.display.plural);
+                    formatted += unit.display.symbol;
                 } else {
                     formatted += unit.display;
                 }

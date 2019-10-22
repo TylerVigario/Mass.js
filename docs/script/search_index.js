@@ -324,6 +324,18 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/mass_si.js",
+    "file/src/Mass_SI.js.html",
+    "src/Mass_SI.js",
+    "file"
+  ],
+  [
+    "src/mass_uk.js",
+    "file/src/Mass_UK.js.html",
+    "src/Mass_UK.js",
+    "file"
+  ],
+  [
     "src/mass_us.js",
     "file/src/Mass_US.js.html",
     "src/Mass_US.js",

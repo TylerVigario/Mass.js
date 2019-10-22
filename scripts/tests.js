@@ -1,39 +1,40 @@
 /* eslint no-console: 0 */
 
 var test = require('tape');
-var Mass = require('../dist/Mass_US');
+var Mass_US = require('../dist/Mass_US');
+var Mass_SI = require('../dist/Mass_SI');
 
 //
 // Tests
 //
 
-var problems = [{
+var problems_US = [{
     question: '1 pound',
     answer: '1 lb',
     value: 1
 },{
     question: '8lb 36oz',
-    answer: '10 lbs 4 oz',
+    answer: '10 lb 4 oz',
     value: 10.25
 },{
     question: '169oz',
-    answer: '10 lbs 9 oz',
+    answer: '10 lb 9 oz',
     value: 10.5625
 },{
     question: '10lbs',
-    answer: '10 lbs',
+    answer: '10 lb',
     value: 10
 },{
     question: '2lbs ,  17oz',
-    answer: '3 lbs 1 oz',
+    answer: '3 lb 1 oz',
     value: 3.0625
 },{
     question: '17 lb 14 oz',
-    answer: '17 lbs 14 oz',
+    answer: '17 lb 14 oz',
     value: 17.875
 },{
     question: '3lbs4oz',
-    answer: '3 lbs 4 oz',
+    answer: '3 lb 4 oz',
     value: 3.25
 },{
     question: '4 oz',
@@ -41,11 +42,11 @@ var problems = [{
     value: 0.25
 },{
     question: '16oz4lb',
-    answer: '5 lbs',
+    answer: '5 lb',
     value: 5
 },{
     question: '20  lb, 20 o z ',
-    answer: '21 lbs 4 oz',
+    answer: '21 lb 4 oz',
     value: 21.25
 },{
     question: '7000 grains',
@@ -57,20 +58,30 @@ var problems = [{
     value: 1
 },{
     question: '1 qtr',
-    answer: '25 lbs',
+    answer: '25 lb',
     value: 25
 },{
     question: '2 hundredweight',
-    answer: '200 lbs',
+    answer: '200 lb',
     value: 200
 },{
     question: '65 hundredweight',
-    answer: '3.25 tons',
+    answer: '3.25 t',
     value: 6500
 },{
     question: '3.5t',
-    answer: '3.50 tons',
+    answer: '3.50 t',
     value: 7000
+}];
+
+var problems_SI = [{
+    question: '1 ton 500 kilograms',
+    answer: '1.50 t',
+    value: 1500
+},{
+    question: '256 grams',
+    answer: '256 g',
+    value: 0.256
 }];
 
 var invalidWeights = [
@@ -85,13 +96,13 @@ var invalidWeights = [
     '@$#/|'
 ];
 
-test('Parse tests', function (t) {
-    t.plan(problems.length);
+test('Parse tests - US', function (t) {
+    t.plan(problems_US.length);
 
     // Validate Mass.parse()
-    problems.forEach((problem) => {
+    problems_US.forEach((problem) => {
         try {
-            let value = Mass.parse(problem.question);
+            let value = Mass_US.parse(problem.question);
 
             t.equal(value, problem.value, problem.question);
         } catch (e) {
@@ -100,13 +111,13 @@ test('Parse tests', function (t) {
     });
 });
 
-test('Format tests', function (t) {
-    t.plan(problems.length);
+test('Format tests - US', function (t) {
+    t.plan(problems_US.length);
 
     // Validate Mass.format()
-    problems.forEach((problem) => {
+    problems_US.forEach((problem) => {
         try {
-            let text = Mass.format(problem.value);
+            let text = Mass_US.format(problem.value);
 
             t.equal(text, problem.answer, text);
         } catch (e) {
@@ -121,9 +132,41 @@ test('Invalid parse tests', function (t) {
     // Mass.parse() invalid weight handling
     invalidWeights.forEach((weight) => {
         try {
-            let value = Mass.parse(weight);
+            let value = Mass_US.parse(weight);
 
             t.equal(value, false, weight);
+        } catch (e) {
+            t.error(e, 'Error during parse.');
+        }
+    });
+});
+
+// SI
+
+test('Parse tests - SI', function (t) {
+    t.plan(problems_SI.length);
+
+    // Validate Mass.parse()
+    problems_SI.forEach((problem) => {
+        try {
+            let value = Mass_SI.parse(problem.question);
+
+            t.equal(value, problem.value, problem.question);
+        } catch (e) {
+            t.error(e, 'Error during parse.');
+        }
+    });
+});
+
+test('Format tests - SI', function (t) {
+    t.plan(problems_SI.length);
+
+    // Validate Mass.format()
+    problems_SI.forEach((problem) => {
+        try {
+            let text = Mass_SI.format(problem.value);
+
+            t.equal(text, problem.answer, text);
         } catch (e) {
             t.error(e, 'Error during parse.');
         }

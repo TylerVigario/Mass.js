@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -373,7 +373,9 @@ function () {
 
 
 /***/ }),
-/* 1 */
+/* 1 */,
+/* 2 */,
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -383,39 +385,23 @@ __webpack_require__.r(__webpack_exports__);
 
 var Mass = new _MassJS__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]([{
   name: 'ton',
-  value: 2000,
+  value: 1000,
   display: {
     symbol: 't',
-    rounding: 2,
-    exclusive: true
+    exclusive: true,
+    rounding: 2
   },
-  signifiers: ['t', 'ton', 'tons']
+  signifiers: ['t', 'ton', 'tons', 'tonne', 'tonnes']
 }, {
-  name: 'hundredweight',
-  value: 100,
-  signifiers: ['cwt', 'hundredweight']
-}, {
-  name: 'quarter',
-  value: 25,
-  signifiers: ['qr', 'qtr', 'quarter', 'quarters']
-}, {
-  name: 'pound',
+  name: 'kilogram',
   value: 1,
-  display: 'lb',
-  signifiers: ['lb', 'lbs', 'pound', 'pounds']
+  display: 'kg',
+  signifiers: ['kg', 'kgs', 'kilogram', 'kilograms']
 }, {
-  name: 'ounce',
-  value: 0.0625,
-  display: 'oz',
-  signifiers: ['oz', 'ounce', 'ounces']
-}, {
-  name: 'dram',
-  value: 0.00390625,
-  signifiers: ['dr', 'dram', 'drams']
-}, {
-  name: 'grain',
-  value: 1.4285714285714285714285714285714e-4,
-  signifiers: ['gr', 'grain', 'grains']
+  name: 'gram',
+  value: 0.001,
+  display: 'g',
+  signifiers: ['g', 'gs', 'gram', 'grams']
 }]);
 /* harmony default export */ __webpack_exports__["default"] = (Mass);
 
