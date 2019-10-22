@@ -1,4 +1,4 @@
-[![BCH compliance](https://bettercodehub.com/edge/badge/MeekLogic/Mass.js?branch=master)](https://bettercodehub.com/) [![Build Status](https://travis-ci.com/MeekLogic/Mass.js.svg?branch=master)](https://travis-ci.com/MeekLogic/Mass.js) [![Coverage Status](https://coveralls.io/repos/github/MeekLogic/Mass.js/badge.svg?branch=master)](https://coveralls.io/github/MeekLogic/Mass.js?branch=master)
+[![BCH compliance](https://bettercodehub.com/edge/badge/MeekLogic/Mass.js?branch=master)](https://bettercodehub.com/) [![Coverage Status](https://coveralls.io/repos/github/MeekLogic/Mass.js/badge.svg?branch=master)](https://coveralls.io/github/MeekLogic/Mass.js?branch=master) [![Build Status](https://travis-ci.com/MeekLogic/Mass.js.svg?branch=master)](https://travis-ci.com/MeekLogic/Mass.js)
 
 Mass.js
 =========
@@ -16,12 +16,22 @@ Usage
 -----
 **ES6**
 ```javascript
-import Mass from 'mass.js/src/Mass';
+import Mass from 'mass.js/src/Mass_US';
 ```
 
 **CommonJS**
 ```javascript
 var Mass = require('mass.js');
+```
+
+System of Units
+--------------
+Default system for units of mass is *US* but can be changed by requiring an alternative entry point (Mass_US, Mass_UK, Mass_SI).
+
+```javascript
+var Mass = require('mass.js/dist/Mass_US');
+var Mass = require('mass.js/dist/Mass_UK');
+var Mass = require('mass.js/dist/Mass_SI');
 ```
 
 Example
