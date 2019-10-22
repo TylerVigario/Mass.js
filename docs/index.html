@@ -34,16 +34,21 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><p><a href="https://bettercodehub.com/"><img src="https://bettercodehub.com/edge/badge/MeekLogic/Mass.js?branch=master" alt="BCH compliance"></a> <a href="https://travis-ci.com/MeekLogic/Mass.js"><img src="https://travis-ci.com/MeekLogic/Mass.js.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/MeekLogic/Mass.js?branch=master"><img src="https://coveralls.io/repos/github/MeekLogic/Mass.js/badge.svg?branch=master" alt="Coverage Status"></a></p>
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><p><a href="https://bettercodehub.com/"><img src="https://bettercodehub.com/edge/badge/MeekLogic/Mass.js?branch=master" alt="BCH compliance"></a> <a href="https://coveralls.io/github/MeekLogic/Mass.js?branch=master"><img src="https://coveralls.io/repos/github/MeekLogic/Mass.js/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://travis-ci.com/MeekLogic/Mass.js"><img src="https://travis-ci.com/MeekLogic/Mass.js.svg?branch=master" alt="Build Status"></a></p>
 <h1 id="mass-js">Mass.js</h1><p>JavaScript library for parsing and formatting mass units.</p>
 <p><strong><a href="https://meeklogic.github.io/Mass.js/">Documentation</a></strong></p>
 <h2 id="install">Install</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">npm install mass.js</code>
 </code></pre>
 <h2 id="usage">Usage</h2><p><strong>ES6</strong></p>
-<pre><code class="lang-javascript"><code class="source-code prettyprint">import Mass from &apos;mass.js/src/Mass&apos;;</code>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">import Mass from &apos;mass.js/src/Mass_US&apos;;</code>
 </code></pre>
 <p><strong>CommonJS</strong></p>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">var Mass = require(&apos;mass.js&apos;);</code>
+</code></pre>
+<h2 id="system-of-units">System of Units</h2><p>Default system for units of mass is <strong>U.S. customary</strong> but can be changed by requiring an alternative entry point (<em>Mass_US</em>, <em>Mass_UK</em>, or <em>Mass_SI</em>).</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">var Mass = require(&apos;mass.js/dist/Mass_US&apos;); // U.S. customary
+var Mass = require(&apos;mass.js/dist/Mass_UK&apos;); // Imperial
+var Mass = require(&apos;mass.js/dist/Mass_SI&apos;); // International System of Units (unfinished)</code>
 </code></pre>
 <h2 id="example">Example</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">// Parse string for ounces
 let pounds = Mass.parse(&apos;5lbs  4 oz&apos;);

@@ -113,7 +113,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  *
  * @author Tyler Vigario (MeekLogic)
  * @license GPL-3.0-only
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 /**
@@ -380,7 +380,13 @@ function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MassJS__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
- // US Mass units
+/** 
+ * Entry-point containing Imperial units of mass.
+ *
+ * @author Tyler Vigario (MeekLogic)
+ * @license GPL-3.0-only
+ * @version 1.0.0
+ */
 
 var Mass = new _MassJS__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]([{
   name: 'ton',

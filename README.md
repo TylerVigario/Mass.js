@@ -26,12 +26,12 @@ var Mass = require('mass.js');
 
 System of Units
 --------------
-Default system for units of mass is *US* but can be changed by requiring an alternative entry point (Mass_US, Mass_UK, Mass_SI).
+Default system for units of mass is **U.S. customary** but can be changed by requiring an alternative entry point (*Mass_US*, *Mass_UK*, or *Mass_SI*).
 
 ```javascript
-var Mass = require('mass.js/dist/Mass_US');
-var Mass = require('mass.js/dist/Mass_UK');
-var Mass = require('mass.js/dist/Mass_SI');
+var Mass = require('mass.js/dist/Mass_US'); // U.S. customary
+var Mass = require('mass.js/dist/Mass_UK'); // Imperial
+var Mass = require('mass.js/dist/Mass_SI'); // International System of Units (unfinished)
 ```
 
 Example
