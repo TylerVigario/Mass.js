@@ -123,7 +123,7 @@ var MassJS =
 /*#__PURE__*/
 function () {
   /**
-   * Creates an instance of Mass.
+   * Creates an instance of MassJS.
    * 
    * @param {array} units - Array of mass unit definitions objects.
    */
@@ -133,6 +133,13 @@ function () {
     if (_typeof(units) !== 'object') {
       throw new Error('Parameter "units" must be of type "object".');
     }
+    /**
+     * Internal array of units
+     * 
+     * @type {array}
+     * @private
+     */
+
 
     this.Units = units;
   }
@@ -380,6 +387,7 @@ function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Mass; });
 /* harmony import */ var _MassJS__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /** 
  * Entry-point containing International System of Units units of mass.
@@ -389,7 +397,11 @@ __webpack_require__.r(__webpack_exports__);
  * @version 1.0.0
  */
 
-var Mass = new _MassJS__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]([{
+/**
+ * International System of Units units of mass
+ */
+
+var Units = [{
   name: 'ton',
   value: 1000,
   display: {
@@ -408,8 +420,9 @@ var Mass = new _MassJS__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"]([{
   value: 0.001,
   display: 'g',
   signifiers: ['g', 'gs', 'gram', 'grams']
-}]);
-/* harmony default export */ __webpack_exports__["default"] = (Mass);
+}];
+var Mass = new _MassJS__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"](Units);
+
 
 /***/ })
 /******/ ])["default"];

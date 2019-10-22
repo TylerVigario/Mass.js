@@ -8,7 +8,10 @@
 
 import MassJS from './MassJS';
 
-var Mass = new MassJS([{
+/**
+ * International System of Units units of mass
+ */
+var Units = [{
     name: 'ton',
     value: 1000,
     display: {
@@ -43,6 +46,11 @@ var Mass = new MassJS([{
         'gram',
         'grams'
     ]
-}]);
+}];
 
-export default Mass;
+var Mass = new MassJS(Units);
+
+export {
+    //Units,
+    Mass as default
+};

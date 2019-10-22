@@ -12,7 +12,7 @@
 export default class MassJS
 {
     /**
-     * Creates an instance of Mass.
+     * Creates an instance of MassJS.
      * 
      * @param {array} units - Array of mass unit definitions objects.
      */
@@ -22,6 +22,12 @@ export default class MassJS
             throw new Error('Parameter "units" must be of type "object".');
         }
 
+        /**
+         * Internal array of units
+         * 
+         * @type {array}
+         * @private
+         */
         this.Units = units;
     }
 

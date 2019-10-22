@@ -1,13 +1,32 @@
 {
-  "coverage": "83.33%",
-  "expectCount": 6,
-  "actualCount": 5,
+  "coverage": "75%",
+  "expectCount": 12,
+  "actualCount": 9,
   "files": {
     "src/MassJS.js": {
       "expectCount": 6,
-      "actualCount": 5,
+      "actualCount": 6,
+      "undocumentLines": []
+    },
+    "src/Mass_SI.js": {
+      "expectCount": 2,
+      "actualCount": 1,
       "undocumentLines": [
-        25
+        51
+      ]
+    },
+    "src/Mass_UK.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        90
+      ]
+    },
+    "src/Mass_US.js": {
+      "expectCount": 2,
+      "actualCount": 1,
+      "undocumentLines": [
+        80
       ]
     }
   }

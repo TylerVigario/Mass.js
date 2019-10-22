@@ -45,7 +45,10 @@
 
 import MassJS from &apos;./MassJS&apos;;
 
-var Mass = new MassJS([{
+/**
+ * Imperial units of mass
+ */
+var Units = [{
     name: &apos;ton&apos;,
     value: 2240,
     display: {
@@ -119,9 +122,14 @@ var Mass = new MassJS([{
         &apos;grain&apos;,
         &apos;grains&apos;
     ]
-}]);
+}];
 
-export default Mass;</code></pre>
+var Mass = new MassJS(Units);
+
+export {
+    //Units,
+    Mass as default
+};</code></pre>
 
 </div>
 

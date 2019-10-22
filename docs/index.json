@@ -567,7 +567,7 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/MassJS.js",
-    "content": "/** \r\n * Parsing and formatting mass units.\r\n *\r\n * @author Tyler Vigario (MeekLogic)\r\n * @license GPL-3.0-only\r\n * @version 1.0.1\r\n */\r\n\r\n/**\r\n * Class for working with string representations of mass.\r\n */\r\nexport default class MassJS\r\n{\r\n    /**\r\n     * Creates an instance of Mass.\r\n     * \r\n     * @param {array} units - Array of mass unit definitions objects.\r\n     */\r\n    constructor(units)\r\n    {\r\n        if (typeof units !== 'object') {\r\n            throw new Error('Parameter \"units\" must be of type \"object\".');\r\n        }\r\n\r\n        this.Units = units;\r\n    }\r\n\r\n    /**\r\n     * Parse variable for Mass.\r\n     * \r\n     * @param {string} text - String to parse for mass.\r\n     * @returns {(number|false)} Returns mass as it's base unit, if an invalid string for mass or any value is negative, false.\r\n     */\r\n    parse(text)\r\n    {\r\n        // Validate text parameter\r\n        if (typeof text !== 'string') {\r\n            throw new Error('Parameter \"text\" must be of type \"string\".');\r\n        }\r\n\r\n        // Remove possible case sensitivity\r\n        text = text.toLowerCase();\r\n\r\n        // Remove non alphanumeric characters except \".\" and \"-\"\r\n        text = text.replace(/[^0-9a-z.-]/g, '');\r\n\r\n        // Is string empty?\r\n        if (text.length === 0) {\r\n            return false;\r\n        }\r\n\r\n        // Linear char parsing\r\n        let value = '';\r\n        let signifier = '';\r\n        let unit;\r\n        let total = 0;\r\n\r\n        // Loop through each character of string\r\n        for (let i = 0; i < text.length; i++) {\r\n            // Get current char\r\n            const char = text.charAt(i);\r\n\r\n            // Check for alphabet letter (a-z,0-9|a-z,0-9|...) [comma = separator between value and signifier, | = separator between pairs]\r\n            if (char.match(/[a-z]/)) {\r\n                // Catch the case where they supply text prior to the value\r\n                if (value.length === 0) {\r\n                    return false;\r\n                }\r\n\r\n                signifier += char;\r\n            } else {\r\n                // Check if this is next unit pair (i.e. value,signifier|value,signifier|...)\r\n                if (signifier.length > 0) {\r\n                    // Convert to string to number\r\n                    let v = parseFloat(value);\r\n\r\n                    // Mass cannot be negative\r\n                    if (v < 0) {\r\n                        return false;\r\n                    }\r\n\r\n                    // Lookup unit signifier\r\n                    unit = this.lookup(signifier);\r\n\r\n                    // Does signifier not match?\r\n                    if (unit === undefined) {\r\n                        // If we cannot reliably match this signifier to a unit\r\n                        return false;\r\n                    }\r\n\r\n                    // Convert to base unit value and add to total\r\n                    total += v * unit.value;\r\n\r\n                    // Reset storage variables\r\n                    value = '';\r\n                    signifier = '';\r\n                }\r\n\r\n                value += char;\r\n            }\r\n        }\r\n\r\n        // Convert to string to number\r\n        let v = parseFloat(value);\r\n\r\n        // Mass cannot be negative\r\n        if (v < 0) {\r\n            return false;\r\n        }\r\n\r\n        // Lookup unit signifier\r\n        unit = this.lookup(signifier);\r\n\r\n        // Does signifier not match?\r\n        if (unit === undefined) {\r\n            // If we cannot reliably match this signifier to a unit\r\n            return false;\r\n        }\r\n\r\n        // Convert to base unit value and add to total\r\n        total += value * unit.value;\r\n\r\n        // Return total mass (as base unit)\r\n        return total;\r\n    }\r\n\r\n    /**\r\n     * Format mass as text.\r\n     * \r\n     * @param {number} value - Value to format (must be a positive number).\r\n     * @param {(number|string)} [unitValue = 1] - Value of unit or string mass unit signifier for lookup.\r\n     * @param {(boolean|number)} [spaces = true] - Truthy values will add space between value and signifier.\r\n     * @returns {(string|false)} Formatted mass string or, if value is negative or unit signifier lookup fails, false.\r\n     */\r\n    format(value, unitValue = 1, spaces = true)\r\n    {\r\n        // Validate value parameter\r\n        if (typeof value !== 'number') {\r\n            throw new Error('Parameter \"value\" must be of type \"number\".');\r\n        }\r\n\r\n        // Accepts any positive number\r\n        if (value < 0) {\r\n            return false;\r\n        }\r\n        \r\n        // Did they supply custom unit ratio or signifier?\r\n        if (unitValue !== 1) {\r\n            if (typeof unitValue === 'number') {\r\n                // Validate number\r\n                if (unitValue < 0) {\r\n                    throw new Error('Parameter \"unitValue\" cannot be a negative number.');\r\n                }\r\n            } else if (typeof unitValue === 'string') {\r\n                // Perform lookup using signifier\r\n                unitValue = this.lookup(unitValue);\r\n\r\n                // Validate Unit lookup\r\n                if (unitValue === undefined) {\r\n                    return false;\r\n                }\r\n\r\n                // We want unit value\r\n                unitValue = unitValue.value;\r\n            } else {\r\n                throw new Error('Parameter \"unitValue\" must be of type \"number\" or \"string\".');\r\n            }\r\n\r\n            // Convert value to base unit value\r\n            value = value * unitValue;\r\n        }\r\n\r\n        let formatted = '';\r\n\r\n        // Loop through Units\r\n        for (let unit of this.Units) {\r\n            // Check if Unit is displaying and value is greater than unit value\r\n            if (unit.display && value >= unit.value) {\r\n                // Calculate quantity of unit\r\n                let q = value / unit.value;\r\n\r\n                // Exclusive means it will display the whole value under its sole unit\r\n                // Here we check to make sure it isn't exclusive so we can remove the change from value and make it whole\r\n                if (!unit.display.exclusive) {\r\n                    // Whole unit quantity\r\n                    q = Math.floor(q);\r\n\r\n                    // Subtract change from total\r\n                    value -= q * unit.value;\r\n                }\r\n\r\n                // Add space if text has content already\r\n                if (formatted.length > 0) {\r\n                    formatted += ' ';\r\n                }\r\n\r\n                // Add formatted value\r\n                formatted += q.toFixed(unit.display.rounding ? unit.display.rounding : 0);\r\n\r\n                // Add spaces (if applicable)\r\n                if (spaces) {\r\n                    formatted += ' ';\r\n                }\r\n\r\n                // Add unit signifier\r\n                if (typeof unit.display === 'object') {\r\n                    formatted += unit.display.symbol;\r\n                } else {\r\n                    formatted += unit.display;\r\n                }\r\n\r\n                // Is unit exclusive or is there no longer any value to format?\r\n                if (unit.display.exclusive || value === 0) {\r\n                    break;\r\n                }\r\n            }\r\n        }\r\n\r\n        return formatted;\r\n    }\r\n\r\n    /**\r\n     * Lookup string with signifier returning matching Unit.\r\n     * \r\n     * @param {string} signifier - Mass unit signifier string for lookup.\r\n     * @return {(object|undefined)} Matching Unit object, if found, otherwise false.\r\n     */\r\n    lookup(signifier)\r\n    {\r\n        // Validate signifier parameter type\r\n        if (typeof signifier !== 'string') {\r\n            throw new Error('Parameter \"signifier\" must be of type \"string\".');\r\n        }\r\n\r\n        // Search through units\r\n        return this.Units.find((unit) => {\r\n            // Search for matching signifier within unit\r\n            return unit.signifiers.includes(signifier);\r\n        });\r\n    }\r\n}",
+    "content": "/** \r\n * Parsing and formatting mass units.\r\n *\r\n * @author Tyler Vigario (MeekLogic)\r\n * @license GPL-3.0-only\r\n * @version 1.0.1\r\n */\r\n\r\n/**\r\n * Class for working with string representations of mass.\r\n */\r\nexport default class MassJS\r\n{\r\n    /**\r\n     * Creates an instance of MassJS.\r\n     * \r\n     * @param {array} units - Array of mass unit definitions objects.\r\n     */\r\n    constructor(units)\r\n    {\r\n        if (typeof units !== 'object') {\r\n            throw new Error('Parameter \"units\" must be of type \"object\".');\r\n        }\r\n\r\n        /**\r\n         * Internal array of units\r\n         * \r\n         * @type {array}\r\n         * @private\r\n         */\r\n        this.Units = units;\r\n    }\r\n\r\n    /**\r\n     * Parse variable for Mass.\r\n     * \r\n     * @param {string} text - String to parse for mass.\r\n     * @returns {(number|false)} Returns mass as it's base unit, if an invalid string for mass or any value is negative, false.\r\n     */\r\n    parse(text)\r\n    {\r\n        // Validate text parameter\r\n        if (typeof text !== 'string') {\r\n            throw new Error('Parameter \"text\" must be of type \"string\".');\r\n        }\r\n\r\n        // Remove possible case sensitivity\r\n        text = text.toLowerCase();\r\n\r\n        // Remove non alphanumeric characters except \".\" and \"-\"\r\n        text = text.replace(/[^0-9a-z.-]/g, '');\r\n\r\n        // Is string empty?\r\n        if (text.length === 0) {\r\n            return false;\r\n        }\r\n\r\n        // Linear char parsing\r\n        let value = '';\r\n        let signifier = '';\r\n        let unit;\r\n        let total = 0;\r\n\r\n        // Loop through each character of string\r\n        for (let i = 0; i < text.length; i++) {\r\n            // Get current char\r\n            const char = text.charAt(i);\r\n\r\n            // Check for alphabet letter (a-z,0-9|a-z,0-9|...) [comma = separator between value and signifier, | = separator between pairs]\r\n            if (char.match(/[a-z]/)) {\r\n                // Catch the case where they supply text prior to the value\r\n                if (value.length === 0) {\r\n                    return false;\r\n                }\r\n\r\n                signifier += char;\r\n            } else {\r\n                // Check if this is next unit pair (i.e. value,signifier|value,signifier|...)\r\n                if (signifier.length > 0) {\r\n                    // Convert to string to number\r\n                    let v = parseFloat(value);\r\n\r\n                    // Mass cannot be negative\r\n                    if (v < 0) {\r\n                        return false;\r\n                    }\r\n\r\n                    // Lookup unit signifier\r\n                    unit = this.lookup(signifier);\r\n\r\n                    // Does signifier not match?\r\n                    if (unit === undefined) {\r\n                        // If we cannot reliably match this signifier to a unit\r\n                        return false;\r\n                    }\r\n\r\n                    // Convert to base unit value and add to total\r\n                    total += v * unit.value;\r\n\r\n                    // Reset storage variables\r\n                    value = '';\r\n                    signifier = '';\r\n                }\r\n\r\n                value += char;\r\n            }\r\n        }\r\n\r\n        // Convert to string to number\r\n        let v = parseFloat(value);\r\n\r\n        // Mass cannot be negative\r\n        if (v < 0) {\r\n            return false;\r\n        }\r\n\r\n        // Lookup unit signifier\r\n        unit = this.lookup(signifier);\r\n\r\n        // Does signifier not match?\r\n        if (unit === undefined) {\r\n            // If we cannot reliably match this signifier to a unit\r\n            return false;\r\n        }\r\n\r\n        // Convert to base unit value and add to total\r\n        total += value * unit.value;\r\n\r\n        // Return total mass (as base unit)\r\n        return total;\r\n    }\r\n\r\n    /**\r\n     * Format mass as text.\r\n     * \r\n     * @param {number} value - Value to format (must be a positive number).\r\n     * @param {(number|string)} [unitValue = 1] - Value of unit or string mass unit signifier for lookup.\r\n     * @param {(boolean|number)} [spaces = true] - Truthy values will add space between value and signifier.\r\n     * @returns {(string|false)} Formatted mass string or, if value is negative or unit signifier lookup fails, false.\r\n     */\r\n    format(value, unitValue = 1, spaces = true)\r\n    {\r\n        // Validate value parameter\r\n        if (typeof value !== 'number') {\r\n            throw new Error('Parameter \"value\" must be of type \"number\".');\r\n        }\r\n\r\n        // Accepts any positive number\r\n        if (value < 0) {\r\n            return false;\r\n        }\r\n        \r\n        // Did they supply custom unit ratio or signifier?\r\n        if (unitValue !== 1) {\r\n            if (typeof unitValue === 'number') {\r\n                // Validate number\r\n                if (unitValue < 0) {\r\n                    throw new Error('Parameter \"unitValue\" cannot be a negative number.');\r\n                }\r\n            } else if (typeof unitValue === 'string') {\r\n                // Perform lookup using signifier\r\n                unitValue = this.lookup(unitValue);\r\n\r\n                // Validate Unit lookup\r\n                if (unitValue === undefined) {\r\n                    return false;\r\n                }\r\n\r\n                // We want unit value\r\n                unitValue = unitValue.value;\r\n            } else {\r\n                throw new Error('Parameter \"unitValue\" must be of type \"number\" or \"string\".');\r\n            }\r\n\r\n            // Convert value to base unit value\r\n            value = value * unitValue;\r\n        }\r\n\r\n        let formatted = '';\r\n\r\n        // Loop through Units\r\n        for (let unit of this.Units) {\r\n            // Check if Unit is displaying and value is greater than unit value\r\n            if (unit.display && value >= unit.value) {\r\n                // Calculate quantity of unit\r\n                let q = value / unit.value;\r\n\r\n                // Exclusive means it will display the whole value under its sole unit\r\n                // Here we check to make sure it isn't exclusive so we can remove the change from value and make it whole\r\n                if (!unit.display.exclusive) {\r\n                    // Whole unit quantity\r\n                    q = Math.floor(q);\r\n\r\n                    // Subtract change from total\r\n                    value -= q * unit.value;\r\n                }\r\n\r\n                // Add space if text has content already\r\n                if (formatted.length > 0) {\r\n                    formatted += ' ';\r\n                }\r\n\r\n                // Add formatted value\r\n                formatted += q.toFixed(unit.display.rounding ? unit.display.rounding : 0);\r\n\r\n                // Add spaces (if applicable)\r\n                if (spaces) {\r\n                    formatted += ' ';\r\n                }\r\n\r\n                // Add unit signifier\r\n                if (typeof unit.display === 'object') {\r\n                    formatted += unit.display.symbol;\r\n                } else {\r\n                    formatted += unit.display;\r\n                }\r\n\r\n                // Is unit exclusive or is there no longer any value to format?\r\n                if (unit.display.exclusive || value === 0) {\r\n                    break;\r\n                }\r\n            }\r\n        }\r\n\r\n        return formatted;\r\n    }\r\n\r\n    /**\r\n     * Lookup string with signifier returning matching Unit.\r\n     * \r\n     * @param {string} signifier - Mass unit signifier string for lookup.\r\n     * @return {(object|undefined)} Matching Unit object, if found, otherwise false.\r\n     */\r\n    lookup(signifier)\r\n    {\r\n        // Validate signifier parameter type\r\n        if (typeof signifier !== 'string') {\r\n            throw new Error('Parameter \"signifier\" must be of type \"string\".');\r\n        }\r\n\r\n        // Search through units\r\n        return this.Units.find((unit) => {\r\n            // Search for matching signifier within unit\r\n            return unit.signifiers.includes(signifier);\r\n        });\r\n    }\r\n}",
     "static": true,
     "longname": "D:/Users/Tyler/Documents/Projects/Mass.js/src/MassJS.js",
     "access": "public",
@@ -599,7 +599,7 @@
     "static": false,
     "longname": "src/MassJS.js~MassJS#constructor",
     "access": "public",
-    "description": "Creates an instance of Mass.",
+    "description": "Creates an instance of MassJS.",
     "lineNumber": 19,
     "params": [
       {
@@ -621,14 +621,16 @@
     "memberof": "src/MassJS.js~MassJS",
     "static": false,
     "longname": "src/MassJS.js~MassJS#Units",
-    "access": "public",
-    "description": null,
-    "lineNumber": 25,
-    "undocument": true,
+    "access": "private",
+    "description": "Internal array of units",
+    "lineNumber": 31,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "array"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
@@ -642,7 +644,7 @@
     "longname": "src/MassJS.js~MassJS#parse",
     "access": "public",
     "description": "Parse variable for Mass.",
-    "lineNumber": 34,
+    "lineNumber": 40,
     "unknown": [
       {
         "tagName": "@returns",
@@ -682,7 +684,7 @@
     "longname": "src/MassJS.js~MassJS#format",
     "access": "public",
     "description": "Format mass as text.",
-    "lineNumber": 135,
+    "lineNumber": 141,
     "unknown": [
       {
         "tagName": "@returns",
@@ -748,7 +750,7 @@
     "longname": "src/MassJS.js~MassJS#lookup",
     "access": "public",
     "description": "Lookup string with signifier returning matching Unit.",
-    "lineNumber": 228,
+    "lineNumber": 234,
     "params": [
       {
         "nullable": null,
@@ -775,7 +777,7 @@
     "__docId__": 55,
     "kind": "file",
     "name": "src/Mass_SI.js",
-    "content": "/** \r\n * Entry-point containing International System of Units units of mass.\r\n *\r\n * @author Tyler Vigario (MeekLogic)\r\n * @license GPL-3.0-only\r\n * @version 1.0.0\r\n */\r\n\r\nimport MassJS from './MassJS';\r\n\r\nvar Mass = new MassJS([{\r\n    name: 'ton',\r\n    value: 1000,\r\n    display: {\r\n        symbol: 't',\r\n        exclusive: true,\r\n        rounding: 2\r\n    },\r\n    signifiers: [\r\n        't',\r\n        'ton',\r\n        'tons',\r\n        'tonne',\r\n        'tonnes'\r\n    ]\r\n},{\r\n    name: 'kilogram',\r\n    value: 1,\r\n    display: 'kg',\r\n    signifiers: [\r\n        'kg',\r\n        'kgs',\r\n        'kilogram',\r\n        'kilograms'\r\n    ]\r\n},{\r\n    name: 'gram',\r\n    value: 0.001,\r\n    display: 'g',\r\n    signifiers: [\r\n        'g',\r\n        'gs',\r\n        'gram',\r\n        'grams'\r\n    ]\r\n}]);\r\n\r\nexport default Mass;",
+    "content": "/** \r\n * Entry-point containing International System of Units units of mass.\r\n *\r\n * @author Tyler Vigario (MeekLogic)\r\n * @license GPL-3.0-only\r\n * @version 1.0.0\r\n */\r\n\r\nimport MassJS from './MassJS';\r\n\r\n/**\r\n * International System of Units units of mass\r\n */\r\nvar Units = [{\r\n    name: 'ton',\r\n    value: 1000,\r\n    display: {\r\n        symbol: 't',\r\n        exclusive: true,\r\n        rounding: 2\r\n    },\r\n    signifiers: [\r\n        't',\r\n        'ton',\r\n        'tons',\r\n        'tonne',\r\n        'tonnes'\r\n    ]\r\n},{\r\n    name: 'kilogram',\r\n    value: 1,\r\n    display: 'kg',\r\n    signifiers: [\r\n        'kg',\r\n        'kgs',\r\n        'kilogram',\r\n        'kilograms'\r\n    ]\r\n},{\r\n    name: 'gram',\r\n    value: 0.001,\r\n    display: 'g',\r\n    signifiers: [\r\n        'g',\r\n        'gs',\r\n        'gram',\r\n        'grams'\r\n    ]\r\n}];\r\n\r\nvar Mass = new MassJS(Units);\r\n\r\nexport {\r\n    //Units,\r\n    Mass as default\r\n};",
     "static": true,
     "longname": "D:/Users/Tyler/Documents/Projects/Mass.js/src/Mass_SI.js",
     "access": "public",
@@ -784,9 +786,50 @@
   },
   {
     "__docId__": 56,
+    "kind": "variable",
+    "name": "Units",
+    "memberof": "src/Mass_SI.js",
+    "static": true,
+    "longname": "src/Mass_SI.js~Units",
+    "access": "public",
+    "export": false,
+    "importPath": "mass.js/src/Mass_SI.js",
+    "importStyle": null,
+    "description": "International System of Units units of mass",
+    "lineNumber": 14,
+    "type": {
+      "types": [
+        "undefined[]"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 57,
+    "kind": "variable",
+    "name": "Mass",
+    "memberof": "src/Mass_SI.js",
+    "static": true,
+    "longname": "src/Mass_SI.js~Mass",
+    "access": "public",
+    "export": false,
+    "importPath": "mass.js/src/Mass_SI.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 51,
+    "undocument": true,
+    "type": {
+      "types": [
+        "src/MassJS.js~MassJS"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 58,
     "kind": "file",
     "name": "src/Mass_UK.js",
-    "content": "/** \r\n * Entry-point containing Imperial units of mass.\r\n *\r\n * @author Tyler Vigario (MeekLogic)\r\n * @license GPL-3.0-only\r\n * @version 1.0.0\r\n */\r\n\r\nimport MassJS from './MassJS';\r\n\r\nvar Mass = new MassJS([{\r\n    name: 'ton',\r\n    value: 2240,\r\n    display: {\r\n        symbol: 't',\r\n        rounding: 2,\r\n        exclusive: true\r\n    },\r\n    signifiers: [\r\n        't',\r\n        'ton',\r\n        'tons'\r\n    ]\r\n},{\r\n    name: 'hundredweight',\r\n    value: 112,\r\n    signifiers: [\r\n        'cwt',\r\n        'hundredweight'\r\n    ]\r\n},{\r\n    name: 'quarter',\r\n    value: 28,\r\n    signifiers: [\r\n        'qr',\r\n        'qtr',\r\n        'quarter',\r\n        'quarters'\r\n    ]\r\n},{\r\n    name: 'stone',\r\n    value: 14,\r\n    signifiers: [\r\n        'st',\r\n        'stone',\r\n        'stones'\r\n    ]\r\n},{\r\n    name: 'pound',\r\n    value: 1,\r\n    display: 'lb',\r\n    signifiers: [\r\n        'lb',\r\n        'lbs',\r\n        'pound',\r\n        'pounds'\r\n    ]\r\n},{\r\n    name: 'ounce',\r\n    value: 0.0625,\r\n    display: 'oz',\r\n    signifiers: [\r\n        'oz',\r\n        'ounce',\r\n        'ounces'\r\n    ]\r\n},{\r\n    name: 'dram',\r\n    value: 0.00390625,\r\n    signifiers: [\r\n        'dr',\r\n        'dram',\r\n        'drams',\r\n        'drachm',\r\n        'drachms'\r\n    ]\r\n},{\r\n    name: 'grain',\r\n    value: 1.4285714285714285714285714285714e-4,\r\n    signifiers: [\r\n        'gr',\r\n        'grain',\r\n        'grains'\r\n    ]\r\n}]);\r\n\r\nexport default Mass;",
+    "content": "/** \r\n * Entry-point containing Imperial units of mass.\r\n *\r\n * @author Tyler Vigario (MeekLogic)\r\n * @license GPL-3.0-only\r\n * @version 1.0.0\r\n */\r\n\r\nimport MassJS from './MassJS';\r\n\r\n/**\r\n * Imperial units of mass\r\n */\r\nvar Units = [{\r\n    name: 'ton',\r\n    value: 2240,\r\n    display: {\r\n        symbol: 't',\r\n        rounding: 2,\r\n        exclusive: true\r\n    },\r\n    signifiers: [\r\n        't',\r\n        'ton',\r\n        'tons'\r\n    ]\r\n},{\r\n    name: 'hundredweight',\r\n    value: 112,\r\n    signifiers: [\r\n        'cwt',\r\n        'hundredweight'\r\n    ]\r\n},{\r\n    name: 'quarter',\r\n    value: 28,\r\n    signifiers: [\r\n        'qr',\r\n        'qtr',\r\n        'quarter',\r\n        'quarters'\r\n    ]\r\n},{\r\n    name: 'stone',\r\n    value: 14,\r\n    signifiers: [\r\n        'st',\r\n        'stone',\r\n        'stones'\r\n    ]\r\n},{\r\n    name: 'pound',\r\n    value: 1,\r\n    display: 'lb',\r\n    signifiers: [\r\n        'lb',\r\n        'lbs',\r\n        'pound',\r\n        'pounds'\r\n    ]\r\n},{\r\n    name: 'ounce',\r\n    value: 0.0625,\r\n    display: 'oz',\r\n    signifiers: [\r\n        'oz',\r\n        'ounce',\r\n        'ounces'\r\n    ]\r\n},{\r\n    name: 'dram',\r\n    value: 0.00390625,\r\n    signifiers: [\r\n        'dr',\r\n        'dram',\r\n        'drams',\r\n        'drachm',\r\n        'drachms'\r\n    ]\r\n},{\r\n    name: 'grain',\r\n    value: 1.4285714285714285714285714285714e-4,\r\n    signifiers: [\r\n        'gr',\r\n        'grain',\r\n        'grains'\r\n    ]\r\n}];\r\n\r\nvar Mass = new MassJS(Units);\r\n\r\nexport {\r\n    //Units,\r\n    Mass as default\r\n};",
     "static": true,
     "longname": "D:/Users/Tyler/Documents/Projects/Mass.js/src/Mass_UK.js",
     "access": "public",
@@ -794,10 +837,51 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 57,
+    "__docId__": 59,
+    "kind": "variable",
+    "name": "Units",
+    "memberof": "src/Mass_UK.js",
+    "static": true,
+    "longname": "src/Mass_UK.js~Units",
+    "access": "public",
+    "export": false,
+    "importPath": "mass.js/src/Mass_UK.js",
+    "importStyle": null,
+    "description": "Imperial units of mass",
+    "lineNumber": 14,
+    "type": {
+      "types": [
+        "undefined[]"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 60,
+    "kind": "variable",
+    "name": "Mass",
+    "memberof": "src/Mass_UK.js",
+    "static": true,
+    "longname": "src/Mass_UK.js~Mass",
+    "access": "public",
+    "export": false,
+    "importPath": "mass.js/src/Mass_UK.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 90,
+    "undocument": true,
+    "type": {
+      "types": [
+        "src/MassJS.js~MassJS"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 61,
     "kind": "file",
     "name": "src/Mass_US.js",
-    "content": "/** \r\n * Entry-point containing U.S. customary units of mass.\r\n *\r\n * @author Tyler Vigario (MeekLogic)\r\n * @license GPL-3.0-only\r\n * @version 1.0.1\r\n */\r\n\r\nimport MassJS from './MassJS';\r\n\r\nvar Mass = new MassJS([{\r\n    name: 'ton',\r\n    value: 2000,\r\n    display: {\r\n        symbol: 't',\r\n        rounding: 2,\r\n        exclusive: true\r\n    },\r\n    signifiers: [\r\n        't',\r\n        'ton',\r\n        'tons'\r\n    ]\r\n},{\r\n    name: 'hundredweight',\r\n    value: 100,\r\n    signifiers: [\r\n        'cwt',\r\n        'hundredweight'\r\n    ]\r\n},{\r\n    name: 'quarter',\r\n    value: 25,\r\n    signifiers: [\r\n        'qr',\r\n        'qtr',\r\n        'quarter',\r\n        'quarters'\r\n    ]\r\n},{\r\n    name: 'pound',\r\n    value: 1,\r\n    display: 'lb',\r\n    signifiers: [\r\n        'lb',\r\n        'lbs',\r\n        'pound',\r\n        'pounds'\r\n    ]\r\n},{\r\n    name: 'ounce',\r\n    value: 0.0625,\r\n    display: 'oz',\r\n    signifiers: [\r\n        'oz',\r\n        'ounce',\r\n        'ounces'\r\n    ]\r\n},{\r\n    name: 'dram',\r\n    value: 0.00390625,\r\n    signifiers: [\r\n        'dr',\r\n        'dram',\r\n        'drams'\r\n    ]\r\n},{\r\n    name: 'grain',\r\n    value: 1.4285714285714285714285714285714e-4,\r\n    signifiers: [\r\n        'gr',\r\n        'grain',\r\n        'grains'\r\n    ]\r\n}]);\r\n\r\nexport default Mass;",
+    "content": "/** \r\n * Entry-point containing U.S. customary units of mass.\r\n *\r\n * @author Tyler Vigario (MeekLogic)\r\n * @license GPL-3.0-only\r\n * @version 1.0.1\r\n */\r\n\r\nimport MassJS from './MassJS';\r\n\r\n/**\r\n * U.S. customary units of mass\r\n */\r\nvar Units = [{\r\n    name: 'ton',\r\n    value: 2000,\r\n    display: {\r\n        symbol: 't',\r\n        rounding: 2,\r\n        exclusive: true\r\n    },\r\n    signifiers: [\r\n        't',\r\n        'ton',\r\n        'tons'\r\n    ]\r\n},{\r\n    name: 'hundredweight',\r\n    value: 100,\r\n    signifiers: [\r\n        'cwt',\r\n        'hundredweight'\r\n    ]\r\n},{\r\n    name: 'quarter',\r\n    value: 25,\r\n    signifiers: [\r\n        'qr',\r\n        'qtr',\r\n        'quarter',\r\n        'quarters'\r\n    ]\r\n},{\r\n    name: 'pound',\r\n    value: 1,\r\n    display: 'lb',\r\n    signifiers: [\r\n        'lb',\r\n        'lbs',\r\n        'pound',\r\n        'pounds'\r\n    ]\r\n},{\r\n    name: 'ounce',\r\n    value: 0.0625,\r\n    display: 'oz',\r\n    signifiers: [\r\n        'oz',\r\n        'ounce',\r\n        'ounces'\r\n    ]\r\n},{\r\n    name: 'dram',\r\n    value: 0.00390625,\r\n    signifiers: [\r\n        'dr',\r\n        'dram',\r\n        'drams'\r\n    ]\r\n},{\r\n    name: 'grain',\r\n    value: 1.4285714285714285714285714285714e-4,\r\n    signifiers: [\r\n        'gr',\r\n        'grain',\r\n        'grains'\r\n    ]\r\n}];\r\n\r\nvar Mass = new MassJS(Units);\r\n\r\nexport {\r\n    //Units,\r\n    Mass as default\r\n};",
     "static": true,
     "longname": "D:/Users/Tyler/Documents/Projects/Mass.js/src/Mass_US.js",
     "access": "public",
@@ -805,8 +889,49 @@
     "lineNumber": 1
   },
   {
+    "__docId__": 62,
+    "kind": "variable",
+    "name": "Units",
+    "memberof": "src/Mass_US.js",
+    "static": true,
+    "longname": "src/Mass_US.js~Units",
+    "access": "public",
+    "export": false,
+    "importPath": "mass.js/src/Mass_US.js",
+    "importStyle": null,
+    "description": "U.S. customary units of mass",
+    "lineNumber": 14,
+    "type": {
+      "types": [
+        "undefined[]"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 63,
+    "kind": "variable",
+    "name": "Mass",
+    "memberof": "src/Mass_US.js",
+    "static": true,
+    "longname": "src/Mass_US.js~Mass",
+    "access": "public",
+    "export": false,
+    "importPath": "mass.js/src/Mass_US.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 80,
+    "undocument": true,
+    "type": {
+      "types": [
+        "src/MassJS.js~MassJS"
+      ]
+    },
+    "ignore": true
+  },
+  {
     "kind": "index",
-    "content": "[![BCH compliance](https://bettercodehub.com/edge/badge/MeekLogic/Mass.js?branch=master)](https://bettercodehub.com/) [![Coverage Status](https://coveralls.io/repos/github/MeekLogic/Mass.js/badge.svg?branch=master)](https://coveralls.io/github/MeekLogic/Mass.js?branch=master) [![Build Status](https://travis-ci.com/MeekLogic/Mass.js.svg?branch=master)](https://travis-ci.com/MeekLogic/Mass.js)\r\n\r\nMass.js\r\n=========\r\nJavaScript library for parsing and formatting mass units.\r\n\r\n**[Documentation](https://meeklogic.github.io/Mass.js/)**\r\n\r\nInstall\r\n-------\r\n```javascript\r\nnpm install mass.js\r\n```\r\n\r\nUsage\r\n-----\r\n**ES6**\r\n```javascript\r\nimport Mass from 'mass.js/src/Mass_US';\r\n```\r\n\r\n**CommonJS**\r\n```javascript\r\nvar Mass = require('mass.js');\r\n```\r\n\r\nSystem of Units\r\n--------------\r\nDefault system for units of mass is **U.S. customary** but can be changed by requiring an alternative entry point (*Mass_US*, *Mass_UK*, or *Mass_SI*).\r\n\r\n```javascript\r\nvar Mass = require('mass.js/dist/Mass_US'); // U.S. customary\r\nvar Mass = require('mass.js/dist/Mass_UK'); // Imperial\r\nvar Mass = require('mass.js/dist/Mass_SI'); // International System of Units (unfinished)\r\n```\r\n\r\nExample\r\n-------\r\n```javascript\r\n// Parse string for ounces\r\nlet pounds = Mass.parse('5lbs  4 oz');\r\n\r\nconsole.log(pounds); // 5.25\r\n\r\n// Add 12 ounces\r\npounds += (12 / 16);\r\n\r\nconsole.log(pounds); // 6\r\n\r\n// Verify total is 6 pounds\r\nif (pounds === 6) {\r\n    // Format total for human-readable string\r\n    console.log(Mass.format(pounds)); // \"6 lbs\"\r\n} else {\r\n    console.error('Did we forget to run our tests?');\r\n}\r\n```\r\n",
+    "content": "[![BCH compliance](https://bettercodehub.com/edge/badge/MeekLogic/Mass.js?branch=master)](https://bettercodehub.com/) [![Coverage Status](https://coveralls.io/repos/github/MeekLogic/Mass.js/badge.svg?branch=master)](https://coveralls.io/github/MeekLogic/Mass.js?branch=master) [![Build Status](https://travis-ci.com/MeekLogic/Mass.js.svg?branch=master)](https://travis-ci.com/MeekLogic/Mass.js)\r\n\r\nMass.js\r\n=========\r\nJavaScript library for parsing and formatting mass units.\r\n\r\n**[Documentation](https://meeklogic.github.io/Mass.js/)**\r\n\r\nInstall\r\n-------\r\n```javascript\r\nnpm install mass.js\r\n```\r\n\r\nUsage\r\n-----\r\n**ES6**\r\n```javascript\r\nimport Mass from 'mass.js/src/Mass_US';\r\n```\r\n\r\n**CommonJS**\r\n```javascript\r\nvar Mass = require('mass.js');\r\n```\r\n\r\nSystem of Units\r\n--------------\r\nDefault system for units of mass is **U.S. customary** but can be changed by requiring an alternative entry point (*Mass_US*, *Mass_UK*, or *Mass_SI*).\r\n\r\n```javascript\r\nvar Mass = require('mass.js/dist/Mass_US'); // U.S. customary\r\nvar Mass = require('mass.js/dist/Mass_UK'); // Imperial\r\nvar Mass = require('mass.js/dist/Mass_SI'); // International System of Units (unfinished)\r\n```\r\n\r\nExample\r\n-------\r\n```javascript\r\n// Parse string for mass\r\nlet value = Mass.parse('10 ounces');\r\n\r\nconsole.log(value); // 0.625\r\n\r\n// Add 10 pounds\r\nvalue += 10;\r\n\r\nconsole.log(value); // 10.625\r\n\r\n// Format total for human-readable string\r\nconsole.log(Mass.format(value)); // \"10 lb 10 oz\"\r\n```\r\n",
     "longname": "D:\\Users\\Tyler\\Documents\\Projects\\Mass.js\\README.md",
     "name": "./README.md",
     "static": true,
