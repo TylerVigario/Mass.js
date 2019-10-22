@@ -37,21 +37,16 @@ var Mass = require('mass.js/dist/Mass_SI'); // International System of Units (un
 Example
 -------
 ```javascript
-// Parse string for ounces
-let pounds = Mass.parse('5lbs  4 oz');
+// Parse string for mass
+let value = Mass.parse('10 ounces');
 
-console.log(pounds); // 5.25
+console.log(value); // 0.625
 
-// Add 12 ounces
-pounds += (12 / 16);
+// Add 10 pounds
+value += 10;
 
-console.log(pounds); // 6
+console.log(value); // 10.625
 
-// Verify total is 6 pounds
-if (pounds === 6) {
-    // Format total for human-readable string
-    console.log(Mass.format(pounds)); // "6 lbs"
-} else {
-    console.error('Did we forget to run our tests?');
-}
+// Format total for human-readable string
+console.log(Mass.format(value)); // "10 lb 10 oz"
 ```
