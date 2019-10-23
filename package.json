@@ -6,11 +6,11 @@
   "main": "./src/US.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint --config ./.eslintrc.js ./src",
-    "test": "npm run tests",
-    "test:coverage": "npm run tests:coverage",
+    "tests": "npm run tests",
+    "tests:coverage": "npm run tests:coverage",
     "speed": "npm run performance",
     "performance": "node -r esm ./scripts/performance.js",
-    "doc": "npm run documentation",
+    "docs": "npm run documentation",
     "documentation": "npx esdoc",
     "example": "node ./scripts/example.js"
   },
