@@ -6,8 +6,8 @@
   "main": "./src/US.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint --config ./.eslintrc.js ./src",
-    "tests": "npm run tests",
-    "tests:coverage": "npm run tests:coverage",
+    "tests": "npx ava ./tests/index.js",
+    "tests:coverage": "npx nyc npm run tests",
     "speed": "npm run performance",
     "performance": "node -r esm ./scripts/performance.js",
     "docs": "npm run documentation",
@@ -44,6 +44,8 @@
   },
   "dependencies": {},
   "ava": {
+    "babel": false,
+    "compileEnhancements": false,
     "require": [
       "esm"
     ]
