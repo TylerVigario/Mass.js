@@ -1,19 +1,16 @@
 {
   "name": "mass.js",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "JavaScript library for parsing and formatting mass units.",
   "homepage": "https://meeklogic.github.io/Mass.js/",
   "main": "./src/US.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint --config ./.eslintrc.js ./src",
     "test": "npm run tests",
-    "tests": "ava tests/index.js",
     "test:coverage": "npm run tests:coverage",
-    "tests:coverage": "npx nyc npm run tests",
     "speed": "npm run performance",
     "performance": "node -r esm ./scripts/performance.js",
     "doc": "npm run documentation",
-    "docs": "npm run documentation",
     "documentation": "npx esdoc",
     "example": "node ./scripts/example.js"
   },
