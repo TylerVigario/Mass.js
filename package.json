@@ -8,11 +8,9 @@
     "lint": "./node_modules/.bin/eslint --config ./.eslintrc.js ./src",
     "tests": "npx ava ./tests/index.js",
     "tests:coverage": "npx nyc npm run tests",
-    "speed": "npm run performance",
-    "performance": "node -r esm ./scripts/performance.js",
+    "performance": "node -r esm ./performance/index.js",
     "docs": "npm run documentation",
-    "documentation": "npx esdoc",
-    "example": "node ./scripts/example.js"
+    "documentation": "npx esdoc"
   },
   "keywords": [
     "mass",

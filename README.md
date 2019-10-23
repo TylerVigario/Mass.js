@@ -18,7 +18,7 @@ Usage
 import Mass from 'mass.js';
 ```
 
-System of Units
+Units
 --------------
 Default system for units of mass is **U.S. customary** but can be changed by requiring an alternative entry point (*US*, *UK*, or *SI*).
 
