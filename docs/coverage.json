@@ -1,33 +1,27 @@
 {
-  "coverage": "75%",
-  "expectCount": 12,
+  "coverage": "100%",
+  "expectCount": 9,
   "actualCount": 9,
   "files": {
-    "src/MassJS.js": {
+    "src/mass.js": {
       "expectCount": 6,
       "actualCount": 6,
       "undocumentLines": []
     },
-    "src/Mass_SI.js": {
-      "expectCount": 2,
+    "src/SI.js": {
+      "expectCount": 1,
       "actualCount": 1,
-      "undocumentLines": [
-        51
-      ]
+      "undocumentLines": []
     },
-    "src/Mass_UK.js": {
-      "expectCount": 2,
+    "src/UK.js": {
+      "expectCount": 1,
       "actualCount": 1,
-      "undocumentLines": [
-        90
-      ]
+      "undocumentLines": []
     },
-    "src/Mass_US.js": {
-      "expectCount": 2,
+    "src/US.js": {
+      "expectCount": 1,
       "actualCount": 1,
-      "undocumentLines": [
-        80
-      ]
+      "undocumentLines": []
     }
   }
 }

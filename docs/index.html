@@ -29,7 +29,7 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/MassJS.js~MassJS.html">MassJS</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mass.js~Mass.html">Mass</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -39,16 +39,12 @@
 <p><strong><a href="https://meeklogic.github.io/Mass.js/">Documentation</a></strong></p>
 <h2 id="install">Install</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">npm install mass.js</code>
 </code></pre>
-<h2 id="usage">Usage</h2><p><strong>ES6</strong></p>
-<pre><code class="lang-javascript"><code class="source-code prettyprint">import Mass from &apos;mass.js/src/Mass_US&apos;;</code>
+<h2 id="usage">Usage</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">import Mass from &apos;mass.js&apos;;</code>
 </code></pre>
-<p><strong>CommonJS</strong></p>
-<pre><code class="lang-javascript"><code class="source-code prettyprint">var Mass = require(&apos;mass.js&apos;);</code>
-</code></pre>
-<h2 id="system-of-units">System of Units</h2><p>Default system for units of mass is <strong>U.S. customary</strong> but can be changed by requiring an alternative entry point (<em>Mass_US</em>, <em>Mass_UK</em>, or <em>Mass_SI</em>).</p>
-<pre><code class="lang-javascript"><code class="source-code prettyprint">var Mass = require(&apos;mass.js/dist/Mass_US&apos;); // U.S. customary
-var Mass = require(&apos;mass.js/dist/Mass_UK&apos;); // Imperial
-var Mass = require(&apos;mass.js/dist/Mass_SI&apos;); // International System of Units (unfinished)</code>
+<h2 id="system-of-units">System of Units</h2><p>Default system for units of mass is <strong>U.S. customary</strong> but can be changed by requiring an alternative entry point (<em>US</em>, <em>UK</em>, or <em>SI</em>).</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">import Mass from &apos;mass.js/src/US&apos;; // U.S. customary
+import Mass from &apos;mass.js/src/UK&apos;; // Imperial
+import Mass from &apos;mass.js/src/SI&apos;; // International System of Units (unfinished)</code>
 </code></pre>
 <h2 id="example">Example</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">// Parse string for mass
 let value = Mass.parse(&apos;10 ounces&apos;);

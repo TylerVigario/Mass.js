@@ -1,8 +1,8 @@
 window.esdocSearchIndex = [
   [
-    "mass.js/src/massjs.js~massjs",
-    "class/src/MassJS.js~MassJS.html",
-    "<span>MassJS</span> <span class=\"search-result-import-path\">mass.js/src/MassJS.js</span>",
+    "mass.js/src/mass.js~mass",
+    "class/src/mass.js~Mass.html",
+    "<span>Mass</span> <span class=\"search-result-import-path\">mass.js/src/mass.js</span>",
     "class"
   ],
   [
@@ -288,57 +288,57 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "src/massjs.js",
-    "file/src/MassJS.js.html",
-    "src/MassJS.js",
+    "src/si.js",
+    "file/src/SI.js.html",
+    "src/SI.js",
     "file"
   ],
   [
-    "src/massjs.js~massjs#units",
-    "class/src/MassJS.js~MassJS.html#instance-member-Units",
-    "src/MassJS.js~MassJS#Units",
+    "src/uk.js",
+    "file/src/UK.js.html",
+    "src/UK.js",
+    "file"
+  ],
+  [
+    "src/us.js",
+    "file/src/US.js.html",
+    "src/US.js",
+    "file"
+  ],
+  [
+    "src/mass.js",
+    "file/src/mass.js.html",
+    "src/mass.js",
+    "file"
+  ],
+  [
+    "src/mass.js~mass#units",
+    "class/src/mass.js~Mass.html#instance-member-Units",
+    "src/mass.js~Mass#Units",
     "member"
   ],
   [
-    "src/massjs.js~massjs#constructor",
-    "class/src/MassJS.js~MassJS.html#instance-constructor-constructor",
-    "src/MassJS.js~MassJS#constructor",
+    "src/mass.js~mass#constructor",
+    "class/src/mass.js~Mass.html#instance-constructor-constructor",
+    "src/mass.js~Mass#constructor",
     "method"
   ],
   [
-    "src/massjs.js~massjs#format",
-    "class/src/MassJS.js~MassJS.html#instance-method-format",
-    "src/MassJS.js~MassJS#format",
+    "src/mass.js~mass#format",
+    "class/src/mass.js~Mass.html#instance-method-format",
+    "src/mass.js~Mass#format",
     "method"
   ],
   [
-    "src/massjs.js~massjs#lookup",
-    "class/src/MassJS.js~MassJS.html#instance-method-lookup",
-    "src/MassJS.js~MassJS#lookup",
+    "src/mass.js~mass#lookup",
+    "class/src/mass.js~Mass.html#instance-method-lookup",
+    "src/mass.js~Mass#lookup",
     "method"
   ],
   [
-    "src/massjs.js~massjs#parse",
-    "class/src/MassJS.js~MassJS.html#instance-method-parse",
-    "src/MassJS.js~MassJS#parse",
+    "src/mass.js~mass#parse",
+    "class/src/mass.js~Mass.html#instance-method-parse",
+    "src/mass.js~Mass#parse",
     "method"
-  ],
-  [
-    "src/mass_si.js",
-    "file/src/Mass_SI.js.html",
-    "src/Mass_SI.js",
-    "file"
-  ],
-  [
-    "src/mass_uk.js",
-    "file/src/Mass_UK.js.html",
-    "src/Mass_UK.js",
-    "file"
-  ],
-  [
-    "src/mass_us.js",
-    "file/src/Mass_US.js.html",
-    "src/Mass_US.js",
-    "file"
   ]
 ]

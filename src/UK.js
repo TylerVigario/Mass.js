@@ -6,7 +6,7 @@
  * @version 1.0.0
  */
 
-import MassJS from './MassJS';
+import MassJS from './mass';
 
 /**
  * Imperial units of mass
@@ -87,9 +87,4 @@ var Units = [{
     ]
 }];
 
-var Mass = new MassJS(Units);
-
-export {
-    //Units,
-    Mass as default
-};
+export default new MassJS(Units);

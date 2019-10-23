@@ -1,7 +1,5 @@
-/* eslint no-console: 0 */
-
-var microtime = require('microtime');
-var Mass = require('../dist/Mass_US');
+import microtime from 'microtime';
+import Mass from '../src/US';
 
 //
 // Performance
@@ -56,7 +54,6 @@ test('lookup-ton', () => {
     Mass.lookup('t');
 });
 
-//
 console.log();
 
 /**

@@ -3,13 +3,13 @@
  *
  * @author Tyler Vigario (MeekLogic)
  * @license GPL-3.0-only
- * @version 1.0.1
+ * @version 1.1.0
  */
 
 /**
  * Class for working with string representations of mass.
  */
-export default class MassJS
+export default class Mass
 {
     /**
      * Creates an instance of MassJS.
@@ -19,7 +19,7 @@ export default class MassJS
     constructor(units)
     {
         if (typeof units !== 'object') {
-            throw new Error('Parameter "units" must be of type "object".');
+            throw new TypeError('Argument "units" must be of type "object".');
         }
 
         /**
@@ -39,9 +39,9 @@ export default class MassJS
      */
     parse(text)
     {
-        // Validate text parameter
+        // Validate text argument
         if (typeof text !== 'string') {
-            throw new Error('Parameter "text" must be of type "string".');
+            throw new TypeError('Argument "text" must be of type "string".');
         }
 
         // Remove possible case sensitivity
@@ -66,7 +66,7 @@ export default class MassJS
             // Get current char
             const char = text.charAt(i);
 
-            // Check for alphabet letter (a-z,0-9|a-z,0-9|...) [comma = separator between value and signifier, | = separator between pairs]
+            // Check for alphabet letter (a-z,0-9|a-z,0-9|...)
             if (char.match(/[a-z]/)) {
                 // Catch the case where they supply text prior to the value
                 if (value.length === 0) {
@@ -75,9 +75,9 @@ export default class MassJS
 
                 signifier += char;
             } else {
-                // Check if this is next unit pair (i.e. value,signifier|value,signifier|...)
+                // Check if this is next unit pair (value,signifier|value,signifier|...)
                 if (signifier.length > 0) {
-                    // Convert to string to number
+                    // Convert string to number
                     let v = parseFloat(value);
 
                     // Mass cannot be negative
@@ -135,19 +135,19 @@ export default class MassJS
      * 
      * @param {number} value - Value to format (must be a positive number).
      * @param {(number|string)} [unitValue = 1] - Value of unit or string mass unit signifier for lookup.
-     * @param {(boolean|number)} [spaces = true] - Truthy values will add space between value and signifier.
-     * @returns {(string|false)} Formatted mass string or, if value is negative or unit signifier lookup fails, false.
+     * @returns {(string|undefined)} Formatted mass string or undefined if unit signifier string lookup fails.
+     * @throws {Error} Will throw an error if value or unitValue are a negative number.
      */
-    format(value, unitValue = 1, spaces = true)
+    format(value, unitValue = 1)
     {
-        // Validate value parameter
+        // Validate value argument
         if (typeof value !== 'number') {
-            throw new Error('Parameter "value" must be of type "number".');
+            throw new TypeError('Argument "value" must be of type "number".');
         }
 
         // Accepts any positive number
         if (value < 0) {
-            return false;
+            throw new Error('Argument "value" cannot be a negative number.');
         }
         
         // Did they supply custom unit ratio or signifier?
@@ -155,7 +155,7 @@ export default class MassJS
             if (typeof unitValue === 'number') {
                 // Validate number
                 if (unitValue < 0) {
-                    throw new Error('Parameter "unitValue" cannot be a negative number.');
+                    throw new Error('Argument "unitValue" cannot be a negative number.');
                 }
             } else if (typeof unitValue === 'string') {
                 // Perform lookup using signifier
@@ -163,13 +163,13 @@ export default class MassJS
 
                 // Validate Unit lookup
                 if (unitValue === undefined) {
-                    return false;
+                    return undefined;
                 }
 
                 // We want unit value
                 unitValue = unitValue.value;
             } else {
-                throw new Error('Parameter "unitValue" must be of type "number" or "string".');
+                throw new TypeError('Argument "unitValue" must be of type "number" or "string".');
             }
 
             // Convert value to base unit value
@@ -203,10 +203,8 @@ export default class MassJS
                 // Add formatted value
                 formatted += q.toFixed(unit.display.rounding ? unit.display.rounding : 0);
 
-                // Add spaces (if applicable)
-                if (spaces) {
-                    formatted += ' ';
-                }
+                // Add space between unit value and signifier
+                formatted += ' ';
 
                 // Add unit signifier
                 if (typeof unit.display === 'object') {
@@ -226,16 +224,16 @@ export default class MassJS
     }
 
     /**
-     * Lookup string with signifier returning matching Unit.
+     * Lookup string signifier returning matching Unit.
      * 
      * @param {string} signifier - Mass unit signifier string for lookup.
      * @return {(object|undefined)} Matching Unit object, if found, otherwise false.
      */
     lookup(signifier)
     {
-        // Validate signifier parameter type
+        // Validate signifier argument type
         if (typeof signifier !== 'string') {
-            throw new Error('Parameter "signifier" must be of type "string".');
+            throw new TypeError('Argument "signifier" must be of type "string".');
         }
 
         // Search through units

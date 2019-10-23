@@ -1,6 +1,4 @@
-/* eslint no-console: 0 */
-
-var Mass = require('../dist/Mass_US');
+import Mass from '../src/US';
 
 //
 // Example
@@ -19,5 +17,4 @@ console.log(value); // 10.625
 // Format total for human-readable string
 console.log(Mass.format(value)); // "10 lb 10 oz"
 
-//
 console.log();

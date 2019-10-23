@@ -14,24 +14,18 @@ npm install mass.js
 
 Usage
 -----
-**ES6**
 ```javascript
-import Mass from 'mass.js/src/Mass_US';
-```
-
-**CommonJS**
-```javascript
-var Mass = require('mass.js');
+import Mass from 'mass.js';
 ```
 
 System of Units
 --------------
-Default system for units of mass is **U.S. customary** but can be changed by requiring an alternative entry point (*Mass_US*, *Mass_UK*, or *Mass_SI*).
+Default system for units of mass is **U.S. customary** but can be changed by requiring an alternative entry point (*US*, *UK*, or *SI*).
 
 ```javascript
-var Mass = require('mass.js/dist/Mass_US'); // U.S. customary
-var Mass = require('mass.js/dist/Mass_UK'); // Imperial
-var Mass = require('mass.js/dist/Mass_SI'); // International System of Units (unfinished)
+import Mass from 'mass.js/src/US'; // U.S. customary
+import Mass from 'mass.js/src/UK'; // Imperial
+import Mass from 'mass.js/src/SI'; // International System of Units (unfinished)
 ```
 
 Example

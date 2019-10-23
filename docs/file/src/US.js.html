@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/Mass_SI.js | mass.js</title>
+  <title data-ice="title">src/US.js | mass.js</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -29,68 +29,92 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/MassJS.js~MassJS.html">MassJS</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mass.js~Mass.html">Mass</a></span></span></li>
 </ul>
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/Mass_SI.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/US.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/** 
- * Entry-point containing International System of Units units of mass.
+ * Entry-point containing U.S. customary units of mass.
  *
  * @author Tyler Vigario (MeekLogic)
  * @license GPL-3.0-only
- * @version 1.0.0
+ * @version 1.0.1
  */
 
-import MassJS from &apos;./MassJS&apos;;
+import MassJS from &apos;./mass&apos;;
 
 /**
- * International System of Units units of mass
+ * U.S. customary units of mass
  */
 var Units = [{
     name: &apos;ton&apos;,
-    value: 1000,
+    value: 2000,
     display: {
         symbol: &apos;t&apos;,
-        exclusive: true,
-        rounding: 2
+        rounding: 2,
+        exclusive: true
     },
     signifiers: [
         &apos;t&apos;,
         &apos;ton&apos;,
-        &apos;tons&apos;,
-        &apos;tonne&apos;,
-        &apos;tonnes&apos;
+        &apos;tons&apos;
     ]
 },{
-    name: &apos;kilogram&apos;,
+    name: &apos;hundredweight&apos;,
+    value: 100,
+    signifiers: [
+        &apos;cwt&apos;,
+        &apos;hundredweight&apos;
+    ]
+},{
+    name: &apos;quarter&apos;,
+    value: 25,
+    signifiers: [
+        &apos;qr&apos;,
+        &apos;qtr&apos;,
+        &apos;quarter&apos;,
+        &apos;quarters&apos;
+    ]
+},{
+    name: &apos;pound&apos;,
     value: 1,
-    display: &apos;kg&apos;,
+    display: &apos;lb&apos;,
     signifiers: [
-        &apos;kg&apos;,
-        &apos;kgs&apos;,
-        &apos;kilogram&apos;,
-        &apos;kilograms&apos;
+        &apos;lb&apos;,
+        &apos;lbs&apos;,
+        &apos;pound&apos;,
+        &apos;pounds&apos;
     ]
 },{
-    name: &apos;gram&apos;,
-    value: 0.001,
-    display: &apos;g&apos;,
+    name: &apos;ounce&apos;,
+    value: 0.0625,
+    display: &apos;oz&apos;,
     signifiers: [
-        &apos;g&apos;,
-        &apos;gs&apos;,
-        &apos;gram&apos;,
-        &apos;grams&apos;
+        &apos;oz&apos;,
+        &apos;ounce&apos;,
+        &apos;ounces&apos;
+    ]
+},{
+    name: &apos;dram&apos;,
+    value: 0.00390625,
+    signifiers: [
+        &apos;dr&apos;,
+        &apos;dram&apos;,
+        &apos;drams&apos;
+    ]
+},{
+    name: &apos;grain&apos;,
+    value: 1.4285714285714285714285714285714e-4,
+    signifiers: [
+        &apos;gr&apos;,
+        &apos;grain&apos;,
+        &apos;grains&apos;
     ]
 }];
 
-var Mass = new MassJS(Units);
-
-export {
-    //Units,
-    Mass as default
-};</code></pre>
+export default new MassJS(Units);</code></pre>
 
 </div>
 
