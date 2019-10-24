@@ -43,49 +43,10 @@
  * @version 1.0.0
  */
 
-import MassJS from &apos;./mass&apos;;
+import Mass from &apos;./mass&apos;;
+import Units from &apos;./units/SI&apos;;
 
-/**
- * International System of Units units of mass
- */
-var Units = [{
-    name: &apos;ton&apos;,
-    value: 1000,
-    display: {
-        symbol: &apos;t&apos;,
-        exclusive: true,
-        rounding: 2
-    },
-    signifiers: [
-        &apos;t&apos;,
-        &apos;ton&apos;,
-        &apos;tons&apos;,
-        &apos;tonne&apos;,
-        &apos;tonnes&apos;
-    ]
-},{
-    name: &apos;kilogram&apos;,
-    value: 1,
-    display: &apos;kg&apos;,
-    signifiers: [
-        &apos;kg&apos;,
-        &apos;kgs&apos;,
-        &apos;kilogram&apos;,
-        &apos;kilograms&apos;
-    ]
-},{
-    name: &apos;gram&apos;,
-    value: 0.001,
-    display: &apos;g&apos;,
-    signifiers: [
-        &apos;g&apos;,
-        &apos;gs&apos;,
-        &apos;gram&apos;,
-        &apos;grams&apos;
-    ]
-}];
-
-export default new MassJS(Units);</code></pre>
+export default new Mass(Units);</code></pre>
 
 </div>
 

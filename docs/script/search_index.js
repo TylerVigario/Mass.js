@@ -340,5 +340,23 @@ window.esdocSearchIndex = [
     "class/src/mass.js~Mass.html#instance-method-parse",
     "src/mass.js~Mass#parse",
     "method"
+  ],
+  [
+    "src/units/si.js",
+    "file/src/units/SI.js.html",
+    "src/units/SI.js",
+    "file"
+  ],
+  [
+    "src/units/uk.js",
+    "file/src/units/UK.js.html",
+    "src/units/UK.js",
+    "file"
+  ],
+  [
+    "src/units/us.js",
+    "file/src/units/US.js.html",
+    "src/units/US.js",
+    "file"
   ]
 ]

@@ -1,26 +1,11 @@
 {
   "coverage": "100%",
-  "expectCount": 9,
-  "actualCount": 9,
+  "expectCount": 6,
+  "actualCount": 6,
   "files": {
     "src/mass.js": {
       "expectCount": 6,
       "actualCount": 6,
-      "undocumentLines": []
-    },
-    "src/SI.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "src/UK.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "src/US.js": {
-      "expectCount": 1,
-      "actualCount": 1,
       "undocumentLines": []
     }
   }

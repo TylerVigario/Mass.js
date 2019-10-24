@@ -9451,7 +9451,7 @@
           "leadingComments": [
             {
               "type": "CommentBlock",
-              "value": "* \r\n * Parsing and formatting mass units.\r\n *\r\n * @author Tyler Vigario (MeekLogic)\r\n * @license GPL-3.0-only\r\n * @version 1.1.0\r\n ",
+              "value": "* \r\n * Parsing and formatting mass units.\r\n *\r\n * @author Tyler Vigario (MeekLogic)\r\n * @license GPL-3.0-only\r\n * @version 1.1.1\r\n ",
               "start": 0,
               "end": 135,
               "loc": {
@@ -9487,7 +9487,7 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "* \r\n * Parsing and formatting mass units.\r\n *\r\n * @author Tyler Vigario (MeekLogic)\r\n * @license GPL-3.0-only\r\n * @version 1.1.0\r\n ",
+            "value": "* \r\n * Parsing and formatting mass units.\r\n *\r\n * @author Tyler Vigario (MeekLogic)\r\n * @license GPL-3.0-only\r\n * @version 1.1.1\r\n ",
             "start": 0,
             "end": 135,
             "loc": {
@@ -9525,7 +9525,7 @@
   "comments": [
     {
       "type": "CommentBlock",
-      "value": "* \r\n * Parsing and formatting mass units.\r\n *\r\n * @author Tyler Vigario (MeekLogic)\r\n * @license GPL-3.0-only\r\n * @version 1.1.0\r\n ",
+      "value": "* \r\n * Parsing and formatting mass units.\r\n *\r\n * @author Tyler Vigario (MeekLogic)\r\n * @license GPL-3.0-only\r\n * @version 1.1.1\r\n ",
       "start": 0,
       "end": 135,
       "loc": {
@@ -10391,7 +10391,7 @@
   "tokens": [
     {
       "type": "CommentBlock",
-      "value": "* \r\n * Parsing and formatting mass units.\r\n *\r\n * @author Tyler Vigario (MeekLogic)\r\n * @license GPL-3.0-only\r\n * @version 1.1.0\r\n ",
+      "value": "* \r\n * Parsing and formatting mass units.\r\n *\r\n * @author Tyler Vigario (MeekLogic)\r\n * @license GPL-3.0-only\r\n * @version 1.1.1\r\n ",
       "start": 0,
       "end": 135,
       "loc": {

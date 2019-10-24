@@ -1,6 +1,6 @@
 {
   "name": "mass.js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "JavaScript library for parsing and formatting mass units.",
   "homepage": "https://meeklogic.github.io/Mass.js/",
   "main": "./src/US.js",

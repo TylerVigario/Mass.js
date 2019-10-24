@@ -43,88 +43,10 @@
  * @version 1.0.0
  */
 
-import MassJS from &apos;./mass&apos;;
+import Mass from &apos;./mass&apos;;
+import Units from &apos;./units/UK&apos;;
 
-/**
- * Imperial units of mass
- */
-var Units = [{
-    name: &apos;ton&apos;,
-    value: 2240,
-    display: {
-        symbol: &apos;t&apos;,
-        rounding: 2,
-        exclusive: true
-    },
-    signifiers: [
-        &apos;t&apos;,
-        &apos;ton&apos;,
-        &apos;tons&apos;
-    ]
-},{
-    name: &apos;hundredweight&apos;,
-    value: 112,
-    signifiers: [
-        &apos;cwt&apos;,
-        &apos;hundredweight&apos;
-    ]
-},{
-    name: &apos;quarter&apos;,
-    value: 28,
-    signifiers: [
-        &apos;qr&apos;,
-        &apos;qtr&apos;,
-        &apos;quarter&apos;,
-        &apos;quarters&apos;
-    ]
-},{
-    name: &apos;stone&apos;,
-    value: 14,
-    signifiers: [
-        &apos;st&apos;,
-        &apos;stone&apos;,
-        &apos;stones&apos;
-    ]
-},{
-    name: &apos;pound&apos;,
-    value: 1,
-    display: &apos;lb&apos;,
-    signifiers: [
-        &apos;lb&apos;,
-        &apos;lbs&apos;,
-        &apos;pound&apos;,
-        &apos;pounds&apos;
-    ]
-},{
-    name: &apos;ounce&apos;,
-    value: 0.0625,
-    display: &apos;oz&apos;,
-    signifiers: [
-        &apos;oz&apos;,
-        &apos;ounce&apos;,
-        &apos;ounces&apos;
-    ]
-},{
-    name: &apos;dram&apos;,
-    value: 0.00390625,
-    signifiers: [
-        &apos;dr&apos;,
-        &apos;dram&apos;,
-        &apos;drams&apos;,
-        &apos;drachm&apos;,
-        &apos;drachms&apos;
-    ]
-},{
-    name: &apos;grain&apos;,
-    value: 1.4285714285714285714285714285714e-4,
-    signifiers: [
-        &apos;gr&apos;,
-        &apos;grain&apos;,
-        &apos;grains&apos;
-    ]
-}];
-
-export default new MassJS(Units);</code></pre>
+export default new Mass(Units);</code></pre>
 
 </div>
 
