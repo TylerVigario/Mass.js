@@ -5,12 +5,12 @@
   "homepage": "https://meeklogic.github.io/Mass.js/",
   "main": "./src/US.js",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint --config ./.eslintrc.js ./src",
-    "tests": "npx ava ./tests/index.js",
-    "tests:coverage": "npx nyc npm run tests",
+    "lint": "eslint --config ./.eslintrc.js ./src",
+    "tests": "ava ./tests/index.js --verbose",
+    "tests:coverage": "nyc --reporter=lcov --reporter=text-summary ava ./tests/index.js",
     "performance": "node -r esm ./performance/index.js",
     "docs": "npm run documentation",
-    "documentation": "npx esdoc"
+    "documentation": "esdoc"
   },
   "keywords": [
     "mass",

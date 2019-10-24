@@ -83,8 +83,8 @@ var invalidStrings = [
     '@$#/|'
 ];
 
-// Invalid argument types
-test('Invalid .parse() argument types', (t) => {
+// Invalid arguments
+test('Invalid .parse() arguments', (t) => {
     // Mass.parse(string)
     t.throws(() => { Mass.parse(null); }, TypeError);
     t.throws(() => { Mass.parse(true); }, TypeError);
@@ -92,7 +92,7 @@ test('Invalid .parse() argument types', (t) => {
     t.throws(() => { Mass.parse({ value: 45 }); }, TypeError);
 });
 
-test('Invalid .format() argument types', (t) => {
+test('Invalid .format() arguments', (t) => {
     // Mass.format(number, number|string)
     t.throws(() => { Mass.format(null); }, TypeError);
     t.throws(() => { Mass.format(true); }, TypeError);
@@ -107,7 +107,7 @@ test('Invalid .format() argument types', (t) => {
     t.throws(() => { Mass.format(45, { value: 45 }); }, TypeError);
 });
 
-test('Invalid .lookup() argument types', (t) => {
+test('Invalid .lookup() arguments', (t) => {
     // Mass.lookup(string)
     t.throws(() => { Mass.lookup(null); }, TypeError);
     t.throws(() => { Mass.lookup(true); }, TypeError);
@@ -133,6 +133,8 @@ test('Format tests', (t) => {
 
         t.is(text, problem.answer, text);
     });
+
+    t.is(Mass.format(64, 'oz'), '4 lb', '64');
 });
 
 test('Invalid mass string tests', (t) => {
