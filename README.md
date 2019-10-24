@@ -1,7 +1,7 @@
-[![Coverage Status](https://coveralls.io/repos/github/MeekLogic/Mass.js/badge.svg?branch=master)](https://coveralls.io/github/MeekLogic/Mass.js?branch=master) [![Build Status](https://travis-ci.com/MeekLogic/Mass.js.svg?branch=master)](https://travis-ci.com/MeekLogic/Mass.js)
+[![Coverage Status](https://coveralls.io/repos/github/MeekLogic/Mass.js/badge.svg?branch=master)](https://coveralls.io/github/MeekLogic/Mass.js?branch=master) [![Build Status](https://travis-ci.com/MeekLogic/Mass.js.svg?branch=master)](https://travis-ci.com/MeekLogic/Mass.js) ![npm](https://img.shields.io/npm/dm/mass.js)
 
 Mass.js
-=========
+=======
 JavaScript library for parsing and formatting mass units.
 
 **[Documentation](https://meeklogic.github.io/Mass.js/)**
@@ -19,7 +19,7 @@ import Mass from 'mass.js';
 ```
 
 Units
---------------
+-----
 Default system for units of mass is **U.S. customary** but can be changed by requiring an alternative entry point (*US*, *UK*, or *SI*).
 
 ```javascript

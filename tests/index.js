@@ -71,7 +71,7 @@ var problems = [{
     value: 7000
 }];
 
-var invalidWeights = [
+var invalidStrings = [
     'not,a,weight',
     '165 pounds 24',
     '25 metric tons',
@@ -83,41 +83,63 @@ var invalidWeights = [
     '@$#/|'
 ];
 
+// Invalid argument types
+test('Invalid .parse() argument types', (t) => {
+    // Mass.parse(string)
+    t.throws(() => { Mass.parse(null); }, TypeError);
+    t.throws(() => { Mass.parse(true); }, TypeError);
+    t.throws(() => { Mass.parse(45); }, TypeError);
+    t.throws(() => { Mass.parse({ value: 45 }); }, TypeError);
+});
+
+test('Invalid .format() argument types', (t) => {
+    // Mass.format(number, number|string)
+    t.throws(() => { Mass.format(null); }, TypeError);
+    t.throws(() => { Mass.format(true); }, TypeError);
+    t.throws(() => { Mass.format(-45); }, Error);
+    t.throws(() => { Mass.format('45'); }, TypeError);
+    t.throws(() => { Mass.format({ value: 45 }); }, TypeError);
+    //
+    t.throws(() => { Mass.format(45, null); }, TypeError);
+    t.throws(() => { Mass.format(45, true); }, TypeError);
+    t.throws(() => { Mass.format(45, -1); }, Error);
+    t.is(Mass.format(45, 'null'), undefined, '.format(45, "null")');
+    t.throws(() => { Mass.format(45, { value: 45 }); }, TypeError);
+});
+
+test('Invalid .lookup() argument types', (t) => {
+    // Mass.lookup(string)
+    t.throws(() => { Mass.lookup(null); }, TypeError);
+    t.throws(() => { Mass.lookup(true); }, TypeError);
+    t.throws(() => { Mass.lookup(1); }, TypeError);
+    t.is(Mass.lookup('null'), undefined, '.lookup("null")');
+    t.throws(() => { Mass.lookup({ value: 'lb' }); }, TypeError);
+});
+
+// Assertions
 test('Parse tests', (t) => {
     // Validate Mass.parse()
     problems.forEach((problem) => {
-        try {
-            let value = Mass.parse(problem.question);
+        let value = Mass.parse(problem.question);
 
-            t.is(value, problem.value, problem.question);
-        } catch (e) {
-            t.fail('Error during parse.');
-        }
+        t.is(value, problem.value, problem.question);
     });
 });
 
 test('Format tests', (t) => {
     // Validate Mass.format()
     problems.forEach((problem) => {
-        try {
-            let text = Mass.format(problem.value);
+        let text = Mass.format(problem.value);
 
-            t.is(text, problem.answer, text);
-        } catch (e) {
-            t.fail('Error during parse.');
-        }
+        t.is(text, problem.answer, text);
     });
 });
 
-test('Invalid parse tests', (t) => {
-    // Mass.parse() invalid weight handling
-    invalidWeights.forEach((weight) => {
-        try {
-            let value = Mass.parse(weight);
+test('Invalid mass string tests', (t) => {
+    // Validate Mass.parse() invalid mass string
+    invalidStrings.forEach((weight) => {
+        let value = Mass.parse(weight);
 
-            t.false(value, weight);
-        } catch (e) {
-            t.fail('Error during parse.');
-        }
+        t.false(value, weight);
     });
 });

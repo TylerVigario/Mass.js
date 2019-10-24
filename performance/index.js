@@ -70,20 +70,27 @@ writeStream.end();
  * @param {number} [rounds = 1000000] - Number of times to perform test.
  */
 function test(name, test, rounds = 1000000) {
+    // Store start microtime
     let time = microtime.now();
 
+    // Run test for as many rounds as specified
     for (let i = rounds; i > 0; i--) {
         test();
     }
 
+    // Subtract start from end (now) microtime
     time = microtime.now() - time;
 
+    // Convert to seconds
     time = time / 1000;
 
+    // Calculate operations per second
     let ops = Math.round(rounds / time).toLocaleString();
 
+    // Output to console
     console.log(`${name}: ${ops}  op/s`);
 
+    // Output to file
     writeStream.write(`${name}: ${ops}  op/s` + EOL, 'UTF-8');
 }
 
@@ -98,14 +105,14 @@ function timeStamp() {
     var now = new Date();
 
     // Create an array with the current month, day and time
-    var date = [ now.getMonth() + 1, now.getDate(), now.getFullYear() ];
+    var date = [now.getMonth() + 1, now.getDate(), now.getFullYear()];
     
     // Create an array with the current hour, minute and second
-    var time = [ now.getHours(), now.getMinutes(), now.getSeconds() ];
+    var time = [now.getHours(), now.getMinutes(), now.getSeconds()];
     
     // If seconds and minutes are less than 10, add a zero
-    for ( var i = 0; i < 3; i++ ) {
-        if ( time[i] < 10 ) {
+    for (var i = 0; i < 3; i++) {
+        if (time[i] < 10) {
             time[i] = '0' + time[i];
         }
     }
