@@ -14,7 +14,7 @@ export default class Mass
     /**
      * Creates an instance of MassJS.
      * 
-     * @param {array} units - Array of mass unit definitions objects.
+     * @param {array} units Array of mass unit definitions objects.
      */
     constructor(units)
     {
@@ -34,7 +34,7 @@ export default class Mass
     /**
      * Parse variable for Mass.
      * 
-     * @param {string} text - String to parse for mass.
+     * @param {string} text String to parse for mass.
      * @returns {(number|false)} Returns mass as it's base unit, if an invalid string for mass or any value is negative, false.
      */
     parse(text)
@@ -136,8 +136,8 @@ export default class Mass
     /**
      * Format mass as text.
      * 
-     * @param {number} value - Value to format (must be a positive number).
-     * @param {(number|string)} [unitValue = 1] - Value of unit or string mass unit signifier for lookup.
+     * @param {number} value Value to format (must be a positive number).
+     * @param {(number|string)} [unitValue = 1] Value of unit or string mass unit signifier for lookup.
      * @returns {(string|undefined)} Formatted mass string or undefined if unit signifier string lookup fails.
      * @throws {Error} Will throw an error if value or unitValue are a negative number.
      */
@@ -229,7 +229,7 @@ export default class Mass
     /**
      * Lookup string signifier returning matching Unit.
      * 
-     * @param {string} signifier - Mass unit signifier string for lookup.
+     * @param {string} signifier Mass unit signifier string for lookup.
      * @return {(object|undefined)} Matching Unit object, if found, otherwise false.
      */
     lookup(signifier)
