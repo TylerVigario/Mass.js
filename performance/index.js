@@ -69,13 +69,13 @@ writeStream.end();
  * @param {function} test - Callback function with test procedure.
  * @param {number} [rounds = 1000000] - Number of times to perform test.
  */
-function test(name, test, rounds = 1000000) {
+function test(name, testMethod, rounds = 1000000) {
     // Store start microtime
     let time = microtime.now();
 
     // Run test for as many rounds as specified
     for (let i = rounds; i > 0; i--) {
-        test();
+        testMethod();
     }
 
     // Subtract start from end (now) microtime

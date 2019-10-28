@@ -6,9 +6,6 @@
  * @version 1.0.0
  */
 
-/**
- * International System of Units units of mass
- */
 export default [{
     name: 'ton',
     value: 1000,

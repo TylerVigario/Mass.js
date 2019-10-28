@@ -6,9 +6,6 @@
  * @version 1.0.0
  */
 
-/**
- * Imperial units of mass
- */
 export default [{
     name: 'ton',
     value: 2240,

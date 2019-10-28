@@ -6,9 +6,6 @@
  * @version 1.0.1
  */
 
-/**
- * U.S. customary units of mass
- */
 export default [{
     name: 'ton',
     value: 2000,

@@ -23,7 +23,7 @@ Units
 Default system for units of mass is **U.S. customary** but can be changed by requiring an alternative entry point (*US*, *UK*, or *SI*).
 
 ```javascript
-import Mass from 'mass.js/src/US'; // U.S. customary
+import Mass from 'mass.js/src/US'; // U.S. customary (default)
 import Mass from 'mass.js/src/UK'; // Imperial
 import Mass from 'mass.js/src/SI'; // International System of Units (unfinished)
 ```
@@ -32,15 +32,15 @@ Example
 -------
 ```javascript
 // Parse string for mass
-let value = Mass.parse('10 ounces');
+let value = Mass.parse('5 lbs 8 oz');
 
-console.log(value); // 0.625
+console.log(value); // 5.5
 
-// Add 10 pounds
-value += 10;
+// Add 5.5 pounds
+value += 5.5;
 
-console.log(value); // 10.625
+console.log(value); // 11
 
 // Format total for human-readable string
-console.log(Mass.format(value)); // "10 lb 10 oz"
+console.log(Mass.format(value)); // "11 lb"
 ```

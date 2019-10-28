@@ -3,7 +3,7 @@
  *
  * @author Tyler Vigario (MeekLogic)
  * @license GPL-3.0-only
- * @version 1.1.1
+ * @version 1.1.2
  */
 
 /**
@@ -46,6 +46,9 @@ export default class Mass
 
         // Remove possible case sensitivity
         text = text.toLowerCase();
+
+        // Replace special words with symbols
+        text = text.replace('and', '&');
 
         // Remove non alphanumeric characters except "." and "-"
         text = text.replace(/[^0-9a-z.-]/g, '');
