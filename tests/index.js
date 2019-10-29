@@ -26,7 +26,7 @@ var problems = [{
     answer: '3 lb 1 oz',
     value: 3.0625
 },{
-    question: '17 lb 14 oz',
+    question: '17 lb and 14 oz',
     answer: '17 lb 14 oz',
     value: 17.875
 },{
