@@ -36,7 +36,7 @@ test('format-double', () => {
     Mass.format(12.5);
 });
 
-// format-double
+// format-double-with-convert
 test('format-double-with-convert', () => {
     Mass.format(200, 0.0625);
 });

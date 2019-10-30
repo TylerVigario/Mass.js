@@ -3,7 +3,7 @@
  *
  * @author Tyler Vigario (MeekLogic)
  * @license GPL-3.0-only
- * @version 1.1.2
+ * @version 1.1.4
  */
 
 /**
@@ -18,6 +18,26 @@ export default class Mass
      */
     constructor(units)
     {
+        this.units = units;
+    }
+
+    /**
+     * Get internal units at run-time.
+     *
+     * @return {array} Array of mass unit definitions objects.
+     */
+    get units()
+    {
+        return this._units;
+    }
+
+    /**
+     * Set internal units at run-time.
+     *
+     * @param {array} units Array of mass unit definitions objects.
+     */
+    set units(units)
+    {
         if (typeof units !== 'object') {
             throw new TypeError('Argument "units" must be of type "object".');
         }
@@ -28,7 +48,7 @@ export default class Mass
          * @type {array}
          * @private
          */
-        this.Units = units;
+        this._units = units;
     }
 
     /**
@@ -182,7 +202,7 @@ export default class Mass
         let formatted = '';
 
         // Loop through Units
-        for (let unit of this.Units) {
+        for (let unit of this.units) {
             // Check if Unit is displaying and value is greater than unit value
             if (unit.display && value >= unit.value) {
                 // Calculate quantity of unit
@@ -240,7 +260,7 @@ export default class Mass
         }
 
         // Search through units
-        return this.Units.find((unit) => {
+        return this.units.find((unit) => {
             // Search for matching signifier within unit
             return unit.signifiers.includes(signifier);
         });
