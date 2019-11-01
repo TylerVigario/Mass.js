@@ -31,12 +31,12 @@ test('.format(12.5)', () => {
     Mass.format(12.5);
 });
 
-test('.format(200, 0.0625)', () => {
-    Mass.format(200, 0.0625);
+test('.format(200, { unit: 0.0625 })', () => {
+    Mass.format(200, { unit: 0.0625 });
 });
 
-test('.format(200, "oz")', () => {
-    Mass.format(200, 'oz');
+test('.format(200, { unit: "oz" })', () => {
+    Mass.format(200, { unit: 'oz' });
 });
 
 addBlankLine();

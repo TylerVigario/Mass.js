@@ -43,4 +43,7 @@ console.log(value); // 11
 
 // Format total for human-readable string
 console.log(Mass.format(value)); // "11 lb"
+
+// Written format
+console.log(Mass.format(value, { written: true })); // "eleven pounds"
 ```
