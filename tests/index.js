@@ -1,5 +1,10 @@
 import test from 'ava';
-import Mass from '../src/US';
+import MassJS from '../src/mass';
+import US from '../src/units/US';
+import UK from '../src/units/US';
+import SI from '../src/units/US';
+
+var Mass = new MassJS(US);
 
 //
 // Tests

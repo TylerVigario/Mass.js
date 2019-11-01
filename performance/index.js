@@ -7,60 +7,49 @@ import Mass from '../src/US';
 //
 // Performance
 //
-let writeStream = fs.createWriteStream('./performance/data-' + timeStamp() + '.txt');
+let writeStream = fs.createWriteStream('./performance/data/' + timeStamp() + '.txt');
 
-// parse-single
-test('parse-single', () => {
+test('.parse("12 lbs")', () => {
     Mass.parse('12 lbs');
 });
 
-// parse-double
-test('parse-double-short', () => {
+test('.parse("12 lbs  8 oz")', () => {
     Mass.parse('12 lbs  8 oz');
 });
 
-// parse-double
-test('parse-double-long', () => {
-    Mass.parse('12 pounds  8 ounces');
+test('.parse("12 pounds 8 ounces")', () => {
+    Mass.parse('12 pounds 8 ounces');
 });
 
-console.log();
+addBlankLine();
 
-// format-single
-test('format-single', () => {
+test('.format(12)', () => {
     Mass.format(12);
 });
 
-// format-double
-test('format-double', () => {
+test('.format(12.5)', () => {
     Mass.format(12.5);
 });
 
-// format-double-with-convert
-test('format-double-with-convert', () => {
+test('.format(200, 0.0625)', () => {
     Mass.format(200, 0.0625);
 });
 
-// format-double-with-lookup
-test('format-double-with-lookup', () => {
+test('.format(200, "oz")', () => {
     Mass.format(200, 'oz');
 });
 
-console.log();
+addBlankLine();
 
-// lookup-grain
-test('lookup-grain', () => {
+test('.lookup("gr")', () => {
     Mass.lookup('gr');
 });
 
-// lookup-ton
-test('lookup-ton', () => {
+test('.lookup("t")', () => {
     Mass.lookup('t');
 });
 
-console.log();
-
-writeStream.end();
+console.log('');
 
 /**
  * Function to run performance test
@@ -87,11 +76,20 @@ function test(name, testMethod, rounds = 1000000) {
     // Calculate operations per second
     let ops = Math.round(rounds / time).toLocaleString();
 
+    // Basic pretty formatting
+    let output = '';
+
+    for (let i = 6 - ops.length; i > 0; i--) {
+        output += ' ';
+    }
+
+    output += `${ops} op/s | ${name}`;
+
     // Output to console
-    console.log(`${name}: ${ops}  op/s`);
+    console.log(output);
 
     // Output to file
-    writeStream.write(`${name}: ${ops}  op/s` + EOL, 'UTF-8');
+    writeStream.write(output + EOL, 'UTF-8');
 }
 
 /**
@@ -99,7 +97,6 @@ function test(name, testMethod, rounds = 1000000) {
  * 
  * @return {string}
  */
-
 function timeStamp() {
     // Create a date object with the current time
     var now = new Date();
@@ -110,7 +107,7 @@ function timeStamp() {
     // Create an array with the current hour, minute and second
     var time = [now.getHours(), now.getMinutes(), now.getSeconds()];
     
-    // If seconds and minutes are less than 10, add a zero
+    // If seconds, minutes, or hours are less than 10, prefix with a zero
     for (var i = 0; i < 3; i++) {
         if (time[i] < 10) {
             time[i] = '0' + time[i];
@@ -119,4 +116,12 @@ function timeStamp() {
     
     // Return the formatted string
     return date.join('-') + '_' + time.join('-');
+}
+
+/**
+ * Add blank line to outputs
+ */
+function addBlankLine() {
+    console.log('');
+    writeStream.write('' + EOL, 'UTF-8');
 }
