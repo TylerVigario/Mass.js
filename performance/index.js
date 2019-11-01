@@ -7,14 +7,14 @@ import Mass from '../src/US';
 //
 // Performance
 //
-let writeStream = fs.createWriteStream('./performance/data/' + timeStamp() + '.txt');
+let writeStream = fs.createWriteStream('./performance/data/' + timeStamp() + '.log');
 
 test('.parse("12 lbs")', () => {
     Mass.parse('12 lbs');
 });
 
-test('.parse("12 lbs  8 oz")', () => {
-    Mass.parse('12 lbs  8 oz');
+test('.parse("12 lbs 8 oz")', () => {
+    Mass.parse('12 lbs 8 oz');
 });
 
 test('.parse("12 pounds 8 ounces")', () => {
@@ -79,6 +79,7 @@ function test(name, testMethod, rounds = 1000000) {
     // Basic pretty formatting
     let output = '';
 
+    // Add spaces to the front if less than 6 characters
     for (let i = 6 - ops.length; i > 0; i--) {
         output += ' ';
     }
@@ -99,16 +100,16 @@ function test(name, testMethod, rounds = 1000000) {
  */
 function timeStamp() {
     // Create a date object with the current time
-    var now = new Date();
+    let now = new Date();
 
     // Create an array with the current month, day and time
-    var date = [now.getMonth() + 1, now.getDate(), now.getFullYear()];
+    let date = [now.getMonth() + 1, now.getDate(), now.getFullYear()];
     
     // Create an array with the current hour, minute and second
-    var time = [now.getHours(), now.getMinutes(), now.getSeconds()];
+    let time = [now.getHours(), now.getMinutes(), now.getSeconds()];
     
     // If seconds, minutes, or hours are less than 10, prefix with a zero
-    for (var i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
         if (time[i] < 10) {
             time[i] = '0' + time[i];
         }

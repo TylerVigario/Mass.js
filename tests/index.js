@@ -108,8 +108,7 @@ test('Invalid .format() arguments', (t) => {
     t.throws(() => { Mass.format(45, null); }, TypeError);
     t.throws(() => { Mass.format(45, true); }, TypeError);
     t.throws(() => { Mass.format(45, -1); }, Error);
-    t.is(Mass.format(45, 'null'), undefined, '.format(45, "null")');
-    t.throws(() => { Mass.format(45, { value: 45 }); }, TypeError);
+    t.throws(() => { Mass.format(45, '45'); }, TypeError);
 });
 
 test('Invalid .lookup() arguments', (t) => {
@@ -139,7 +138,10 @@ test('Format tests', (t) => {
         t.is(text, problem.answer, text);
     });
 
-    t.is(Mass.format(64, 'oz'), '4 lb', '64');
+    t.is(Mass.format(64, { unit: 'oz' }), '4 lb', '64');
+    
+    t.is(Mass.format(64, {unit: 'oz', written: true}), 'four pounds', '64');
+    t.is(Mass.format(1950, {written: true}), 'one thousand nine hundred and fifty pounds', '64');
 });
 
 test('Invalid mass string tests', (t) => {

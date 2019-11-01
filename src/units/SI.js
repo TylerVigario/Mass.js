@@ -3,7 +3,7 @@
  *
  * @author Tyler Vigario (MeekLogic)
  * @license GPL-3.0-only
- * @version 1.0.0
+ * @version 1.2.0
  */
 
 export default [{
@@ -11,6 +11,7 @@ export default [{
     value: 1000,
     display: {
         symbol: 't',
+        written: 'tonne',
         exclusive: true,
         rounding: 2
     },

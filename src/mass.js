@@ -3,8 +3,10 @@
  *
  * @author Tyler Vigario (MeekLogic)
  * @license GPL-3.0-only
- * @version 1.1.4
+ * @version 1.2.0
  */
+
+import writtenNumber from 'written-number';
 
 /**
  * Class for working with string representations of mass.
@@ -22,7 +24,7 @@ export default class Mass
     }
 
     /**
-     * Get internal units at run-time.
+     * Get internal units.
      *
      * @return {array} Array of mass unit definitions objects.
      */
@@ -32,7 +34,7 @@ export default class Mass
     }
 
     /**
-     * Set internal units at run-time.
+     * Set internal units.
      *
      * @param {array} units Array of mass unit definitions objects.
      */
@@ -157,11 +159,11 @@ export default class Mass
      * Format mass as text.
      * 
      * @param {number} value Value to format (must be a positive number).
-     * @param {(number|string)} [unitValue = 1] Value of unit or string mass unit signifier for lookup.
+     * @param {object} [options = {}] Formatting options.
      * @returns {(string|undefined)} Formatted mass string or undefined if unit signifier string lookup fails.
-     * @throws {Error} Will throw an error if value or unitValue are a negative number.
+     * @throws {Error} Will throw an error if value or options.unit is a negative number.
      */
-    format(value, unitValue = 1)
+    format(value, options = {})
     {
         // Validate value argument
         if (typeof value !== 'number') {
@@ -172,17 +174,32 @@ export default class Mass
         if (value < 0) {
             throw new Error('Argument "value" cannot be a negative number.');
         }
+
+        // Validate options argument
+        if (typeof options !== 'object' || options === null) {
+            throw new TypeError('Argument "options" must be of type "object".');
+        }
+
+        // Overwrite defaults with supplied options (if any)
+        options = Object.assign({
+            unit: 1,
+            written: false
+        }, options);
         
         // Did they supply custom unit ratio or signifier?
-        if (unitValue !== 1) {
-            if (typeof unitValue === 'number') {
+        if (options.unit !== 1) {
+            let unitValue;
+
+            if (typeof options.unit === 'number') {
                 // Validate number
-                if (unitValue < 0) {
-                    throw new Error('Argument "unitValue" cannot be a negative number.');
+                if (options.unit < 0) {
+                    throw new Error('Argument "options.unit" cannot be a negative number.');
                 }
-            } else if (typeof unitValue === 'string') {
+
+                unitValue = options.unit;
+            } else if (typeof options.unit === 'string') {
                 // Perform lookup using signifier
-                unitValue = this.lookup(unitValue);
+                unitValue = this.lookup(options.unit);
 
                 // Validate Unit lookup
                 if (unitValue === undefined) {
@@ -224,16 +241,25 @@ export default class Mass
                 }
 
                 // Add formatted value
-                formatted += q.toFixed(unit.display.rounding ? unit.display.rounding : 0);
+                if (options.written) {
+                    formatted += writtenNumber(q);
+                } else {
+                    formatted += q.toFixed(unit.display.rounding ? unit.display.rounding : 0);
+                }
 
                 // Add space between unit value and signifier
                 formatted += ' ';
 
                 // Add unit signifier
-                if (typeof unit.display === 'object') {
-                    formatted += unit.display.symbol;
+                if (options.written) {
+                    formatted += unit.display.written;
+
+                    // Add plural suffix
+                    if (q > 1) {
+                        formatted += 's';
+                    }
                 } else {
-                    formatted += unit.display;
+                    formatted += unit.display.symbol;
                 }
 
                 // Is unit exclusive or is there no longer any value to format?

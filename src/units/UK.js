@@ -3,7 +3,7 @@
  *
  * @author Tyler Vigario (MeekLogic)
  * @license GPL-3.0-only
- * @version 1.0.0
+ * @version 1.2.0
  */
 
 export default [{
@@ -11,6 +11,7 @@ export default [{
     value: 2240,
     display: {
         symbol: 't',
+        written: 'ton',
         rounding: 2,
         exclusive: true
     },
@@ -46,7 +47,10 @@ export default [{
 },{
     name: 'pound',
     value: 1,
-    display: 'lb',
+    display: {
+        symbol: 'lb',
+        written: 'pound'
+    },
     signifiers: [
         'lb',
         'lbs',
@@ -56,7 +60,10 @@ export default [{
 },{
     name: 'ounce',
     value: 0.0625,
-    display: 'oz',
+    display: {
+        symbol: 'oz',
+        written: 'ounce'
+    },
     signifiers: [
         'oz',
         'ounce',
