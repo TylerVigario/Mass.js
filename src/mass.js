@@ -3,7 +3,7 @@
  *
  * @author Tyler Vigario (MeekLogic)
  * @license GPL-3.0-only
- * @version 1.2.0
+ * @version 1.2.1
  */
 
 import writtenNumber from 'written-number';

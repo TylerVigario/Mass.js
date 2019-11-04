@@ -1,6 +1,6 @@
 {
   "name": "mass.js",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "JavaScript library for parsing and formatting mass units.",
   "homepage": "https://tylervigario.com/mass/",
   "main": "./src/US.js",
