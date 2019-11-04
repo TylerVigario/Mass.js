@@ -40,8 +40,8 @@ export default class Mass
      */
     set units(units)
     {
-        if (typeof units !== 'object') {
-            throw new TypeError('Argument "units" must be of type "object".');
+        if (typeof units !== 'object' || Object.prototype.toString.call(units) !== '[object Array]') {
+            throw new TypeError('Argument "units" must be of type "array".');
         }
 
         /**
@@ -176,7 +176,7 @@ export default class Mass
         }
 
         // Validate options argument
-        if (typeof options !== 'object' || options === null) {
+        if (typeof options !== 'object' || Object.prototype.toString.call(options) !== '[object Object]') {
             throw new TypeError('Argument "options" must be of type "object".');
         }
 
