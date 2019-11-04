@@ -1,19 +1,9 @@
 /**
- * Check if variable is an array.
+ * Checks if `value` is the type `Object` excluding `Function` and `null`
  *
- * @param {*} arg
- * @returns {boolean} True if var is an array or false if not.
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
  */
-export function isArray(arg) {
-    return (Object.prototype.toString.call(arg) === '[object Array]');
-}
-
-/**
- * Check if variable is an object.
- *
- * @param {*} arg
- * @returns {boolean} True if var is an object or false if not.
- */
-export function isObject(arg) {
-    return (Object.prototype.toString.call(arg) === '[object Object]');
+export function isObject(value) {
+    return (Object.prototype.toString.call(value) === '[object Object]');
 }

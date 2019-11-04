@@ -52,11 +52,11 @@ test('.lookup("t")', () => {
 console.log('');
 
 /**
- * Function to run performance test
+ * Run (and log) performance test.
  *
- * @param {string} name - Name of test.
- * @param {function} test - Callback function with test procedure.
- * @param {number} [rounds = 1000000] - Number of times to perform test.
+ * @param {string} name The name of test.
+ * @param {Function} test The function containing the testing procedure.
+ * @param {number} [rounds = 1000000] The number of times to perform `test`.
  */
 function test(name, testMethod, rounds = 1000000) {
     // Store start microtime
@@ -94,9 +94,9 @@ function test(name, testMethod, rounds = 1000000) {
 }
 
 /**
- * Return a file name friendly timestamp.
+ * Generate file name timestamp.
  * 
- * @return {string}
+ * @return {string} Return current date & time as `string`.
  */
 function timeStamp() {
     // Create a date object with the current time
@@ -120,7 +120,7 @@ function timeStamp() {
 }
 
 /**
- * Add blank line to outputs
+ * Output blank line.
  */
 function addBlankLine() {
     console.log('');

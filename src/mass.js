@@ -6,18 +6,14 @@
  * @version 1.2.2
  */
 
-import { isArray, isObject } from './utils';
+import { isObject } from './utils';
 import writtenNumber from 'written-number';
 
-/**
- * Class for working with string representations of mass.
- */
 export default class Mass
 {
     /**
-     * Creates an instance of MassJS.
-     * 
-     * @param {array} units Array of mass unit definitions objects.
+     * @param {Array} units The array of `Mass` unit definition objects to use.
+     * @returns {Object} Returns the new `Mass` instance.
      */
     constructor(units)
     {
@@ -25,9 +21,9 @@ export default class Mass
     }
 
     /**
-     * Get internal units.
+     * Get current `Mass` unit definition objects.
      *
-     * @return {array} Array of mass unit definitions objects.
+     * @return {Array} Returns currently used `Mass` unit definition objects.
      */
     get units()
     {
@@ -35,13 +31,13 @@ export default class Mass
     }
 
     /**
-     * Set internal units.
+     * Set current `Mass` unit definition objects.
      *
-     * @param {array} units Array of mass unit definitions objects.
+     * @param {Array} units The Array of `Mass` unit definition objects to use.
      */
     set units(units)
     {
-        if (!isArray(units)) {
+        if (!Array.isArray(units)) {
             throw new TypeError('Argument "units" must be of type "array".');
         }
 
@@ -55,10 +51,10 @@ export default class Mass
     }
 
     /**
-     * Parse variable for Mass.
+     * Parse string for mass.
      * 
-     * @param {string} text String to parse for mass.
-     * @returns {(number|false)} Returns mass as it's base unit, if an invalid string for mass or any value is negative, false.
+     * @param {string} text The string to parse.
+     * @returns {(number|boolean)} Returns mass as a `number`, or if invalid `text` or negative values, `false`.
      */
     parse(text)
     {
@@ -157,12 +153,12 @@ export default class Mass
     }
 
     /**
-     * Format mass as text.
+     * Format number as string.
      * 
-     * @param {number} value Value to format (must be a positive number).
-     * @param {object} [options = {}] Formatting options.
-     * @returns {(string|undefined)} Formatted mass string or undefined if unit signifier string lookup fails.
-     * @throws {Error} Will throw an error if value or options.unit is a negative number.
+     * @param {number} value The number to format (must be positive).
+     * @param {Object} [options = {}] The formatting options.
+     * @returns {(string|undefined)} Returns `value` formatted as `string`, or `undefined` if unit lookup fails.
+     * @throws {Error} Throws an error if `value` or `options.unit` is a negative number.
      */
     format(value, options = {})
     {
@@ -210,7 +206,7 @@ export default class Mass
                 // We want unit value
                 unitValue = unitValue.value;
             } else {
-                throw new TypeError('Argument "unitValue" must be of type "number" or "string".');
+                throw new TypeError('Argument "options.unit" must be of type "number" or "string".');
             }
 
             // Convert value to base unit value
@@ -245,8 +241,10 @@ export default class Mass
                 if (options.written) {
                     if (isObject(options.written)) {
                         formatted += writtenNumber(q, options.written);
-                    } else {
+                    } else if (options.written === true) {
                         formatted += writtenNumber(q);
+                    } else {
+                        throw new TypeError('Argument "options.written" must be of type "boolean" or "object".');
                     }
                 } else {
                     formatted += q.toFixed(unit.display.rounding ? unit.display.rounding : 0);
@@ -278,10 +276,10 @@ export default class Mass
     }
 
     /**
-     * Lookup string signifier returning matching Unit.
+     * Lookup string signifier.
      * 
-     * @param {string} signifier Mass unit signifier string for lookup.
-     * @return {(object|undefined)} Matching Unit object, if found, otherwise false.
+     * @param {string} signifier The string to lookup.
+     * @return {(Object|undefined)} Returns matching unit `object` if found, otherwise `false`.
      */
     lookup(signifier)
     {

@@ -1,5 +1,5 @@
 /** 
- * International System of Units units of mass.
+ * International System of Units `Mass` unit definition objects.
  *
  * @author Tyler Vigario (MeekLogic)
  * @license GPL-3.0-only

@@ -1,5 +1,5 @@
 /** 
- * Imperial units of mass.
+ * Imperial `Mass` unit definition objects.
  *
  * @author Tyler Vigario (MeekLogic)
  * @license GPL-3.0-only
