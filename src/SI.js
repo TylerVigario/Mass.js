@@ -5,7 +5,7 @@
  * @license GPL-3.0-only
  */
 
-import Mass from './Mass';
+import Mass from './mass';
 import Units from './units/SI';
 
 export default new Mass(Units);

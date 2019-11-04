@@ -3,9 +3,10 @@
  *
  * @author Tyler Vigario (MeekLogic)
  * @license GPL-3.0-only
- * @version 1.2.1
+ * @version 1.2.2
  */
 
+import { isArray, isObject } from './utils';
 import writtenNumber from 'written-number';
 
 /**
@@ -40,7 +41,7 @@ export default class Mass
      */
     set units(units)
     {
-        if (typeof units !== 'object' || Object.prototype.toString.call(units) !== '[object Array]') {
+        if (!isArray(units)) {
             throw new TypeError('Argument "units" must be of type "array".');
         }
 
@@ -176,7 +177,7 @@ export default class Mass
         }
 
         // Validate options argument
-        if (typeof options !== 'object' || Object.prototype.toString.call(options) !== '[object Object]') {
+        if (!isObject(options)) {
             throw new TypeError('Argument "options" must be of type "object".');
         }
 
@@ -242,7 +243,11 @@ export default class Mass
 
                 // Add formatted value
                 if (options.written) {
-                    formatted += writtenNumber(q);
+                    if (isObject(options.written)) {
+                        formatted += writtenNumber(q, options.written);
+                    } else {
+                        formatted += writtenNumber(q);
+                    }
                 } else {
                     formatted += q.toFixed(unit.display.rounding ? unit.display.rounding : 0);
                 }
