@@ -3,7 +3,7 @@
  *
  * @author Tyler Vigario (MeekLogic)
  * @license GPL-3.0-only
- * @version 1.2.2
+ * @version 1.2.3
  */
 
 import { isObject } from './utils';
@@ -235,6 +235,11 @@ export default class Mass
                 // Add space if text has content already
                 if (formatted.length > 0) {
                     formatted += ' ';
+
+                    // Add "and" for written format
+                    if (options.written) {
+                        formatted += 'and ';
+                    }
                 }
 
                 // Add formatted value
@@ -248,7 +253,7 @@ export default class Mass
                     } else if (options.written === true) {
                         formatted += writtenNumber(q);
                     } else {
-                        throw new TypeError('Argument "options.written" must be of type "boolean" or "object".');
+                        throw new TypeError('Argument "options.written" must be of type "boolean", "string", or "object".');
                     }
                 } else {
                     formatted += q.toFixed(unit.display.rounding ? unit.display.rounding : 0);

@@ -60,6 +60,19 @@ Format number as string.
 
 Returns `value` formatted as `string`, or if unit lookup fails, `undefined`.
 
+**Examples:**
+```javascript
+Mass.format(11, {
+	unit: 1,
+	written: false
+});
+
+Mass.format(176, {
+	unit: 'oz',
+	written: true
+});
+```
+
 ------------
 
 ### .lookup(signifier)
