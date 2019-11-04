@@ -16,6 +16,14 @@ Usage
 -----
 ```javascript
 import Mass from 'mass.js';
+
+let value = Mass.parse('5 lbs 8 oz'); // Parse string for mass
+
+value += 5.5; // Add 5.5 pounds
+
+Mass.format(value); // Format total: "11 lb"
+
+Mass.format(value, { written: true }); // Written format: "eleven pounds"
 ```
 
 Units
@@ -28,22 +36,36 @@ import Mass from 'mass.js/src/UK'; // Imperial
 import Mass from 'mass.js/src/SI'; // International System of Units (unfinished)
 ```
 
-Example
+Methods
 -------
-```javascript
-// Parse string for mass
-let value = Mass.parse('5 lbs 8 oz');
+### .parse(text)
 
-console.log(value); // 5.5
+Parse string for mass.
 
-// Add 5.5 pounds
-value += 5.5;
+**text:** `string` The string to parse.
 
-console.log(value); // 11
+Returns mass value as `number`, or if invalid `text` or negative values, `false`.
 
-// Format total for human-readable string
-console.log(Mass.format(value)); // "11 lb"
+------------
 
-// Written format
-console.log(Mass.format(value, { written: true })); // "eleven pounds"
-```
+### .format(value, options = {})
+
+Format number as string.
+
+**value:** `number` The number to format (must be positive).
+
+**options:** `Object` The formatting options.
+- **unit:** `(number|string)` Base unit value or string for lookup (default: 1).
+- **written:** `(Object|string|boolean)` [js-written-number](https://github.com/yamadapc/js-written-number#options) options or language identifier (as string), otherwise boolean (default: false).
+
+Returns `value` formatted as `string`, or if unit lookup fails, `undefined`.
+
+------------
+
+### .lookup(signifier)
+
+Lookup string signifier.
+
+**signifier:** `string` The string to lookup.
+
+Returns matching unit `Object` if found, otherwise `undefined`.

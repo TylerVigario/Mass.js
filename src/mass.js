@@ -54,7 +54,7 @@ export default class Mass
      * Parse string for mass.
      * 
      * @param {string} text The string to parse.
-     * @returns {(number|boolean)} Returns mass as a `number`, or if invalid `text` or negative values, `false`.
+     * @returns {(number|boolean)} Returns mass value as a `number`, or if invalid `text` or negative values, `false`.
      */
     parse(text)
     {
@@ -157,7 +157,7 @@ export default class Mass
      * 
      * @param {number} value The number to format (must be positive).
      * @param {Object} [options = {}] The formatting options.
-     * @returns {(string|undefined)} Returns `value` formatted as `string`, or `undefined` if unit lookup fails.
+     * @returns {(string|undefined)} Returns `value` formatted as `string`, or if unit lookup fails, `undefined`.
      * @throws {Error} Throws an error if `value` or `options.unit` is a negative number.
      */
     format(value, options = {})
@@ -241,6 +241,10 @@ export default class Mass
                 if (options.written) {
                     if (isObject(options.written)) {
                         formatted += writtenNumber(q, options.written);
+                    } else if (typeof options.written === 'string') {
+                        formatted += writtenNumber(q, {
+                            lang: options.written
+                        });
                     } else if (options.written === true) {
                         formatted += writtenNumber(q);
                     } else {
@@ -279,7 +283,7 @@ export default class Mass
      * Lookup string signifier.
      * 
      * @param {string} signifier The string to lookup.
-     * @return {(Object|undefined)} Returns matching unit `object` if found, otherwise `false`.
+     * @return {(Object|undefined)} Returns matching unit `Object` if found, otherwise `undefined`.
      */
     lookup(signifier)
     {

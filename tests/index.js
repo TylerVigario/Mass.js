@@ -141,7 +141,7 @@ test('Format tests', (t) => {
     t.is(Mass.format(64, { unit: 'oz' }), '4 lb', '64');
     
     t.is(Mass.format(64, { unit: 'oz', written: true }), 'four pounds', '64');
-    t.is(Mass.format(1950, { written: { lang: 'en' }}), 'one thousand nine hundred and fifty pounds', '64');
+    t.is(Mass.format(1950, { written: 'en' }), 'one thousand nine hundred and fifty pounds', '64');
 });
 
 test('Invalid mass string tests', (t) => {
