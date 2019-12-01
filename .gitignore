@@ -3,3 +3,4 @@ node_modules/
 coverage
 .coveralls.yml
 performance/data/
+package-lock.json

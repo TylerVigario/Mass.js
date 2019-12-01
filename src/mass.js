@@ -54,7 +54,7 @@ export default class Mass
      * Parse string for mass.
      * 
      * @param {string} text The string to parse.
-     * @returns {(number|boolean)} Returns mass value as a `number`, or if invalid `text` or negative values, `false`.
+     * @returns {(number|boolean)} Returns mass as a `number`, unless invalid or any value is negative, then `false`.
      */
     parse(text)
     {

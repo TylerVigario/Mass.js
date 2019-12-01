@@ -29,9 +29,12 @@
   },
   "author": "MeekLogic (Tyler Vigario)",
   "license": "GPL-3.0-only",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "devDependencies": {
     "ava": "^2.4.0",
-    "eslint": "^6.6.0",
+    "eslint": "^6.7.2",
     "esm": "^3.2.25",
     "microtime": "^3.0.0",
     "nyc": "^14.1.1"
