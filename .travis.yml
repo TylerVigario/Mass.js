@@ -14,5 +14,5 @@ before_script:
 
 script:
     - npm run lint
-    - npm run tests:coverage
+    - npm run test:coverage
     - npx nyc report --reporter=text-lcov | coveralls
