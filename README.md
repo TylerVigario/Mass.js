@@ -4,7 +4,7 @@ Mass.js
 =======
 JavaScript library for parsing and formatting mass units.
 
-**[Demo](https://tylervigario.com/mass/)**
+**[Demo](https://mass.tylervigario.com)**
 
 Install
 -------

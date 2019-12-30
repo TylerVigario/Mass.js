@@ -1,13 +1,13 @@
 {
   "name": "mass.js",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "JavaScript library for parsing and formatting mass units.",
-  "homepage": "https://tylervigario.com/mass/",
+  "homepage": "https://mass.tylervigario.com",
   "main": "./src/US.js",
   "scripts": {
     "lint": "eslint --config ./.eslintrc.js ./src",
-    "tests": "ava ./tests/index.js --verbose",
-    "tests:coverage": "nyc --reporter=lcov --reporter=text-summary ava ./tests/index.js",
+    "test": "ava ./tests/index.js --verbose",
+    "test:coverage": "nyc --reporter=lcov --reporter=text-summary ava ./tests/index.js",
     "performance": "node -r esm ./performance/index.js"
   },
   "keywords": [
