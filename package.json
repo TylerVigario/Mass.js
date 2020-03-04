@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint --config ./.eslintrc.js ./src",
     "test": "ava ./tests/index.js --verbose",
-    "test:coverage": "nyc --reporter=lcov --reporter=text-summary ava ./tests/index.js",
+    "test:coverage": "nyc ava ./tests/index.js",
     "performance": "node -r esm ./performance/index.js"
   },
   "keywords": [
@@ -30,7 +30,7 @@
   "author": "MeekLogic (Tyler Vigario)",
   "license": "GPL-3.0-only",
   "devDependencies": {
-    "ava": "^2.4.0",
+    "ava": "^3.5.0",
     "eslint": "^6.8.0",
     "esm": "^3.2.25",
     "microtime": "^3.0.0",
@@ -40,10 +40,14 @@
     "written-number": "^0.9.1"
   },
   "ava": {
-    "babel": false,
-    "compileEnhancements": false,
     "require": [
       "esm"
+    ]
+  },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text"
     ]
   }
 }

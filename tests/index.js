@@ -91,33 +91,33 @@ var invalidStrings = [
 // Invalid arguments
 test('Invalid .parse() arguments', (t) => {
     // Mass.parse(string)
-    t.throws(() => { Mass.parse(null); }, TypeError);
-    t.throws(() => { Mass.parse(true); }, TypeError);
-    t.throws(() => { Mass.parse(45); }, TypeError);
-    t.throws(() => { Mass.parse({ value: 45 }); }, TypeError);
+    t.throws(() => { Mass.parse(null); }, { instanceOf: TypeError });
+    t.throws(() => { Mass.parse(true); }, { instanceOf: TypeError });
+    t.throws(() => { Mass.parse(45); }, { instanceOf: TypeError });
+    t.throws(() => { Mass.parse({ value: 45 }); }, { instanceOf: TypeError });
 });
 
 test('Invalid .format() arguments', (t) => {
     // Mass.format(number, number|string)
-    t.throws(() => { Mass.format(null); }, TypeError);
-    t.throws(() => { Mass.format(true); }, TypeError);
-    t.throws(() => { Mass.format(-45); }, Error);
-    t.throws(() => { Mass.format('45'); }, TypeError);
-    t.throws(() => { Mass.format({ value: 45 }); }, TypeError);
+    t.throws(() => { Mass.format(null); }, { instanceOf: TypeError });
+    t.throws(() => { Mass.format(true); }, { instanceOf: TypeError });
+    t.throws(() => { Mass.format(-45); }, { instanceOf: Error });
+    t.throws(() => { Mass.format('45'); }, { instanceOf: TypeError });
+    t.throws(() => { Mass.format({ value: 45 }); }, { instanceOf: TypeError });
     //
-    t.throws(() => { Mass.format(45, null); }, TypeError);
-    t.throws(() => { Mass.format(45, true); }, TypeError);
-    t.throws(() => { Mass.format(45, -1); }, Error);
-    t.throws(() => { Mass.format(45, '45'); }, TypeError);
+    t.throws(() => { Mass.format(45, null); }, { instanceOf: TypeError });
+    t.throws(() => { Mass.format(45, true); }, { instanceOf: TypeError });
+    t.throws(() => { Mass.format(45, -1); }, { instanceOf: Error });
+    t.throws(() => { Mass.format(45, '45'); }, { instanceOf: TypeError });
 });
 
 test('Invalid .lookup() arguments', (t) => {
     // Mass.lookup(string)
-    t.throws(() => { Mass.lookup(null); }, TypeError);
-    t.throws(() => { Mass.lookup(true); }, TypeError);
-    t.throws(() => { Mass.lookup(1); }, TypeError);
+    t.throws(() => { Mass.lookup(null); }, { instanceOf: TypeError });
+    t.throws(() => { Mass.lookup(true); }, { instanceOf: TypeError });
+    t.throws(() => { Mass.lookup(1); }, { instanceOf: TypeError });
     t.is(Mass.lookup('null'), undefined, '.lookup("null")');
-    t.throws(() => { Mass.lookup({ value: 'lb' }); }, TypeError);
+    t.throws(() => { Mass.lookup({ value: 'lb' }); }, { instanceOf: TypeError });
 });
 
 // Assertions
