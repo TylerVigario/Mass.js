@@ -3,7 +3,7 @@
  *
  * @author Tyler Vigario (MeekLogic)
  * @license GPL-3.0-only
- * @version 1.2.3
+ * @version 1.2.5
  */
 
 import { isObject } from './utils';
