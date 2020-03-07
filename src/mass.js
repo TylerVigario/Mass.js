@@ -9,7 +9,7 @@
 import { isObject } from './utils';
 import writtenNumber from 'written-number';
 
-export default class Mass
+export default class
 {
     /**
      * @param {Array} units The array of `Mass` unit definition objects to use.

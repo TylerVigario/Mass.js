@@ -2,9 +2,9 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/MeekLogic/Mass.js/badge.svg?branch=master)](https://coveralls.io/github/MeekLogic/Mass.js?branch=master) [![Build Status](https://travis-ci.com/MeekLogic/Mass.js.svg?branch=master)](https://travis-ci.com/MeekLogic/Mass.js) ![npm](https://img.shields.io/npm/dm/mass.js)
 
-JavaScript library for parsing and formatting mass units.
+ES Module for parsing and formatting mass units.
 
-**[Demo](https://mass.tylervigario.com)**
+**[Demo](https://mass.tylervigario.com) | [Demo Source](https://github.com/MeekLogic/Mass.js-Demo)**
 
 ## Install
 
