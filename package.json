@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint --config ./.eslintrc.js ./src",
     "test": "ava ./tests/index.js --verbose",
-    "test:coverage": "nyc ava ./tests/index.js",
+    "test:coverage": "c8 ava ./tests/index.js",
     "performance": "node -r esm ./performance/index.js"
   },
   "keywords": [
@@ -31,10 +31,10 @@
   "license": "GPL-3.0-only",
   "devDependencies": {
     "ava": "^3.5.0",
+    "c8": "^7.1.0",
     "eslint": "^6.8.0",
     "esm": "^3.2.25",
-    "microtime": "^3.0.0",
-    "nyc": "^14.1.1"
+    "microtime": "^3.0.0"
   },
   "dependencies": {
     "written-number": "^0.9.1"
@@ -44,10 +44,15 @@
       "esm"
     ]
   },
-  "nyc": {
-    "reporter": [
-      "lcov",
-      "text"
+  "c8": {
+    "all": true,
+    "include": [
+      "src/*"
+    ],
+    "exclude": [
+      "src/SI.js",
+      "src/UK.js",
+      "src/US.js"
     ]
   }
 }
