@@ -3,7 +3,7 @@
   "version": "1.2.4",
   "description": "JavaScript library for parsing and formatting mass units.",
   "homepage": "https://mass.tylervigario.com",
-  "main": "./src/US.js",
+  "module": "./src/US.js",
   "scripts": {
     "lint": "eslint --config ./.eslintrc.js ./src",
     "test": "ava ./tests/index.js --verbose",
