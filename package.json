@@ -53,6 +53,10 @@
       "src/SI.js",
       "src/UK.js",
       "src/US.js"
+    ],
+    "reporter": [
+        "lcov",
+        "text"
     ]
   }
 }
