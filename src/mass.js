@@ -298,7 +298,7 @@ export default class
         }
 
         // Search through units
-        return this.units.find((unit) => {
+        return this.units.find(unit => {
             // Search for matching signifier within unit
             return unit.signifiers.includes(signifier);
         });
