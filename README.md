@@ -28,9 +28,9 @@ Mass.format(value, { written: true }); // Written format: "eleven pounds"
 Default system for units of mass is **U.S. customary** but can be changed by requiring an alternative entry point (*US*, *UK*, or *SI*).
 
 ```javascript
-import Mass from 'mass.js/src/US'; // U.S. customary (default)
-import Mass from 'mass.js/src/UK'; // Imperial
-import Mass from 'mass.js/src/SI'; // International System of Units (unfinished)
+import Mass from 'mass.js/entry/US'; // U.S. customary (default)
+import Mass from 'mass.js/entry/UK'; // Imperial
+import Mass from 'mass.js/entry/SI'; // International System of Units (unfinished)
 ```
 
 ## Methods

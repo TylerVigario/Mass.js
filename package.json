@@ -1,48 +1,57 @@
 {
-  "name": "mass.js",
-  "version": "1.2.5",
-  "description": "ES Module for parsing and formatting mass units.",
-  "homepage": "https://mass.tylervigario.com",
-  "module": "./src/US.mjs",
-  "type": "module",
-  "scripts": {
-    "lint": "eslint --config ./.eslintrc.cjs ./src/**/*.mjs",
-    "test": "ava ./tests/index.mjs --verbose",
-    "test:coverage": "c8 ava ./tests/index.mjs",
-    "performance": "node ./performance/index.mjs"
-  },
-  "keywords": [
-    "mass",
-    "unit",
-    "imperial",
-    "metric",
-    "ton",
-    "pound",
-    "ounce",
-    "weight"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MeekLogic/Mass.js"
-  },
-  "bugs": {
-    "url": "https://github.com/MeekLogic/Mass.js/issues"
-  },
-  "author": "MeekLogic (Tyler Vigario)",
-  "license": "GPL-3.0-only",
-  "devDependencies": {
-    "ava": "^3.5.0",
-    "c8": "^7.1.0",
-    "eslint": "^6.8.0",
-    "microtime": "^3.0.0"
-  },
-  "dependencies": {
-    "written-number": "^0.9.1"
-  },
-  "c8": {
-    "reporter": [
-      "lcov",
-      "text"
-    ]
-  }
+    "name": "mass.js",
+    "version": "1.2.6",
+    "description": "ES Module for parsing and formatting mass units.",
+    "homepage": "https://mass.tylervigario.com",
+    "module": "./src/US.mjs",
+    "type": "module",
+    "exports": {
+        "./units/": "./src/units/",
+        "./entry/US": "./src/entries/US.mjs",
+        "./entry/UK": "./src/entries/UK.mjs",
+        "./entry/SI": "./src/entries/SI.mjs"
+    },
+    "scripts": {
+        "lint": "eslint --config ./.eslintrc.cjs ./src/**/*.mjs",
+        "test": "ava ./tests/index.mjs --verbose",
+        "test:coverage": "c8 ava ./tests/index.mjs",
+        "performance": "node ./performance/index.mjs"
+    },
+    "keywords": [
+        "mass",
+        "unit",
+        "imperial",
+        "metric",
+        "ton",
+        "pound",
+        "ounce",
+        "weight"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MeekLogic/Mass.js"
+    },
+    "bugs": {
+        "url": "https://github.com/MeekLogic/Mass.js/issues"
+    },
+    "author": "MeekLogic (Tyler Vigario)",
+    "license": "GPL-3.0-only",
+    "engines": {
+        "node": ">=13.2.0"
+    },
+    "devDependencies": {
+        "ava": "^3.5.0",
+        "c8": "^7.1.0",
+        "eslint": "^6.8.0",
+        "microtime": "^3.0.0"
+    },
+    "dependencies": {
+        "written-number": "^0.9.1"
+    },
+    "c8": {
+        "reporter": [
+            "lcov",
+            "text"
+        ]
+    }
 }
