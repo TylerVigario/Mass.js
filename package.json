@@ -3,12 +3,13 @@
   "version": "1.2.5",
   "description": "ES Module for parsing and formatting mass units.",
   "homepage": "https://mass.tylervigario.com",
-  "module": "./src/US.js",
+  "module": "./src/US.mjs",
+  "type": "module",
   "scripts": {
-    "lint": "eslint --config ./.eslintrc.js ./src",
-    "test": "ava ./tests/index.js --verbose",
-    "test:coverage": "c8 ava ./tests/index.js",
-    "performance": "node -r esm ./performance/index.js"
+    "lint": "eslint --config ./.eslintrc.cjs ./src/**/*.mjs",
+    "test": "ava ./tests/index.mjs --verbose",
+    "test:coverage": "c8 ava ./tests/index.mjs",
+    "performance": "node ./performance/index.mjs"
   },
   "keywords": [
     "mass",
@@ -33,30 +34,15 @@
     "ava": "^3.5.0",
     "c8": "^7.1.0",
     "eslint": "^6.8.0",
-    "esm": "^3.2.25",
     "microtime": "^3.0.0"
   },
   "dependencies": {
     "written-number": "^0.9.1"
   },
-  "ava": {
-    "require": [
-      "esm"
-    ]
-  },
   "c8": {
-    "all": true,
-    "include": [
-      "src/*"
-    ],
-    "exclude": [
-      "src/SI.js",
-      "src/UK.js",
-      "src/US.js"
-    ],
     "reporter": [
-        "lcov",
-        "text"
+      "lcov",
+      "text"
     ]
   }
 }

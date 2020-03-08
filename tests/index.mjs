@@ -1,8 +1,9 @@
 import test from 'ava';
-import Mass from '../src/mass';
-import US from '../src/units/US';
-import UK from '../src/units/UK';
-import SI from '../src/units/SI';
+
+import Mass from '../src/mass.mjs';
+import US from '../src/units/US.mjs';
+import UK from '../src/units/UK.mjs';
+import SI from '../src/units/SI.mjs';
 
 const MassJS = {
     'US': new Mass(US),

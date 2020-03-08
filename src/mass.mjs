@@ -6,7 +6,7 @@
  * @version 1.2.5
  */
 
-import { isObject } from './utils';
+import { isObject } from './utils.mjs';
 import writtenNumber from 'written-number';
 
 export default class

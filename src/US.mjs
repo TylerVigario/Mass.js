@@ -5,7 +5,7 @@
  * @license GPL-3.0-only
  */
 
-import Mass from './mass';
-import Units from './units/US';
+import Mass from './mass.mjs';
+import Units from './units/US.mjs';
 
 export default new Mass(Units);

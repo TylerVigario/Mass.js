@@ -2,7 +2,7 @@ import fs from 'fs';
 import microtime from 'microtime';
 import { EOL } from 'os';
 
-import Mass from '../src/US';
+import Mass from '../src/US.mjs';
 
 //
 // Performance
