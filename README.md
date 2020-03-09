@@ -18,7 +18,7 @@ npm install mass.js
 import Mass from 'mass.js';
 
 let value = Mass.parse('5 lbs 8 oz'); // Parse string for mass
-value += 5.5;                         // Add 5.5 pounds
+value += 5.5; // Add 5.5 pounds
 Mass.format(value); // Format total: "11 lb"
 Mass.format(value, { written: true }); // Written format: "eleven pounds"
 ```
@@ -55,7 +55,7 @@ Format number as string.
 
 - **unit:** `(number|string)` Base unit value or string for lookup (default: 1).
 
-- **written:** `(Object|string|boolean)` [js-written-number](https://github.com/yamadapc/js-written-number#options) options or language identifier (as string), otherwise boolean (default: false).
+- **written:** `(Object|string|boolean)` [n2words](https://github.com/forzagreen/n2words) options or language identifier (as string), otherwise boolean (default: false).
 
 Returns `value` formatted as `string`, or if unit lookup fails, `undefined`.
 

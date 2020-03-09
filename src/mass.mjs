@@ -3,11 +3,11 @@
  *
  * @author Tyler Vigario (MeekLogic)
  * @license GPL-3.0-only
- * @version 1.2.5
+ * @version 1.3.0
  */
 
 import { isObject } from './utils.mjs';
-import writtenNumber from 'written-number';
+import n2words from 'n2words';
 
 export default class
 {
@@ -245,13 +245,13 @@ export default class
                 // Add formatted value
                 if (options.written) {
                     if (isObject(options.written)) {
-                        formatted += writtenNumber(q, options.written);
+                        formatted += n2words(q, options.written);
                     } else if (typeof options.written === 'string') {
-                        formatted += writtenNumber(q, {
+                        formatted += n2words(q, {
                             lang: options.written
                         });
                     } else if (options.written === true) {
-                        formatted += writtenNumber(q);
+                        formatted += n2words(q);
                     } else {
                         throw new TypeError('Argument "options.written" must be of type "boolean", "string", or "object".');
                     }

@@ -1,5 +1,3 @@
 node_modules/
-.nyc_output
-coverage
-.coveralls.yml
+coverage/
 performance/data/

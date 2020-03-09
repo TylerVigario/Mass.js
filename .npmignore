@@ -1,0 +1,5 @@
+.vscode/
+performance/
+tests/
+.eslintrc.cjs
+.travis.yml
