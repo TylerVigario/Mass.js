@@ -17,14 +17,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
+
+    - run: npm install
     - run: npm install --save-dev coveralls
     - run: npm run lint
     - run: npm run test:coverage
-    - run: npx c8 report --reporter=text-lcov | coveralls
-      env:
-        CI: true
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
