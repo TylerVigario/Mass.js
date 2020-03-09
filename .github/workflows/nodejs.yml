@@ -25,6 +25,6 @@ jobs:
     - run: npm install --save-dev coveralls
     - run: npm run lint
     - run: npm run test:coverage
-    - run: node c8 report --reporter=text-lcov | coveralls
+    - run: npx c8 report --reporter=text-lcov | node coveralls
       env:
         CI: true
