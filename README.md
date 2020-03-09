@@ -1,6 +1,6 @@
 # Mass.js
 
-[![Coverage Status](https://coveralls.io/repos/github/MeekLogic/Mass.js/badge.svg?branch=master)](https://coveralls.io/github/MeekLogic/Mass.js?branch=master) [![Build Status](https://travis-ci.com/MeekLogic/Mass.js.svg?branch=master)](https://travis-ci.com/MeekLogic/Mass.js) ![npm](https://img.shields.io/npm/dm/mass.js)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/MeekLogic/Mass.js/Node.js%20CI/master) [![Coverage Status](https://coveralls.io/repos/github/MeekLogic/Mass.js/badge.svg?branch=master)](https://coveralls.io/github/MeekLogic/Mass.js?branch=master) ![npm](https://img.shields.io/npm/dm/mass.js)
 
 ES Module for parsing and formatting mass units.
 

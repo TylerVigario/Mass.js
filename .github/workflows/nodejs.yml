@@ -22,7 +22,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+    - run: npm install --save-dev coveralls
     - run: npm run lint
     - run: npm run test:coverage
+    - run: c8 report --reporter=text-lcov | coveralls
       env:
         CI: true
