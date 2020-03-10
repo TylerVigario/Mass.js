@@ -1,6 +1,6 @@
 # Mass.js
 
-![Node.js CI](https://github.com/MeekLogic/Mass.js/workflows/Node.js%20CI/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/MeekLogic/Mass.js/badge.svg?branch=master)](https://coveralls.io/github/MeekLogic/Mass.js?branch=master) ![npm](https://img.shields.io/npm/dm/mass.js)
+![Node CI](https://github.com/MeekLogic/Mass.js/workflows/Node%20CI/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/MeekLogic/Mass.js/badge.svg?branch=master)](https://coveralls.io/github/MeekLogic/Mass.js?branch=master) ![npm](https://img.shields.io/npm/dm/mass.js)
 
 ES Module for parsing and formatting mass units.
 
@@ -8,7 +8,7 @@ ES Module for parsing and formatting mass units.
 
 ## Install
 
-```javascript
+```sh
 npm install mass.js
 ```
 

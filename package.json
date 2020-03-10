@@ -35,9 +35,9 @@
         "url": "https://github.com/MeekLogic/Mass.js/issues"
     },
     "author": "MeekLogic (Tyler Vigario)",
-    "license": "GPL-3.0-only",
+    "license": "MIT",
     "engines": {
-        "node": ">=13.2.0"
+        "node": ">= 13.2.0"
     },
     "devDependencies": {
         "ava": "^3.5.0",
@@ -46,7 +46,7 @@
         "microtime": "^3.0.0"
     },
     "dependencies": {
-        "n2words": "^1.6.0"
+        "n2words": "^1.6.1"
     },
     "c8": {
         "reporter": [
