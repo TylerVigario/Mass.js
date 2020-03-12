@@ -1,15 +1,6 @@
 {
-    "cSpell.words": [
-        "esdoc",
-        "lcov",
-        "linebreak",
-        "microtime",
-        "plugin",
-        "reporter",
-        "signifiers",
-        "standard",
-        "text",
-        "uglifyjs"
-    ],
-	"editor.detectIndentation": false
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2,
+    "javascript.format.semicolons": "insert",
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false
 }

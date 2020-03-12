@@ -1,6 +1,6 @@
 # Mass.js
 
-![Node CI](https://github.com/MeekLogic/Mass.js/workflows/Node%20CI/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/MeekLogic/Mass.js/badge.svg?branch=master)](https://coveralls.io/github/MeekLogic/Mass.js?branch=master) ![npm](https://img.shields.io/npm/dm/mass.js)
+![Node CI](https://github.com/MeekLogic/Mass.js/workflows/Node%20CI/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/MeekLogic/Mass.js/badge.svg?branch=master)](https://coveralls.io/github/MeekLogic/Mass.js?branch=master) [![npm](https://img.shields.io/npm/dm/mass.js)](https://www.npmjs.com/package/mass.js)
 
 ES Module for parsing and formatting mass units.
 
@@ -17,9 +17,9 @@ npm install mass.js
 ```javascript
 import Mass from 'mass.js';
 
-let value = Mass.parse('5 lbs 8 oz'); // Parse string for mass
-value += 5.5; // Add 5.5 pounds
-Mass.format(value); // Format total: "11 lb"
+let value = Mass.parse('5 lbs 8 oz');  // Parse string for mass
+value += 5.5;                          // Add 5.5 pounds
+Mass.format(value);                    // Format total: "11 lb"
 Mass.format(value, { written: true }); // Written format: "eleven pounds"
 ```
 
