@@ -1,7 +1,7 @@
 .github/
 .vscode/
 performance/
-tests/
-.eslintrc.cjs
+test/
+.eslintrc.json
 .travis.yml
 .editorconfig
