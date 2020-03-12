@@ -1,9 +1,9 @@
 import test from 'ava';
 
-import Mass from '../src/mass.mjs';
-import US from '../src/units/US.mjs';
-import UK from '../src/units/UK.mjs';
-import SI from '../src/units/SI.mjs';
+import Mass from '../lib/mass.mjs';
+import US from '../lib/units/US.mjs';
+import UK from '../lib/units/UK.mjs';
+import SI from '../lib/units/SI.mjs';
 
 const MassJS = {
   'US': new Mass(US),
@@ -192,8 +192,14 @@ Object.keys(MassJS).forEach((unitName) => {
 
       t.is(MassJS[unitName].format(64, {unit: 'oz'}), '4 lb', '64');
 
-      t.is(MassJS[unitName].format(64, {unit: 'oz', written: true}), 'four pounds', '64');
-      t.is(MassJS[unitName].format(1950.5, {written: 'en'}), 'one thousand nine hundred and fifty pounds and eight ounces', '64');
+      t.is(MassJS[unitName].format(64, {
+        unit: 'oz',
+        written: true,
+      }), 'four pounds', '64');
+
+      t.is(MassJS[unitName].format(1950.5, {
+        written: 'en',
+      }), 'one thousand nine hundred and fifty pounds and eight ounces', '64');
     });
   }
 });

@@ -3,18 +3,18 @@
   "version": "1.3.0",
   "description": "ES Module for parsing and formatting mass units.",
   "homepage": "https://mass.tylervigario.com",
-  "module": "./src/US.mjs",
+  "module": "./lib/US.mjs",
   "type": "module",
   "exports": {
-    "./units/": "./src/units/",
-    "./entry/US": "./src/entries/US.mjs",
-    "./entry/UK": "./src/entries/UK.mjs",
-    "./entry/SI": "./src/entries/SI.mjs"
+    "./units/": "./lib/units/",
+    "./entry/US": "./lib/entries/US.mjs",
+    "./entry/UK": "./lib/entries/UK.mjs",
+    "./entry/SI": "./lib/entries/SI.mjs"
   },
   "scripts": {
-    "lint": "eslint --config ./.eslintrc.json ./src/**/*.mjs",
-    "test": "ava ./tests/index.mjs --verbose",
-    "test:coverage": "c8 ava ./tests/index.mjs",
+    "lint": "eslint --config ./.eslintrc.json ./**/*.mjs",
+    "test": "ava ./test/tests.mjs --verbose",
+    "test:coverage": "c8 ava ./test/tests.mjs",
     "performance": "node ./performance/index.mjs"
   },
   "keywords": [
