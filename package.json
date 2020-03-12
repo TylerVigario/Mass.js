@@ -3,13 +3,11 @@
   "version": "1.3.0",
   "description": "ES Module for parsing and formatting mass units.",
   "homepage": "https://mass.tylervigario.com",
-  "module": "./lib/US.mjs",
+  "module": "./lib/entries/US.mjs",
   "type": "module",
   "exports": {
     "./units/": "./lib/units/",
-    "./entry/US": "./lib/entries/US.mjs",
-    "./entry/UK": "./lib/entries/UK.mjs",
-    "./entry/SI": "./lib/entries/SI.mjs"
+    "./entry/": "./lib/entries/"
   },
   "scripts": {
     "lint": "eslint --config ./.eslintrc.json ./**/*.mjs",
