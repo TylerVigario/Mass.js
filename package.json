@@ -14,7 +14,7 @@
     "lint": "eslint --config ./.eslintrc.json ./**/*.mjs",
     "test": "ava ./test/tests.mjs --verbose",
     "test:coverage": "c8 ava ./test/tests.mjs",
-    "performance": "node ./performance/index.mjs"
+    "performance": "node --experimental-modules ./performance/index.mjs"
   },
   "keywords": [
     "mass",
@@ -36,7 +36,7 @@
   "author": "MeekLogic (Tyler Vigario)",
   "license": "MIT",
   "engines": {
-    "node": ">= 13.2.0"
+    "node": ">= 12"
   },
   "devDependencies": {
     "ava": "^3.5.0",
@@ -47,6 +47,11 @@
   },
   "dependencies": {
     "n2words": "^1.6.1"
+  },
+  "ava": {
+    "nodeArguments": [
+      "--experimental-modules"
+    ]
   },
   "c8": {
     "reporter": [
