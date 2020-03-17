@@ -11,10 +11,6 @@ const MassJS = {
   'SI': new Mass(SI),
 };
 
-//
-// Tests
-//
-
 const problems = {
   US: [{
     question: '1 pound',
