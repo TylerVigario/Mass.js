@@ -1,4 +1,4 @@
-import {test, save} from './lib/index.mjs';
+import {test, save} from '@tylervigario/performance';
 
 import Mass from '../lib/entries/US.mjs';
 
@@ -16,7 +16,7 @@ test('.format(200, { unit: 0.0625 })', () => Mass.format(200, {unit: 0.0625}));
 
 test('.format(200, { unit: "oz" })', () => Mass.format(200, {unit: 'oz'}));
 
-test('.format(200, { written: true })', () => Mass.format(200, {written: true}), 100000);
+test('.format(200, { written: true })', () => Mass.format(200, {written: true}), {rounds: 100000});
 
 test('.lookup("gr")', () => Mass.lookup('gr'));
 

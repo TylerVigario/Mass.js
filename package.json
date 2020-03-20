@@ -42,11 +42,11 @@
     "node": ">= 12"
   },
   "devDependencies": {
+    "@tylervigario/performance": "github:MeekLogic/performance",
     "ava": "^3.5.0",
     "c8": "^7.1.0",
     "eslint": "^6.8.0",
-    "eslint-config-google": "^0.14.0",
-    "microtime": "^3.0.0"
+    "eslint-config-google": "^0.14.0"
   },
   "dependencies": {
     "n2words": "^1.6.2"
