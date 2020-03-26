@@ -1,4 +1,4 @@
-import {test, save} from '@tylervigario/performance';
+import {test, output, save} from '@tylervigario/performance';
 
 import Mass from '../lib/entries/US.mjs';
 
@@ -22,4 +22,6 @@ test('.lookup("gr")', () => Mass.lookup('gr'));
 
 test('.lookup("t")', () => Mass.lookup('t'));
 
-save();
+output();
+
+save('./performance/data/performance.json');
