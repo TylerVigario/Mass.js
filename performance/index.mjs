@@ -1,130 +1,29 @@
-import fs from 'fs';
-import microtime from 'microtime';
-import {EOL} from 'os';
+import Performance from '@tylervigario/performance';
 
 import Mass from '../lib/entries/US.mjs';
 
-//
-// Performance
-//
-const writeStream = fs.createWriteStream(
-    './performance/data/' + timeStamp() + '.log',
-);
+const performance = new Performance();
 
-test('.parse("12 lbs")', () => {
-  Mass.parse('12 lbs');
-});
+performance.test('.parse("12 lbs")', () => Mass.parse('12 lbs'));
 
-test('.parse("12 lbs 8 oz")', () => {
-  Mass.parse('12 lbs 8 oz');
-});
+performance.test('.parse("12 lbs 8 oz")', () => Mass.parse('12 lbs 8 oz'));
 
-test('.parse("12 pounds 8 ounces")', () => {
-  Mass.parse('12 pounds 8 ounces');
-});
+performance.test('.parse("12 pounds 8 ounces")', () => Mass.parse('12 pounds 8 ounces'));
 
-addBlankLine();
+performance.test('.format(12)', () => Mass.format(12));
 
-test('.format(12)', () => {
-  Mass.format(12);
-});
+performance.test('.format(12.5)', () => Mass.format(12.5));
 
-test('.format(12.5)', () => {
-  Mass.format(12.5);
-});
+performance.test('.format(200, { unit: 0.0625 })', () => Mass.format(200, {unit: 0.0625}));
 
-test('.format(200, { unit: 0.0625 })', () => {
-  Mass.format(200, {unit: 0.0625});
-});
+performance.test('.format(200, { unit: "oz" })', () => Mass.format(200, {unit: 'oz'}));
 
-test('.format(200, { unit: "oz" })', () => {
-  Mass.format(200, {unit: 'oz'});
-});
+performance.test('.format(200, { written: true })', () => Mass.format(200, {written: true}), {rounds: 100000});
 
-addBlankLine();
+performance.test('.lookup("gr")', () => Mass.lookup('gr'));
 
-test('.lookup("gr")', () => {
-  Mass.lookup('gr');
-});
+performance.test('.lookup("t")', () => Mass.lookup('t'));
 
-test('.lookup("t")', () => {
-  Mass.lookup('t');
-});
+performance.output();
 
-console.log('');
-
-/**
- * Run (and log) performance test.
- *
- * @param {string} name The name of test.
- * @param {Function} testMethod The function containing the testing procedure.
- * @param {number} [rounds = 1000000] The number of times to perform `test`.
- */
-function test(name, testMethod, rounds = 1000000) {
-  // Store start microtime
-  let time = microtime.now();
-
-  // Run test for as many rounds as specified
-  for (let i = rounds; i > 0; i--) {
-    testMethod();
-  }
-
-  // Subtract start from end (now) microtime
-  time = microtime.now() - time;
-
-  // Convert to seconds
-  time = time / 1000;
-
-  // Calculate operations per second
-  const ops = Math.round(rounds / time).toLocaleString();
-
-  // Basic pretty formatting
-  let output = '';
-
-  // Add spaces to the front if less than 6 characters
-  for (let i = 6 - ops.length; i > 0; i--) {
-    output += ' ';
-  }
-
-  output += `${ops} op/s | ${name}`;
-
-  // Output to console
-  console.log(output);
-
-  // Output to file
-  writeStream.write(output + EOL, 'UTF-8');
-}
-
-/**
- * Generate file name timestamp.
- *
- * @return {string} Return current date & time as `string`.
- */
-function timeStamp() {
-  // Create a date object with the current time
-  const now = new Date();
-
-  // Create an array with the current month, day and time
-  const date = [now.getMonth() + 1, now.getDate(), now.getFullYear()];
-
-  // Create an array with the current hour, minute and second
-  const time = [now.getHours(), now.getMinutes(), now.getSeconds()];
-
-  // If seconds, minutes, or hours are less than 10, prefix with a zero
-  for (let i = 0; i < 3; i++) {
-    if (time[i] < 10) {
-      time[i] = '0' + time[i];
-    }
-  }
-
-  // Return the formatted string
-  return date.join('-') + '_' + time.join('-');
-}
-
-/**
- * Output blank line.
- */
-function addBlankLine() {
-  console.log('');
-  writeStream.write('' + EOL, 'UTF-8');
-}
+performance.save('./performance/performance.json');
