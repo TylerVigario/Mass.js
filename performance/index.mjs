@@ -1,27 +1,29 @@
-import {test, output, save} from '@tylervigario/performance';
+import Performance from '@tylervigario/performance';
 
 import Mass from '../lib/entries/US.mjs';
 
-test('.parse("12 lbs")', () => Mass.parse('12 lbs'));
+const performance = new Performance();
 
-test('.parse("12 lbs 8 oz")', () => Mass.parse('12 lbs 8 oz'));
+performance.test('.parse("12 lbs")', () => Mass.parse('12 lbs'));
 
-test('.parse("12 pounds 8 ounces")', () => Mass.parse('12 pounds 8 ounces'));
+performance.test('.parse("12 lbs 8 oz")', () => Mass.parse('12 lbs 8 oz'));
 
-test('.format(12)', () => Mass.format(12));
+performance.test('.parse("12 pounds 8 ounces")', () => Mass.parse('12 pounds 8 ounces'));
 
-test('.format(12.5)', () => Mass.format(12.5));
+performance.test('.format(12)', () => Mass.format(12));
 
-test('.format(200, { unit: 0.0625 })', () => Mass.format(200, {unit: 0.0625}));
+performance.test('.format(12.5)', () => Mass.format(12.5));
 
-test('.format(200, { unit: "oz" })', () => Mass.format(200, {unit: 'oz'}));
+performance.test('.format(200, { unit: 0.0625 })', () => Mass.format(200, {unit: 0.0625}));
 
-test('.format(200, { written: true })', () => Mass.format(200, {written: true}), {rounds: 100000});
+performance.test('.format(200, { unit: "oz" })', () => Mass.format(200, {unit: 'oz'}));
 
-test('.lookup("gr")', () => Mass.lookup('gr'));
+performance.test('.format(200, { written: true })', () => Mass.format(200, {written: true}), {rounds: 100000});
 
-test('.lookup("t")', () => Mass.lookup('t'));
+performance.test('.lookup("gr")', () => Mass.lookup('gr'));
 
-output();
+performance.test('.lookup("t")', () => Mass.lookup('t'));
 
-save('./performance/data/performance.json');
+performance.output();
+
+performance.save('./performance/performance.json');
