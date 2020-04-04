@@ -1,6 +1,7 @@
 {
-    "editor.detectIndentation": false,
-    "editor.tabSize": 2,
-    "javascript.format.semicolons": "insert",
-    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false
+  "editor.detectIndentation": false,
+  "javascript.validate.enable": false,
+  "javascript.format.enable": false,
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
 }
