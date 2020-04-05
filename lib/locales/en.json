@@ -1,7 +1,11 @@
 {
 	"and": "and",
 	"error.type": "Argument \"%s\" must be of type \"%s\".",
-	"error.negative_number": "Argument \"%s\" cannot be a negative number.",
+  "error.negative_number": "Argument \"%s\" cannot be a negative number.",
+  "ton": {
+    "one": "ton",
+    "other": "tons"
+  },
 	"pound": {
 		"one": "pound",
 		"other": "pounds"
@@ -9,5 +13,13 @@
 	"ounce": {
 		"one": "ounce",
 		"other": "ounces"
-	}
+  },
+  "kilogram": {
+    "one": "kilogram",
+    "two": "kilograms"
+  },
+  "gram": {
+    "one": "gram",
+    "other": "grams"
+  }
 }
