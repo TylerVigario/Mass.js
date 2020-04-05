@@ -1,0 +1,13 @@
+{
+	"and": "and",
+	"error.type": "Argument \"%s\" must be of type \"%s\".",
+	"error.negative_number": "Argument \"%s\" cannot be a negative number.",
+	"pound": {
+		"one": "pound",
+		"other": "pounds"
+	},
+	"ounce": {
+		"one": "ounce",
+		"other": "ounces"
+	}
+}

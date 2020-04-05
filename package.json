@@ -11,8 +11,8 @@
     "./entry/SI": "./lib/entries/SI.mjs"
   },
   "scripts": {
-    "lint": "eslint --config .eslintrc.json lib/ test/ performance/ --ext=mjs",
-    "lint:fix": "eslint --config .eslintrc.json lib/ test/ performance/ --ext=mjs --fix",
+    "lint": "eslint --config .eslintrc.json lib/ test/ performance/ --ext mjs",
+    "lint:fix": "eslint --config .eslintrc.json lib/ test/ performance/ --ext mjs --fix",
     "test": "ava --verbose",
     "test:coverage": "c8 ava",
     "performance": "node --experimental-modules ./performance/index.mjs"
@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@tylervigario/performance": "github:MeekLogic/performance",
-    "ava": "^3.5.2",
+    "ava": "^3.6.0",
     "c8": "^7.1.0",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
@@ -53,6 +53,7 @@
     "eslint-plugin-node": "^11.1.0"
   },
   "dependencies": {
+    "i18n": "^0.8.6",
     "n2words": "^1.7.0"
   },
   "ava": {
