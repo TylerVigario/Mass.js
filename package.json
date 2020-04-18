@@ -29,13 +29,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MeekLogic/Mass.js"
+    "url": "git+https://github.com/TylerVigario/Mass.js"
   },
   "bugs": {
-    "url": "https://github.com/MeekLogic/Mass.js/issues"
+    "url": "https://github.com/TylerVigario/Mass.js/issues"
   },
   "author": {
-    "name": "MeekLogic (Tyler Vigario)",
+    "name": "Tyler Vigario",
     "email": "tylervigario90@gmail.com"
   },
   "license": "MIT",
@@ -43,7 +43,7 @@
     "node": ">=12"
   },
   "devDependencies": {
-    "@tylervigario/performance": "github:MeekLogic/performance",
+    "@tylervigario/performance": "github:TylerVigario/performance",
     "ava": "^3.7.0",
     "c8": "^7.1.0",
     "eslint": "^6.8.0",
@@ -54,7 +54,7 @@
     "eslint-plugin-node": "^11.1.0"
   },
   "dependencies": {
-    "i18n": "^0.8.6",
+    "i18n": "^0.9.0",
     "n2words": "^1.7.0"
   },
   "ava": {
