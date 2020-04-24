@@ -44,13 +44,13 @@
   },
   "devDependencies": {
     "@tylervigario/performance": "github:TylerVigario/performance",
-    "ava": "^3.7.0",
+    "ava": "^3.7.1",
     "c8": "^7.1.0",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-ava": "^10.2.0",
     "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jsdoc": "^23.0.0",
+    "eslint-plugin-jsdoc": "^24.0.0",
     "eslint-plugin-node": "^11.1.0"
   },
   "dependencies": {
