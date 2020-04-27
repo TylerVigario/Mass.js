@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 13.x]
+        node-version: [12.x, 13.x, 14.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -28,6 +28,17 @@ jobs:
 
       - name: Coveralls
         uses: coverallsapp/github-action@master
-        if: matrix.node-version == '13.x'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          flag-name: ${{ matrix.node-version }}
+          parallel: true
+
+  finish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.github_token }}
+          parallel-finished: true

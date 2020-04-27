@@ -9,7 +9,8 @@
       "ava",
       "node",
       "import",
-      "jsdoc"
+      "jsdoc",
+      "security"
     ],
     "extends": [
       "eslint:recommended",
@@ -18,7 +19,8 @@
       "plugin:node/recommended-module",
       "plugin:import/errors",
       "plugin:import/warnings",
-      "plugin:jsdoc/recommended"
+      "plugin:jsdoc/recommended",
+      "plugin:security/recommended"
     ],
     "globals": {
       "Atomics": "readonly",
