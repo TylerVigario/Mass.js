@@ -11,8 +11,8 @@
     "./entry/SI": "./lib/entries/SI.mjs"
   },
   "scripts": {
-    "lint": "eslint --config .eslintrc.json lib/ test/ performance/ --ext mjs",
-    "lint:fix": "eslint --config .eslintrc.json lib/ test/ performance/ --ext mjs --fix",
+    "lint": "eslint --config .eslintrc.json lib/ test/ performance/ --ext .mjs",
+    "lint:fix": "npm run lint -- --fix",
     "test": "ava --verbose",
     "test:coverage": "c8 ava",
     "performance": "node --experimental-modules ./performance/index.mjs"
