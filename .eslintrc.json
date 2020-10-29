@@ -14,7 +14,6 @@
     ],
     "extends": [
       "eslint:recommended",
-      "google",
       "plugin:ava/recommended",
       "plugin:node/recommended-module",
       "plugin:import/errors",
@@ -31,10 +30,15 @@
       "sourceType": "module"
     },
     "rules": {
-      "require-jsdoc": "off",
-      "valid-jsdoc": "off",
-      "max-len": "warn",
+      "max-len": ["warn", {
+        "code": 120
+      }],
+      "linebreak-style": "off",
+      "jsdoc/require-jsdoc": "warn",
+      "import/unambiguous": "error",
       "import/no-commonjs": "error",
-      "import/no-amd": "error"
+      "import/no-amd": "error",
+      "import/no-nodejs-modules": "error",
+      "import/no-deprecated": "error"
     }
   }
