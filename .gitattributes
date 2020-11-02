@@ -6,6 +6,3 @@
 *.cjs              text eol=lf
 *.mjs              text eol=lf
 package-lock.json  text eol=lf
-
-# Don't add these files to git archives
-CHANGELOG.md export-ignore
