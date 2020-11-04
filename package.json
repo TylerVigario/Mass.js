@@ -6,7 +6,7 @@
   "type": "module",
   "main": "./lib/entries/US.mjs",
   "scripts": {
-    "lint": "eslint --config .eslintrc.json lib/ test/ performance/ --ext .mjs",
+    "lint": "eslint --config .eslintrc.json lib/ test/ performance/",
     "test": "ava --verbose",
     "test:coverage": "c8 ava",
     "performance": "node --experimental-modules ./performance/index.mjs"
