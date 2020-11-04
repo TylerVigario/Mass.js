@@ -1,41 +1,44 @@
 {
-    "env": {
-      "es6": true,
-      "es2017": true,
-      "es2020": true,
-      "es2021": true,
-      "node": true
-    },
-    "plugins": [
-      "ava",
-      "node",
-      "import",
-      "jsdoc",
-      "security"
-    ],
-    "extends": [
-      "eslint:recommended",
-      "plugin:ava/recommended",
-      "plugin:node/recommended-module",
-      "plugin:import/errors",
-      "plugin:import/warnings",
-      "plugin:jsdoc/recommended",
-      "plugin:security/recommended"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 2021,
-      "sourceType": "module"
-    },
-    "rules": {
-      "max-len": ["warn", {
-        "code": 120
-      }],
-      "linebreak-style": "off",
-      "jsdoc/require-jsdoc": "warn",
-      "import/unambiguous": "error",
-      "import/no-commonjs": "error",
-      "import/no-amd": "error",
-      "import/no-nodejs-modules": "error",
-      "import/no-deprecated": "error"
-    }
+  "env": {
+    "es6": true,
+    "es2017": true,
+    "es2020": true,
+    "es2021": true,
+    "node": true
+  },
+  "plugins": [
+    "ava",
+    "node",
+    "import",
+    "jsdoc",
+    "security"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:ava/recommended",
+    "plugin:node/recommended-module",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:jsdoc/recommended",
+    "plugin:security/recommended"
+  ],
+  "overrides": [{
+    "files": ["*.js", "*.mjs"]
+  }],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "rules": {
+    "max-len": ["warn", {
+      "code": 120
+    }],
+    "linebreak-style": "off",
+    "jsdoc/require-jsdoc": "warn",
+    "import/unambiguous": "error",
+    "import/no-commonjs": "error",
+    "import/no-amd": "error",
+    "import/no-deprecated": "error",
+    "import/extensions": ["error", "always"]
   }
+}
