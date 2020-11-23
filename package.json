@@ -40,15 +40,15 @@
     "@tylervigario/performance": "github:TylerVigario/performance",
     "ava": "^3.13.0",
     "c8": "^7.3.5",
-    "eslint": "^7.12.1",
+    "eslint": "^7.14.0",
     "eslint-plugin-ava": "^11.0.0",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsdoc": "^30.7.6",
+    "eslint-plugin-jsdoc": "^30.7.8",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-security": "^1.4.0"
   },
   "dependencies": {
-    "i18next": "^19.8.3",
+    "i18next": "^19.8.4",
     "n2words": "github:TylerVigario/n2words"
   },
   "ava": {
