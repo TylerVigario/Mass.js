@@ -62,16 +62,22 @@ Returns `value` formatted as `string`, or if unit lookup fails, `undefined`.
 **Examples:**
 
 ```javascript
-Mass.format(11, {
-    unit: 1,
-    written: false
-});
+Mass.format(11);
 
 Mass.format(176, {
     unit: 'oz',
     written: true
 });
 ```
+
+------------
+
+### .parseSet(value, signifier)
+
+Parse value with value signifier.
+
+**value:** `number` The number to format (must be positive).
+
 
 ------------
 
