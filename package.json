@@ -38,17 +38,17 @@
   },
   "devDependencies": {
     "@tylervigario/performance": "github:TylerVigario/performance",
-    "ava": "^3.13.0",
-    "c8": "^7.3.5",
-    "eslint": "^7.14.0",
+    "ava": "^3.15.0",
+    "c8": "^7.6.0",
+    "eslint": "^7.22.0",
     "eslint-plugin-ava": "^11.0.0",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsdoc": "^30.7.8",
+    "eslint-plugin-jsdoc": "^32.3.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-security": "^1.4.0"
   },
   "dependencies": {
-    "i18next": "^19.8.4",
+    "i18next": "^20.0.0",
     "n2words": "github:TylerVigario/n2words"
   },
   "ava": {
