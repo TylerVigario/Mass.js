@@ -1,10 +1,6 @@
 {
   "env": {
-    "es6": true,
-    "es2017": true,
-    "es2020": true,
-    "es2021": true,
-    "node": true
+    "es2022": true
   },
   "plugins": [
     "ava",
@@ -16,18 +12,14 @@
   "extends": [
     "eslint:recommended",
     "plugin:ava/recommended",
-    "plugin:node/recommended-module",
+    "plugin:node/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:jsdoc/recommended",
     "plugin:security/recommended"
   ],
-  "overrides": [{
-    "files": ["*.js", "*.mjs"]
-  }],
   "parserOptions": {
-    "ecmaVersion": 2021,
-    "sourceType": "module"
+    "ecmaVersion": "latest"
   },
   "rules": {
     "max-len": ["warn", {
