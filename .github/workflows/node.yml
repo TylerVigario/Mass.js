@@ -1,4 +1,4 @@
-name: Node CI
+name: Test
 
 on:
   push:
@@ -7,34 +7,37 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [12.x, 13.x, 14.x]
+        node: [16, 18, 20]
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          persist-credentials: false
 
-      - run: npm install
+      - name: Setup Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'npm'
+
+      - run: npm ci
       - run: npm run lint
       - run: npm run test:coverage
 
       - name: Coveralls
-        uses: coverallsapp/github-action@master
+        uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          flag-name: ${{ matrix.node-version }}
+          flag-name: ${{ matrix.node }}
           parallel: true
 
   finish:
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Coveralls Finished
@@ -42,3 +45,4 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: true
+          carryforward: '16,18,20'
