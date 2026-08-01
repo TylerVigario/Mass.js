@@ -45,7 +45,6 @@
     ]
   },
   "devDependencies": {
-    "@tylervigario/performance": "github:TylerVigario/performance",
     "ava": "^5.3.0",
     "c8": "^8.0.0",
     "eslint": "^8.42.0",
