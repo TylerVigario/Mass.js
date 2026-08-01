@@ -88,3 +88,26 @@ Lookup string signifier.
 **signifier:** `string` The string to lookup.
 
 Returns matching unit `Object` if found, otherwise `undefined`.
+
+## License
+
+Copyright (C) 2020 Tyler Vigario
+
+This program is free software: you can redistribute it and/or modify it under the
+terms of the GNU Affero General Public License as published by the Free Software
+Foundation, either **version 3 of the License, or (at your option) any later
+version**.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the [GNU Affero General Public License](LICENSE) for more
+details.
+
+### The relicensing boundary
+
+Versions published to npm up to and including **1.3.3** were released under MIT and
+remain MIT. A licence change is not retroactive: anyone who installed 1.3.3 or earlier
+keeps MIT terms for that version, permanently.
+
+**The AGPL terms above apply to this source, and to every version published after
+1.3.3.**

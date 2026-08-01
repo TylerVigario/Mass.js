@@ -17,7 +17,7 @@
     "url": "https://github.com/TylerVigario/Mass.js/issues"
   },
   "repository": "github:TylerVigario/Mass.js",
-  "license": "MIT",
+  "license": "AGPL-3.0-or-later",
   "author": {
     "name": "Tyler Vigario",
     "email": "tylervigario90@gmail.com"
