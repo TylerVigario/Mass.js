@@ -88,3 +88,14 @@ Lookup string signifier.
 **signifier:** `string` The string to lookup.
 
 Returns matching unit `Object` if found, otherwise `undefined`.
+
+## License
+
+[GNU AGPL-3.0-or-later](LICENSE).
+
+Anyone who receives this software, or uses a modified version of it over a network,
+is entitled to its source and to the right to repair it.
+
+Versions published to npm up to and including **1.3.3** were released under MIT and
+stay MIT — a license change is not retroactive, and anyone who installed those keeps
+those terms. This applies from the next published version.
