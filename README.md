@@ -91,11 +91,23 @@ Returns matching unit `Object` if found, otherwise `undefined`.
 
 ## License
 
-[GNU AGPL-3.0-or-later](LICENSE).
+Copyright (C) 2020 Tyler Vigario
 
-Anyone who receives this software, or uses a modified version of it over a network,
-is entitled to its source and to the right to repair it.
+This program is free software: you can redistribute it and/or modify it under the
+terms of the GNU Affero General Public License as published by the Free Software
+Foundation, either **version 3 of the License, or (at your option) any later
+version**.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the [GNU Affero General Public License](LICENSE) for more
+details.
+
+### The relicensing boundary
 
 Versions published to npm up to and including **1.3.3** were released under MIT and
-stay MIT — a license change is not retroactive, and anyone who installed those keeps
-those terms. This applies from the next published version.
+remain MIT. A licence change is not retroactive: anyone who installed 1.3.3 or earlier
+keeps MIT terms for that version, permanently.
+
+**The AGPL terms above apply to this source, and to every version published after
+1.3.3.**
